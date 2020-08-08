@@ -1,0 +1,16 @@
+{
+  "name": "bga-electron-note",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --watch main.js --watch renderer.js --watch *.html --exec \"electron .\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron": "^9.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
