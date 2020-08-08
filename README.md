@@ -13,6 +13,15 @@ mkdir bga-electron-note
 cd bga-electron-note
 npm init
 yarn add electron --dev
-yarn add devtron --dev
+yarn add electron-is-dev --dev
+yarn add concurrently --dev
+yarn add wait-on --dev
 yarn add nodemon --dev
+yarn add cross-env --dev
 ```
+
+- [electron-is-dev](https://www.npmjs.com/package/electron-is-dev)
+- [concurrently](https://www.npmjs.com/package/concurrently)
+- [wait-on](https://www.npmjs.com/package/wait-on)
+- [nodemon](https://www.npmjs.com/package/nodemon)
+- [cross-env](https://www.npmjs.com/package/cross-env)

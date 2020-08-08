@@ -1,16 +1,65 @@
 {
   "name": "bga-electron-note",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "Electron 开发学习笔记",
   "scripts": {
-    "start": "nodemon --watch main.js --watch renderer.js --watch *.html --exec \"electron .\""
+    "ele-start": "electron ./dist/main.js",
+    "ele-tsc": "tsc -w -p shell/tsconfig.json",
+    "ele-watch": "nodemon --watch dist --watch child.html --exec \"yarn ele-start\"",
+    "ele-wait": "wait-on http://localhost:3000 && yarn ele-watch",
+    "st": "concurrently \"yarn:ele-tsc\" \"yarn:ele-watch\"",
+    "debug": "concurrently \"yarn:start\" \"yarn:ele-tsc\" \"yarn:ele-wait\"",
+    "start": "cross-env BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "bingoogolapple",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "antd": "^4.4.2",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
+  },
   "devDependencies": {
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
     "devtron": "^1.4.0",
     "electron": "^9.2.0",
-    "nodemon": "^2.0.4"
+    "electron-is-dev": "^1.2.0",
+    "nodemon": "^2.0.4",
+    "wait-on": "^5.1.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "arrowParens": "avoid",
+    "trailingComma": "none"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
