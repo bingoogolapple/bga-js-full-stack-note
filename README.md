@@ -2,23 +2,45 @@
 
 Electron 开发学习笔记
 
+![screenshot](./screenshot.gif)
+
+## 运行
+
+- 本地运行
+
+```shell
+yarn dev
+```
+
+- 打包
+
+```shell
+
+yarn dist
+```
+
+## 备忘
+
 - [官方文档](https://www.electronjs.org/docs)
-
-## 初始化工程
-
 - [创建你的第一个应用](https://www.electronjs.org/docs/tutorial/first-app)
+- Electron 打包时不会打包 devDependencies，只有 Electron 主进程用到的依赖才添加到 dependencies 中
 
 ```shell
 mkdir bga-electron-note
 cd bga-electron-note
 npm init
 yarn add electron --dev
-yarn add electron-is-dev
+yarn add electron-is-dev --dev
 yarn add concurrently --dev
 yarn add wait-on --dev
 yarn add nodemon --dev
 yarn add cross-env --dev
 yarn add electron-builder --dev
+yarn add webpack-cli --dev
+yarn add ts-loader --dev
+yarn add tsconfig-paths-webpack-plugin --dev
+
+npm install asar -g
 ```
 
 - [electron-is-dev](https://www.npmjs.com/package/electron-is-dev)
@@ -27,3 +49,9 @@ yarn add electron-builder --dev
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [electron-builder](https://www.npmjs.com/package/electron-builder)
+
+```shell
+asar extract app.asar ./app
+```
+
+- [png-to-icns-converter](https://anyconv.com/png-to-icns-converter)

@@ -179,11 +179,11 @@ export default class TodoViewModel extends BaseViewModel {
 
   @action.bound
   startUpdateDateTimer() {
-    // this.timer = setInterval(() => {
-    //   runInAction('updateCurrentDate', () => {
-    //     this.currentDate = new Date()
-    //   })
-    // }, 1000)
+    this.timer = setInterval(() => {
+      runInAction('updateCurrentDate', () => {
+        this.currentDate = new Date()
+      })
+    }, 1000)
   }
 
   @action.bound
