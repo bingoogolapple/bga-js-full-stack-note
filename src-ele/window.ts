@@ -80,32 +80,40 @@ export function handleIPC() {
     )
   }, 1000)
 
-  ipcMain.on('SendOnChildProcessMessage', (event, p1, p2) => {
-    console.log(event, p1, p2)
+  ipcMain.on(
+    'SendOnChildProcessMessage',
+    (event: Electron.IpcMainEvent, p1, p2) => {
+      console.log(event, p1, p2)
 
-    event.reply(
-      'SendOnMainProcessMessage',
-      '我是来自主进程的 on 中 replay 方法返回的消息'
-    )
-
-    // 也可以拿到具体的 webContent 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
-    const newEvent: any = event
-    newEvent.sender.webContents.send(
-      'SendOnMainProcessMessage',
-      '我是来自主进程的 on 中 webContents.send 方法返回的消息'
-    )
-  })
-  ipcMain.handle('InvokeHandleChildProcessMessage', (event, p1, p2) => {
-    console.log(event, p1, p2)
-    return new Promise((resolve, reject) => {
-      resolve('我是来自主进程的 handle 方法返回的消息')
-
-      // 也可以拿到具体的 webContent 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
-      const newEvent: any = event
-      newEvent.sender.webContents.send(
+      event.reply(
         'SendOnMainProcessMessage',
-        '我是来自主进程的 handle 中 webContents.send 方法返回的消息'
+        '我是来自主进程的 on 中 replay 方法返回的消息'
       )
-    })
-  })
+
+      // 也可以拿到具体的 WebContent（event.sender） 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
+      // event.sender.send(
+      //   'SendOnMainProcessMessage',
+      //   '我是来自主进程的 on 中 webContents.send 方法返回的消息'
+      // )
+    }
+  )
+  ipcMain.handle(
+    'InvokeHandleChildProcessMessage',
+    (event: Electron.IpcMainInvokeEvent, p1, p2) => {
+      console.log(event, p1, p2)
+      return new Promise((resolve, reject) => {
+        resolve('我是来自主进程的 handle 方法返回的消息')
+
+        // 也可以拿到具体的 WebContent（event.sender） 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
+        event.sender.send(
+          'SendOnMainProcessMessage',
+          '我是来自主进程的 handle 中 webContents.send 方法返回的消息'
+        )
+      })
+    }
+  )
+}
+
+export function sendToMainWindow(channel: string, ...args: any[]) {
+  mainWindow?.webContents.send(channel, args)
 }
