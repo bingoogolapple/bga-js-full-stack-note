@@ -14,7 +14,7 @@ const IPCDemo: React.FC = () => {
     setInvokeHandleMainProcessMessage
   ] = useState('')
   useEffect(() => {
-    let channel = 'SendOnMainProcessMessage'
+    let channel = 'MainWindowOnMessage'
     ipcRenderer.on(channel, (event: IpcRendererEvent, arg: string) => {
       console.log(event, arg)
       setSendOnMainProcessMessage(arg)

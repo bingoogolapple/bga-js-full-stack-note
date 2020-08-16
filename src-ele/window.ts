@@ -19,8 +19,8 @@ export function createWindow() {
 
   // 并且为你的应用加载 index.html
   const url = isDev
-    ? 'http://localhost:3000'
-    : `file://${path.join(__dirname, 'index.html')}`
+    ? 'http://localhost:3000#electronDemo/mainWindow'
+    : `file://${path.join(__dirname, 'index.html#electronDemo/mainWindow')}`
   mainWindow.loadURL(url)
 
   // 打开开发者工具
@@ -44,18 +44,24 @@ function createChildWindow() {
   childWindow = new BrowserWindow({
     x: 100,
     y: 0,
-    width: 400,
-    height: 200,
+    width: 600,
+    height: 230,
     parent: mainWindow, // 拖动主窗口时子窗口会和主窗口联动
     webPreferences: {
       nodeIntegration: true // 可以在 Render Process 里使用 Node
     }
   })
 
+  // const secondUrl = isDev
+  //   ? `file://${path.join(__dirname, '../public/second.html')}`
+  //   : `file://${path.join(__dirname, 'second.html')}`
+  // childWindow.loadURL(secondUrl)
+
   const secondUrl = isDev
-    ? `file://${path.join(__dirname, '../public/second.html')}`
-    : `file://${path.join(__dirname, 'second.html')}`
+    ? 'http://localhost:3000#electronDemo/childWindow'
+    : `file://${path.join(__dirname, 'index.html#electronDemo/childWindow')}`
   childWindow.loadURL(secondUrl)
+
   // 打开开发者工具
   if (isDev) {
     childWindow.webContents.openDevTools()
@@ -67,18 +73,19 @@ function createChildWindow() {
 
   let anyGlobal: any = global
   anyGlobal.sharedObject = {
-    childWindowWebContentsId: childWindow.webContents.id
+    childWindowWebContentsId: childWindow.webContents.id,
+    mainWindowWebContentsId: mainWindow?.webContents.id
   }
 }
 
 export function handleIPC() {
   setTimeout(() => {
-    // 启动时主进程立即通过 webContents 发送消息给指定的渲染进程
+    console.log('启动时主进程立即通过 webContents 发送消息给指定的渲染进程')
     mainWindow?.webContents.send(
-      'SendOnMainProcessMessage',
+      'MainWindowOnMessage',
       '启动时 webContents.send 消息'
     )
-  }, 1000)
+  }, 3000)
 
   ipcMain.on(
     'SendOnChildProcessMessage',
@@ -86,13 +93,13 @@ export function handleIPC() {
       console.log(event, p1, p2)
 
       event.reply(
-        'SendOnMainProcessMessage',
+        'MainWindowOnMessage',
         '我是来自主进程的 on 中 replay 方法返回的消息'
       )
 
       // 也可以拿到具体的 WebContent（event.sender） 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
       // event.sender.send(
-      //   'SendOnMainProcessMessage',
+      //   'MainWindowOnMessage',
       //   '我是来自主进程的 on 中 webContents.send 方法返回的消息'
       // )
     }
@@ -106,12 +113,18 @@ export function handleIPC() {
 
         // 也可以拿到具体的 WebContent（event.sender） 来调 send 方法从主进程发消息给子进程，子进程通过 on 接收
         event.sender.send(
-          'SendOnMainProcessMessage',
+          'MainWindowOnMessage',
           '我是来自主进程的 handle 中 webContents.send 方法返回的消息'
         )
       })
     }
   )
+
+  ipcMain.handle('mainWindowUrl', (event: Electron.IpcMainInvokeEvent) => {
+    return isDev
+      ? 'http://localhost:3000#electronDemo/mainWindow'
+      : `file://${path.join(__dirname, 'index.html#electronDemo/mainWindow')}`
+  })
 }
 
 export function sendToMainWindow(channel: string, ...args: any[]) {

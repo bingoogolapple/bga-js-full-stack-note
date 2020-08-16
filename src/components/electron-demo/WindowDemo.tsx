@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Card, Button } from 'antd'
+import { Card, Button, Tag } from 'antd'
 
-const { remote } = window.require('electron')
+const { remote, ipcRenderer } = window.require('electron')
 // 引入 electron 中的对象
 const { BrowserView, shell } = window.require('electron').remote
 
@@ -19,11 +19,12 @@ const WindowDemo: React.FC = () => {
     browserView.setBounds({ x: 500, y: 300, width: 300, height: 300 })
     browserView.webContents.loadURL(e.target.href)
   }, [])
-  const windowOpen = useCallback((e: any) => {
+  const windowOpen = useCallback(async (e: any) => {
     e.preventDefault()
     // window.open(e.target.href)
 
-    let childWindow: Window | null = window.open('http://localhost:3000')
+    let mainWindowUrl = await ipcRenderer.invoke('mainWindowUrl')
+    let childWindow: Window | null = window.open(mainWindowUrl)
     setTimeout(() => {
       console.log('10s 后关闭', childWindow)
       childWindow?.close()
@@ -32,7 +33,7 @@ const WindowDemo: React.FC = () => {
   }, [])
   const postMessage = useCallback((e: any) => {
     // 如果是被其他窗口打开，可以通过 window.opener.postMessage 发送消息给父窗口
-    window.opener.postMessage('我是子窗口传递的消息')
+    window.opener.postMessage('我是子窗口通过 postMessage 方式传递的消息')
   }, [])
 
   // 监听子窗口 postMessage 发送的消息
@@ -70,7 +71,7 @@ const WindowDemo: React.FC = () => {
       {window.opener ? (
         <Button onClick={postMessage}>发送消息给父窗口</Button>
       ) : (
-        <>{childMessage}</>
+        <Tag color="cyan">{childMessage}</Tag>
       )}
     </Card>
   )

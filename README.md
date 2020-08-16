@@ -40,6 +40,10 @@ yarn add webpack-cli --dev
 yarn add ts-loader --dev
 yarn add tsconfig-paths-webpack-plugin --dev
 
+yarn add react-router --dev
+yarn add react-router-dom --dev
+yarn add @types/react-router-dom --dev
+
 npm install asar -g
 ```
 
@@ -49,6 +53,9 @@ npm install asar -g
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [electron-builder](https://www.npmjs.com/package/electron-builder)
+
+- [react-router](https://reactrouter.com/core/guides/quick-start)
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start)
 
 ```shell
 asar extract app.asar ./app
