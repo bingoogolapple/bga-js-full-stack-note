@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import { Button, Card } from 'antd'
 
 const fs = window.require('fs')
@@ -105,6 +105,32 @@ const SystemApiDemo: React.FC = () => {
     clipboard.writeText('我是被复制的内容')
   }, [])
 
+  const dropRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const dropDiv = dropRef.current
+
+    const dragoverListener = (e: DragEvent) => {
+      e.preventDefault()
+    }
+    const dropListener = (e: DragEvent) => {
+      e.preventDefault()
+      const files = e.dataTransfer?.files
+      if (files && files.length > 0) {
+        console.log('文件为', files[0].path)
+      } else {
+        console.log('drop', e)
+      }
+    }
+
+    dropDiv?.addEventListener('dragover', dragoverListener)
+    dropDiv?.addEventListener('drop', dropListener)
+
+    return () => {
+      dropDiv?.removeEventListener('dragover', dragoverListener)
+      dropDiv?.removeEventListener('drop', dropListener)
+    }
+  }, [])
+
   return (
     <Card title="系统 API">
       <Button onClick={openDialog}>选择文件{imagePath}</Button>
@@ -118,6 +144,16 @@ const SystemApiDemo: React.FC = () => {
       <Button type="primary" onClick={writeToClipboard}>
         复制到剪贴板
       </Button>
+      <div
+        ref={dropRef}
+        style={{
+          width: 200,
+          height: 50,
+          background: 'red'
+        }}
+      >
+        <span>拖拽文件到此处</span>
+      </div>
     </Card>
   )
 }
