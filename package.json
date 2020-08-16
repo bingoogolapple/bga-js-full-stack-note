@@ -15,7 +15,7 @@
     "react-eject": "react-scripts eject",
     "ele-build": "webpack",
     "ele-build-watch": "cross-env NODE_ENV=development webpack --watch",
-    "ele-start": "electron ./build/electron.js",
+    "ele-start": "electron --inspect=8088 ./build/electron.js",
     "ele-watch-js": "nodemon --watch ./build/electron.js --exec \"yarn ele-start\"",
     "ele-wait": "wait-on http://localhost:3000 && yarn ele-watch-js",
     "dev": "concurrently \"yarn:react-start\" \"yarn:ele-build-watch\" \"yarn:ele-wait\"",

@@ -55,3 +55,15 @@ asar extract app.asar ./app
 ```
 
 - [png-to-icns-converter](https://anyconv.com/png-to-icns-converter)
+
+## 调试主进程
+
+### 通过 Chrome 调试主进程
+
+- 启动时增加「--inspect=端口号」，浏览器中输入「chrome://inspect」，点击「Configure」按钮配置「localhost:端口号」，然后点击底部「inspect」按钮
+- 对「build/electron.js」打断点
+
+### 通过 VSCode 调试主进程
+
+- [配置 launch.json](https://www.electronjs.org/docs/tutorial/debugging-main-process-vscode)
+- 对「build/electron.js」打断点
