@@ -67,3 +67,16 @@ asar extract app.asar ./app
 
 - [配置 launch.json](https://www.electronjs.org/docs/tutorial/debugging-main-process-vscode)
 - 对「build/electron.js」打断点
+
+## Yarn 镜像
+
+```sh
+npm install yrm -g
+yrm ls
+yrm use taobao
+```
+
+## 项目模板
+
+- [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
+- [electron-vue](https://github.com/SimulatedGREG/electron-vue)
