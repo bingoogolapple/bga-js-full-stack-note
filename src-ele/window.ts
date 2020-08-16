@@ -13,7 +13,7 @@ export function createWindow() {
     height: 650,
     webPreferences: {
       nodeIntegration: true, // 可以在 Render Process 里使用 Node
-      enableRemoteModule: true
+      webSecurity: false
     }
   })
 

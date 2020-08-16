@@ -23,7 +23,12 @@ const WindowDemo: React.FC = () => {
     e.preventDefault()
     // window.open(e.target.href)
 
-    window.open('http://localhost:3000')
+    let childWindow: Window | null = window.open('http://localhost:3000')
+    setTimeout(() => {
+      console.log('10s 后关闭', childWindow)
+      childWindow?.close()
+      childWindow = null
+    }, 10000)
   }, [])
   const postMessage = useCallback((e: any) => {
     // 如果是被其他窗口打开，可以通过 window.opener.postMessage 发送消息给父窗口
