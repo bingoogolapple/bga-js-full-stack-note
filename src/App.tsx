@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import TodoListMobx from './components/mobx-todo'
+// import TodoListMobx from './components/mobx-todo'
 // import TodoListState from './components/state-todo'
 // import TodoListHooks from './components/hooks-todo'
 // import HooksDemo from './components/hooks-demo'
@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <>
         {/* <TodoListState /> */}
-        <TodoListMobx />
+        {/* <TodoListMobx /> */}
         {/* <TodoListHooks /> */}
         {/* <HooksDemo /> */}
         <ElectronDemo />

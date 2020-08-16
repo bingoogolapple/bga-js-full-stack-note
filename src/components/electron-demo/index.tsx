@@ -1,64 +1,43 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Button, Card } from 'antd'
 
-// 引入 electron 中的类型
-import { IpcRendererEvent } from 'electron'
+import IPCDemo from './IPCDemo'
 // 引入 electron 中的对象
-const { ipcRenderer } = window.require('electron')
-const { BrowserWindow } = window.require('electron').remote
+const { Notification } = window.require('electron').remote
 
 const ElectronDemo: React.FC = () => {
-  const [mainProcessMessage, setMainProcessMessage] = useState('')
-  useEffect(() => {
-    console.log(
-      `第二个参数传 [] 时只会在组件第一次加载完成时执行 useEffect，类似于 componentDidMount`
-    )
-
-    let channel = 'mainProcessMessage'
-    ipcRenderer.on(channel, (event: IpcRendererEvent, arg: string) => {
-      console.log(event, arg)
-      setMainProcessMessage(arg)
-    })
-
-    return () => {
-      console.log(
-        `第二个参数传 [] 时只会在组件卸载时执行清除，类似于 componentWillUnmount`
-      )
-      ipcRenderer.removeAllListeners(channel)
-    }
-  }, [])
-  const sendToMainProcess = useCallback(() => {
-    ipcRenderer.send('childProcessMessage', '我是来自子进程的消息')
-  }, [])
-  const openNewWindow = useCallback(() => {
-    // electron 帮我们封装了 remote 模块，可以使用 remote 模块自动发消息访问主进程 API
-    const window = new BrowserWindow({ width: 600, height: 600 })
-    window.loadURL('https://www.baidu.com')
-  }, [])
   const sendNotification = useCallback(() => {
-    const notification = new Notification('我是标题', {
-      body: '我是通知内容'
+    const notification = new Notification({
+      title: '我是 invoke 标题',
+      body: '我是 invoke 内容',
+      closeButtonText: '停止',
+      hasReply: false,
+      actions: [{ text: '继续', type: 'button' }] // 应用已签署 并且将 NSUserNotificationAlertStyle 设置为在 info.plist 中提醒才会展示 action
     })
-    notification.onclick = () => {
-      console.log('通知被点击')
-    }
+    notification.show()
+    notification.on('action', (event, index) => {
+      console.log('action 继续')
+    })
+    notification.on('close', event => {
+      console.log('close 停止')
+    })
+    notification.on('click', event => {
+      console.log('click')
+    })
+    notification.on('reply', (event, reply) => {
+      console.log('reply', reply)
+    })
   }, [])
 
   return (
     <>
       <Card title="Electron 案例">
-        <h2>进程间通信</h2>
-        <div>主进程消息：{mainProcessMessage}</div>
-        <Button type="primary" onClick={sendToMainProcess}>
-          发送消息到主进程
-        </Button>
-        <Button type="primary" onClick={openNewWindow}>
-          打开新窗口
-        </Button>
-        <h2>系统 API</h2>
-        <Button type="primary" onClick={sendNotification}>
-          发送系统通知
-        </Button>
+        <IPCDemo />
+        <Card title="系统 API">
+          <Button type="primary" onClick={sendNotification}>
+            发送系统通知
+          </Button>
+        </Card>
       </Card>
     </>
   )

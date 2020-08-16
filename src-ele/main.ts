@@ -1,10 +1,11 @@
 import { app, BrowserWindow } from 'electron'
-import { createWindow } from './window'
+import { createWindow, handleIPC } from './window'
 
 // Electron 会在初始化完成并且准备好创建浏览器窗口时调用这个方法
 // 部分 API 在 ready 事件触发后才能使用。
 app.whenReady().then(() => {
   createWindow()
+  handleIPC()
 
   app.on('activate', () => {
     // 在 macOS 上，当单击 dock 图标并且没有其他窗口打开时，
