@@ -4,9 +4,7 @@ import { Button, Card } from 'antd'
 const fs = window.require('fs')
 const { remote } = window.require('electron')
 // 引入 electron 中的对象
-const { Notification, dialog, globalShortcut, clipboard } = window.require(
-  'electron'
-).remote
+const { Notification, dialog, clipboard } = window.require('electron').remote
 
 const SystemApiDemo: React.FC = () => {
   const [imagePath, setImagePath] = useState('')
@@ -74,14 +72,9 @@ const SystemApiDemo: React.FC = () => {
     // 监听断网
     window.addEventListener('offline', offlineListener)
 
-    const result = globalShortcut.register('command + t', () => {
-      console.log('触发快捷键')
-    })
-    console.log('注册全局快捷键', result)
     return () => {
       window.removeEventListener('online', onlineListener)
       window.removeEventListener('offline', offlineListener)
-      globalShortcut.unregister('command + t')
     }
   }, [])
 
