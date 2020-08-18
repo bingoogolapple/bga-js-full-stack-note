@@ -68,9 +68,29 @@ asar extract app.asar ./app
 - 启动时增加「--inspect=端口号」，浏览器中输入「chrome://inspect」，点击「Configure」按钮配置「localhost:端口号」，然后点击底部「inspect」按钮
 - 对「build/electron.js」打断点
 
-### 通过 VSCode 调试主进程
+### 通过 VSCode 调试主进程（推荐）
+
+#### 官方文档方式
 
 - [配置 launch.json](https://www.electronjs.org/docs/tutorial/debugging-main-process-vscode)
+- 对「build/electron.js」打断点
+
+#### 自己摸索方式
+
+- 在 launch.json 中添加如下配置可启动服务并调试主进程
+
+```json
+{
+  "name": "启动服务并调试主进程",
+  "args": ["dev"],
+  "type": "node",
+  "request": "launch",
+  "runtimeExecutable": "yarn",
+  "console": "integratedTerminal",
+  "protocol": "inspector"
+}
+```
+
 - 对「build/electron.js」打断点
 
 ## Yarn 镜像

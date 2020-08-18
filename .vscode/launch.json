@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "启动服务并调试主进程",
+      "args": ["dev"],
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "console": "integratedTerminal",
+      "protocol": "inspector"
+    },
+    {
       "name": "调试主进程",
       "type": "node",
       "request": "launch",

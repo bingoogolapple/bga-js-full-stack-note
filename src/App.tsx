@@ -1,129 +1,67 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import './App.css'
-import {
-  HashRouter,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch
-} from 'react-router-dom'
-
-import TodoListMobx from './components/mobx-todo'
-import TodoListState from './components/state-todo'
-import TodoListHooks from './components/hooks-todo'
-import HooksDemo from './components/hooks-demo'
-import MainWindowDemo from './components/electron-demo/MainWindowDemo'
-import ChildWindowDemo from './components/electron-demo/ChildWindowDemo'
-import ControlWindowDemo from './components/electron-demo/ControlWindowDemo'
+import { HashRouter, Switch, Route, Link } from 'react-router-dom'
+import ReactDemoRouter from './router/ReactDemoRouter'
+import Loading from './components/loading'
+import { Tag } from 'antd'
 
 class App extends React.Component {
+  get electronComponentType(): React.ComponentType {
+    if (window.navigator.userAgent.indexOf('Electron') !== -1) {
+      return lazy(() => import('./router/ElectronDemoRouter'))
+    } else {
+      return function () {
+        return <Tag color="warning">非 Electron 环境</Tag>
+      }
+    }
+  }
+
   render() {
     return (
       <HashRouter hashType="noslash">
-        <div>
-          {/* <nav>
+        <Switch>
+          <Route path="/electronDemo">
+            <Suspense fallback={<Loading visible />}>
+              <this.electronComponentType />
+            </Suspense>
+          </Route>
+          {/* <Route strict exact path="/reactDemo" component={ReactDemoRouter} /> */}
+          <Route path="/reactDemo" component={ReactDemoRouter} />
+          <Route path="/reactDemo/testExact">
+            <ol>
+              <li>
+                如果外面没有包裹 Switch，会展示多个匹配路由。如果给 /reactDemo
+                加上 exact 后，访问 /reactDemo/testExact 就不会展示 /reactDemo
+                的内容
+              </li>
+              <li>如果外面有包裹 Switch，则只会展示第一个匹配的路由</li>
+              <li>
+                strict 表示启用严格模式，当其和 exact
+                同时指定时，如果路由后面多了 / 也是匹配不了的，例如 /reactDemo/
+                匹配不了 /reactDemo，不加 strict 时才可以
+              </li>
+              <li>
+                如果是嵌套路由的话，不能给父路由添加 exact，否则无法匹配子路由
+              </li>
+            </ol>
+          </Route>
+          <Route path="/">
             <ul>
               <li>
                 <Link to="/electronDemo">ElectronDemo</Link>
               </li>
               <li>
-                <Link to="/todoListDemo">TodoListDemo</Link>
+                <Link to="/reactDemo">ReactDemo</Link>
+              </li>
+              <li>
+                <Link to="/reactDemo/testExact">testExact</Link>
               </li>
             </ul>
-          </nav> */}
-
-          <Switch>
-            <Route path="/electronDemo">
-              <ElectronDemoRouter />
-            </Route>
-            <Route path="/todoListDemo">
-              <TodoListDemoRouter />
-            </Route>
-          </Switch>
-        </div>
+          </Route>
+        </Switch>
       </HashRouter>
     )
   }
-}
-
-const TodoListDemoRouter: React.FC = () => {
-  let match = useRouteMatch()
-
-  return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to={`${match.path}/todoListState`}>TodoListState</Link>
-          </li>
-          <li>
-            <Link to={`${match.path}/todoListMobx`}>TodoListMobx</Link>
-          </li>
-          <li>
-            <Link to={`${match.path}/todoListHooks`}>TodoListHooks</Link>
-          </li>
-          <li>
-            <Link to={`${match.path}/hooksDemo`}>Hooks Demo</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <Switch>
-        <Route path={`${match.path}/todoListState`}>
-          <TodoListState />
-        </Route>
-        <Route path={`${match.path}/todoListMobx`}>
-          <TodoListMobx />
-        </Route>
-        <Route path={`${match.path}/todoListHooks`}>
-          <TodoListHooks />
-        </Route>
-        <Route path={`${match.path}/hooksDemo`}>
-          <HooksDemo />
-        </Route>
-        <Route path={match.path}>
-          <h3>请选择一个 Todo 案例</h3>
-        </Route>
-      </Switch>
-    </div>
-  )
-}
-
-const ElectronDemoRouter: React.FC = () => {
-  let match = useRouteMatch()
-
-  return (
-    <div>
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to={`${match.path}/mainWindow`}>主窗口</Link>
-          </li>
-          <li>
-            <Link to={`${match.path}/childWindow`}>子窗口</Link>
-          </li>
-          <li>
-            <Link to={`${match.path}/controlWindow`}>控制窗口</Link>
-          </li>
-        </ul>
-      </nav> */}
-
-      <Switch>
-        <Route path={`${match.path}/mainWindow`}>
-          <MainWindowDemo />
-        </Route>
-        <Route path={`${match.path}/childWindow`}>
-          <ChildWindowDemo />
-        </Route>
-        <Route path={`${match.path}/controlWindow`}>
-          <ControlWindowDemo />
-        </Route>
-        <Route path={match.path}>
-          <h3>请选择一个 Electron 案例</h3>
-        </Route>
-      </Switch>
-    </div>
-  )
 }
 
 export default App
