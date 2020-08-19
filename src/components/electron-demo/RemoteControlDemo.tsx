@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Card, Input, Tag } from 'antd'
 
-const { ipcRenderer, remote } = window.require('electron')
+const { ipcRenderer } = window.require('electron')
 // 引入 electron 中的对象
-const {} = window.require('electron').remote
+// const {} = window.require('electron').remote
 
 const { Search } = Input
 
