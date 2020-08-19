@@ -6,11 +6,13 @@ import {
   useLocation,
   useHistory,
   NavLink,
-  RouteComponentProps
+  RouteComponentProps,
+  Redirect
 } from 'react-router-dom'
 import querystring from 'querystring'
 
 import './nav.css'
+import { Button } from 'antd'
 
 const Nav: React.FC = () => {
   let match = useRouteMatch()
@@ -51,10 +53,10 @@ const Nav: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={`${match.path}/2222`}>2222</NavLink>
+          <NavLink to={`${match.path}/loginPage`}>去登录页面</NavLink>
         </li>
         <li>
-          <NavLink to={`${match.path}/3333`}>3333</NavLink>
+          <NavLink to={`${match.path}/shoppingCartPage`}>购物车页面</NavLink>
         </li>
       </ul>
     </nav>
@@ -75,17 +77,21 @@ const RouterDemo: React.FC = () => {
             return <div>直接在 render 渲染</div>
           }}
         />
+        {/* 匹配 from 时自动跳转到 to 对应的页面 */}
+        <Redirect
+          from={`${match.path}/redirectRenderDemo`}
+          to={`${match.path}/renderDemo`}
+        />
         {/* 加上 ? 表示可选参数，不加 ? 时表示必须参数，如果没有传就会走到后续其他路由或 404 路由 */}
         <Route
           path={`${match.path}/testPathParam/:orderId?/:memberId`}
           component={TestPathParam}
         />
-        <Route path={`${match.path}/2222`}>
-          <div>2222</div>
-        </Route>
-        <Route path={`${match.path}/3333`}>
-          <div>3333</div>
-        </Route>
+        <Route path={`${match.path}/loginPage`} component={LoginPage} />
+        <Route
+          path={`${match.path}/shoppingCartPage`}
+          component={ShoppingCartPage}
+        />
         <Route>404</Route>
       </Switch>
     </div>
@@ -146,6 +152,67 @@ const TestPathParamInner: React.FC = () => {
       <div>query bb：{queryParams.bb}</div>
       <div>stateAa：{location.state?.stateAa}</div>
       <div>stateBb：{location.state?.stateBb}</div>
+    </div>
+  )
+}
+
+let isLogin = false
+
+const LoginPage: React.FC<RouteComponentProps> = props => {
+  return (
+    <div>
+      <h2>登录页面</h2>
+      <Button
+        onClick={() => {
+          isLogin = true
+          props.history.push('/routerDemo/shoppingCartPage')
+        }}
+      >
+        登录
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.goForward()
+        }}
+      >
+        前进
+      </Button>
+    </div>
+  )
+}
+
+const ShoppingCartPage: React.FC<RouteComponentProps> = props => {
+  if (!isLogin) {
+    // 不指定 from 时，会直接跳转到 to
+    return <Redirect to={'/routerDemo/loginPage'} />
+  }
+  return (
+    <div>
+      <h2>购物车页面</h2>
+      <Button
+        onClick={() => {
+          isLogin = false
+          // 替换路由，上一次的页面销毁。参数支持字符串和对象两种形式
+          props.history.replace('/routerDemo/loginPage')
+        }}
+      >
+        退出，去登录页面
+      </Button>
+      <Button
+        onClick={() => {
+          // 新增页面，上一次的页面还存在。参数支持字符串和对象两种形式
+          props.history.push('/routerDemo/loginPage')
+        }}
+      >
+        不退出，去登录页面
+      </Button>
+      <Button
+        onClick={() => {
+          props.history.goBack()
+        }}
+      >
+        后退
+      </Button>
     </div>
   )
 }
