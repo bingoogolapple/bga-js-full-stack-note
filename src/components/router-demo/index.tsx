@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Switch,
   Route,
@@ -8,12 +8,15 @@ import {
   NavLink,
   RouteComponentProps,
   Redirect,
-  withRouter
+  withRouter,
+  Prompt,
+  useParams
 } from 'react-router-dom'
 import querystring from 'querystring'
+import url from 'url'
 
 import './nav.css'
-import { Button } from 'antd'
+import { Button, Input } from 'antd'
 
 const Nav: React.FC = () => {
   let match = useRouteMatch()
@@ -115,7 +118,8 @@ const TestPathParam: React.FC<RouteComponentProps<
 >> = props => {
   console.log('外层', props.match, props.location, props.history)
   const searchParams = new URLSearchParams(props.location.search)
-  const queryParams = querystring.parse(props.location.search.substring(1))
+  const queryParams = querystring.parse(props.location.search.substring(1)) // 第一个字符是问号，需要裁减调，否则解析出来的第一个 key 前面会有问号
+  const queryParamsWithUrl = url.parse(props.location.search, true).query // 推荐用 url 模块来解析，会自动处理第一个字符为问号的情况
 
   return (
     <div>
@@ -126,6 +130,7 @@ const TestPathParam: React.FC<RouteComponentProps<
       <div>search bb：{searchParams.get('bb')}</div>
       <div>query aa：{queryParams.aa}</div>
       <div>query bb：{queryParams.bb}</div>
+      <div>{JSON.stringify(queryParamsWithUrl)}</div>
       <div>stateAa：{props.location.state?.stateAa}</div>
       <div>stateBb：{props.location.state?.stateBb}</div>
       <TestPathParamInner />
@@ -141,15 +146,18 @@ const TestPathParamInner: React.FC = props => {
   const match = useRouteMatch<RouterParam>() // 获取路径参数和完整路径
   const location = useLocation<StateParam>() // 获取查询参数、隐藏参数和完整路径
   const history = useHistory<StateParam>() // 导航前进后退等，history 中也包含 location 属性
+  const params = useParams<RouterParam>() // 获取路径参数
   const searchParams = new URLSearchParams(location.search)
   const queryParams = querystring.parse(location.search.substring(1))
-  console.log('内层', match, location, history)
+  console.log('内层', match, location, history, params)
 
   return (
     <div>
       <h3>内层通过 useXxxx 使用</h3>
       <div>订单ID：{match.params.orderId}</div>
       <div>会员ID：{match.params.memberId}</div>
+      <div>useParams订单ID：{params.orderId}</div>
+      <div>useParams会员ID：{params.memberId}</div>
       <div>search aa：{searchParams.get('aa')}</div>
       <div>search bb：{searchParams.get('bb')}</div>
       <div>query aa：{queryParams.aa}</div>
@@ -190,9 +198,29 @@ const TestPathParamInnerWithRouter = withRouter(TestPathParamInnerWith)
 let isLogin = false
 
 const LoginPage: React.FC<RouteComponentProps> = props => {
+  const [username, setUsername] = useState('')
+
   return (
     <div>
       <h2>登录页面</h2>
+      {/* message 既可以传文本，也可以传回调函数 */}
+      {/* <Prompt message="已输入用户名，确认取消登录吗？" when={!!username} /> */}
+      <Prompt
+        message={(location, action) => {
+          console.log(location)
+          console.log(action)
+          // 如果返回文本内容则弹出确认、取消对话框
+          return '已输入用户名，确认取消登录吗？'
+          // 如果返回 true 则直接离开当前路由
+          //   return true
+          // 如果返回 false 则继续停留在当前路由，并且不会弹确认取消对话框
+          //   return false
+
+          // when 为可选参数
+        }}
+        when={!!username}
+      />
+      <Input value={username} onChange={e => setUsername(e.target.value)} />
       <Button
         onClick={() => {
           isLogin = true
