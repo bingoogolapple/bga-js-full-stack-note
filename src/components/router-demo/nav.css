@@ -1,0 +1,12 @@
+.active {
+  color: green;
+  font-weight: bold;
+}
+.active:hover {
+  color: burlywood;
+}
+
+.selected {
+  color: orange;
+  font-weight: bold;
+}
