@@ -7,7 +7,8 @@ import {
   useHistory,
   NavLink,
   RouteComponentProps,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom'
 import querystring from 'querystring'
 
@@ -111,28 +112,31 @@ const TestPathParam: React.FC<RouteComponentProps<
   RouterParam,
   any,
   StateParam
->> = param => {
-  console.log('外层', param.match, param.location, param.history)
-  const searchParams = new URLSearchParams(param.location.search)
-  const queryParams = querystring.parse(param.location.search.substring(1))
+>> = props => {
+  console.log('外层', props.match, props.location, props.history)
+  const searchParams = new URLSearchParams(props.location.search)
+  const queryParams = querystring.parse(props.location.search.substring(1))
 
   return (
     <div>
       <h3>外层直接使用</h3>
-      <div>订单ID：{param.match.params.orderId}</div>
-      <div>会员ID：{param.match.params.memberId}</div>
+      <div>订单ID：{props.match.params.orderId}</div>
+      <div>会员ID：{props.match.params.memberId}</div>
       <div>search aa：{searchParams.get('aa')}</div>
       <div>search bb：{searchParams.get('bb')}</div>
       <div>query aa：{queryParams.aa}</div>
       <div>query bb：{queryParams.bb}</div>
-      <div>stateAa：{param.location.state?.stateAa}</div>
-      <div>stateBb：{param.location.state?.stateBb}</div>
+      <div>stateAa：{props.location.state?.stateAa}</div>
+      <div>stateBb：{props.location.state?.stateBb}</div>
       <TestPathParamInner />
+      <TestPathParamInnerWithRouter />
     </div>
   )
 }
 
-const TestPathParamInner: React.FC = () => {
+const TestPathParamInner: React.FC = props => {
+  console.log('TestPathParamInner', props) // 此时的 props 是空的
+
   // 内层可以通过外层传递路由参数，也可以通过 useXxx 来获取
   const match = useRouteMatch<RouterParam>() // 获取路径参数和完整路径
   const location = useLocation<StateParam>() // 获取查询参数、隐藏参数和完整路径
@@ -143,7 +147,7 @@ const TestPathParamInner: React.FC = () => {
 
   return (
     <div>
-      <h3>内层 useXxxx 使用</h3>
+      <h3>内层通过 useXxxx 使用</h3>
       <div>订单ID：{match.params.orderId}</div>
       <div>会员ID：{match.params.memberId}</div>
       <div>search aa：{searchParams.get('aa')}</div>
@@ -155,6 +159,33 @@ const TestPathParamInner: React.FC = () => {
     </div>
   )
 }
+
+const TestPathParamInnerWith: React.FC<RouteComponentProps<
+  RouterParam,
+  any,
+  StateParam
+>> = props => {
+  console.log('TestPathParamInnerWith', props)
+
+  const searchParams = new URLSearchParams(props.location.search)
+  const queryParams = querystring.parse(props.location.search.substring(1))
+
+  return (
+    <div>
+      <h3>内层通过 withRouter 使用</h3>
+      <div>订单ID：{props.match.params.orderId}</div>
+      <div>会员ID：{props.match.params.memberId}</div>
+      <div>search aa：{searchParams.get('aa')}</div>
+      <div>search bb：{searchParams.get('bb')}</div>
+      <div>query aa：{queryParams.aa}</div>
+      <div>query bb：{queryParams.bb}</div>
+      <div>stateAa：{props.location.state?.stateAa}</div>
+      <div>stateBb：{props.location.state?.stateBb}</div>
+    </div>
+  )
+}
+// 通过 withRouter 包裹后 TestPathParamInnerWith 的属性就具有了路由属性
+const TestPathParamInnerWithRouter = withRouter(TestPathParamInnerWith)
 
 let isLogin = false
 
