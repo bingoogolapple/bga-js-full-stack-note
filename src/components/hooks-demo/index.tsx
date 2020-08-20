@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Button, Card, Switch } from 'antd'
 import useMousePosition from './useMousePosition'
-// import withLoading, { IWithLoadingProps } from "./withLoading"
 import useLoading from './useLoading'
 import { ThemeContext, themes, IThemeProps } from './theme'
+import {
+  UserInfoWithFetch,
+  UserInfoWithLoading,
+  IUserInfo
+} from './withLoading'
 
 interface IProps {
   like: number
@@ -90,20 +94,6 @@ class ClassDemo extends React.Component<IProps, IState> {
   }
 }
 
-interface IUserInfo {
-  name: string
-  age: number
-}
-// interface IUserInfoProps extends IWithLoadingProps<IUserInfo> {}
-// const UserInfo: React.FC<IUserInfoProps> = ({ data }) => {
-//   return (
-//     <>
-//       <div>name:{data.name}</div>
-//       <div>age:{data.age}</div>
-//     </>
-//   )
-// }
-
 /**
  * https://zh-hans.reactjs.org/docs/hooks-reference.html
  * https://usehooks.com
@@ -177,13 +167,10 @@ const HooksDemo: React.FC<IProps> = props => {
   //   }
   // }, [])
 
-  // const WrappedUserInfo = withLoading<IUserInfo, IUserInfoProps>(
-  //   UserInfo,
-  //   "path"
-  // )
-
   // like 发生变化时执行
-  const [data, loading] = useLoading<IUserInfo>('/path/xxx', [props.like])
+  const [data, loading] = useLoading<IUserInfo>('https://www.baidu.com', [
+    props.like
+  ])
 
   const theme = useContext(ThemeContext)
 
@@ -213,14 +200,15 @@ const HooksDemo: React.FC<IProps> = props => {
     >
       <input type="text" ref={inputRef} />
       count:{count},x:{position.x}, y:{position.y}
-      {/* <WrappedUserInfo /> */}
       {loading || !data ? (
         <div>加载中...</div>
       ) : (
         <div>
-          name:{data.name},age{data.age},like:{props.like}
+          use name:{data.name},age{data.age},like:{props.like}
         </div>
       )}
+      <UserInfoWithFetch />
+      <UserInfoWithLoading />
     </Card>
   )
 }

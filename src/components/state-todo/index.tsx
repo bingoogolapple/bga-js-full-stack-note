@@ -297,3 +297,12 @@ class TodoListState extends React.Component<IProps, IState> {
 }
 
 export default TodoListState
+
+/**
+ * React.Component 不会对 props 进行比较，如果要优化渲染可以重写 shouldComponentUpdate 方法
+ * React.PureComponent 会对 props 进行浅比较，如果要进行深比较可以重写 shouldComponentUpdate 方法
+ *
+ * shouldComponentUpdate(nextProps: Readonly<IProps>, nextState: Readonly<IState>, nextContext: any):boolean {
+ *   return this.props.name !== nextProps.name
+ * }
+ */
