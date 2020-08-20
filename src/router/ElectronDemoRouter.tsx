@@ -33,16 +33,13 @@ const ElectronDemoRouter: React.FC = () => {
       <ElectronDemoNav />
 
       <Switch>
-        <Route path={`${match.path}/mainWindow`}>
-          <MainWindowDemo />
-        </Route>
-        <Route path={`${match.path}/childWindow`}>
-          <ChildWindowDemo />
-        </Route>
-        <Route path={`${match.path}/controlWindow`}>
-          <ControlWindowDemo />
-        </Route>
-        <Route path={match.path}>
+        <Route path={`${match.path}/mainWindow`} component={MainWindowDemo} />
+        <Route path={`${match.path}/childWindow`} component={ChildWindowDemo} />
+        <Route
+          path={`${match.path}/controlWindow`}
+          component={ControlWindowDemo}
+        />
+        <Route>
           <h3>请选择一个 Electron 案例</h3>
         </Route>
       </Switch>

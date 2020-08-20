@@ -48,7 +48,7 @@ const Nav: React.FC = () => {
           <NavLink
             activeStyle={{ color: 'red', fontWeight: 'bold' }}
             to={{
-              pathname: '/routerDemo/testPathParam/xxxx/yyyy',
+              pathname: `${match.path}/testPathParam/xxxx/yyyy`,
               search: '?aa=11&bb=22',
               state: { stateAa: '111', stateBb: '222' }
             }}
@@ -224,7 +224,7 @@ const LoginPage: React.FC<RouteComponentProps> = props => {
       <Button
         onClick={() => {
           isLogin = true
-          props.history.push('/routerDemo/shoppingCartPage')
+          props.history.push('/reactDemo/routerDemo/shoppingCartPage')
         }}
       >
         登录
@@ -243,7 +243,7 @@ const LoginPage: React.FC<RouteComponentProps> = props => {
 const ShoppingCartPage: React.FC<RouteComponentProps> = props => {
   if (!isLogin) {
     // 不指定 from 时，会直接跳转到 to
-    return <Redirect to={'/routerDemo/loginPage'} />
+    return <Redirect to={'/reactDemo/routerDemo/loginPage'} />
   }
   return (
     <div>
@@ -252,7 +252,7 @@ const ShoppingCartPage: React.FC<RouteComponentProps> = props => {
         onClick={() => {
           isLogin = false
           // 替换路由，上一次的页面销毁。参数支持字符串和对象两种形式
-          props.history.replace('/routerDemo/loginPage')
+          props.history.replace('/reactDemo/routerDemo/loginPage')
         }}
       >
         退出，去登录页面
@@ -260,7 +260,7 @@ const ShoppingCartPage: React.FC<RouteComponentProps> = props => {
       <Button
         onClick={() => {
           // 新增页面，上一次的页面还存在。参数支持字符串和对象两种形式
-          props.history.push('/routerDemo/loginPage')
+          props.history.push('/reactDemo/routerDemo/loginPage')
         }}
       >
         不退出，去登录页面
