@@ -4,12 +4,14 @@ import { ThemeContext, themes, IThemeProps } from './theme'
 
 import ClassDemo from './ClassDemo'
 import HooksDemo from './HooksDemo'
+import OtherHooksDemo from './OtherHooksDemo'
 
 interface IDemoProps {}
 interface IDemoState {
   like: number
   showClass: boolean
   showHooks: boolean
+  showOtherHooks: boolean
   theme: IThemeProps
 }
 class Demo extends React.Component<IDemoProps, IDemoState> {
@@ -17,8 +19,9 @@ class Demo extends React.Component<IDemoProps, IDemoState> {
     super(props)
     this.state = {
       like: 0,
-      showClass: true,
-      showHooks: true,
+      showClass: false,
+      showHooks: false,
+      showOtherHooks: true,
       theme: themes.light
     }
   }
@@ -38,6 +41,10 @@ class Demo extends React.Component<IDemoProps, IDemoState> {
     this.setState({ showHooks: !this.state.showHooks })
   }
 
+  switchShowOtherHooks = () => {
+    this.setState({ showOtherHooks: !this.state.showOtherHooks })
+  }
+
   switchTheme = () => {
     let newTheme =
       this.state.theme === themes.light ? themes.dark : themes.light
@@ -50,6 +57,11 @@ class Demo extends React.Component<IDemoProps, IDemoState> {
         <ThemeContext.Provider value={this.state.theme}>
           {this.state.showClass ? <ClassDemo like={this.state.like} /> : <></>}
           {this.state.showHooks ? <HooksDemo like={this.state.like} /> : <></>}
+          {this.state.showOtherHooks ? (
+            <OtherHooksDemo like={this.state.like} />
+          ) : (
+            <></>
+          )}
           <Button type="primary" onClick={this.decrementLike}>
             like 减 1
           </Button>
@@ -67,6 +79,12 @@ class Demo extends React.Component<IDemoProps, IDemoState> {
             checkedChildren="显示Hooks"
             unCheckedChildren="隐藏Hooks"
             onChange={this.switchShowHooks}
+          />
+          <Switch
+            checked={this.state.showOtherHooks}
+            checkedChildren="显示OtherHooks"
+            unCheckedChildren="隐藏OtherHooks"
+            onChange={this.switchShowOtherHooks}
           />
           <Switch
             checked={this.state.theme === themes.light}

@@ -9,9 +9,22 @@ import useMousePosition from './useMousePosition'
 /**
  * https://zh-hans.reactjs.org/docs/hooks-reference.html
  * https://usehooks.com
+ * https://github.com/rehooks/awesome-react-hooks
  *
- * 只在最顶层使用 Hook
- * 只在 React 函数中调用 Hook
+ * Hook 规则 https://zh-hans.reactjs.org/docs/hooks-rules.html
+ * 1、只在最顶层使用 Hook：不要在循环，条件或嵌套函数中调用 Hook
+ * 2、只在 React 函数中调用 Hook：
+ *   不要在普通的 JavaScript 函数中调用 Hook
+ *   可以在 React 的函数组件中调用 Hook
+ *   可以在自定义 Hook 中调用其他 Hook
+ */
+
+/**
+ * useCallback 是根据依赖(deps)缓存第一个入参的(callback)。useMemo 是根据依赖(deps)缓存第一个入参(callback)执行后的值
+ * useMemo一般用于密集型计算大的一些缓存，通过 useMemo 的依赖我们就可以只在指定变量值更改时才执行计算，从而达到节约内存消耗
+ * const calcValue = React.useMemo(() => {
+ *  return Array(100000).fill('').map(v => v // 大量计算)
+ * }, [count])
  */
 const HooksDemo: React.FC<IProps> = props => {
   // 初始值为 0，第一个为当前的 state 值，第二个是更新当前 state 的函数
