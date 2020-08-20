@@ -5,6 +5,7 @@ import ReactDemoRouter from './router/ReactDemoRouter'
 import Loading from './components/loading'
 import { Tag } from 'antd'
 import RouterDemo from './components/router-demo'
+import ReactBasic from './components/react-basic'
 
 class App extends React.Component {
   get electronComponentType(): React.ComponentType {
@@ -48,6 +49,7 @@ class App extends React.Component {
               </li>
             </ol>
           </Route>
+          <Route path="/reactBasic" component={ReactBasic} />
           <Route path="/routerDemo" component={RouterDemo} />
           <Route>
             <div>404</div>
@@ -72,6 +74,9 @@ const Nav: React.FC = () => {
       </li>
       <li>
         <Link to="/routerDemo">RouterDemo</Link>
+      </li>
+      <li>
+        <Link to="/reactBasic">ReactBasic</Link>
       </li>
     </ul>
   )
