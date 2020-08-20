@@ -11,6 +11,7 @@ const useLoading = <T,>(url: string, deps: any[] = []): [T, boolean] => {
     )
     setLoaing(true)
     setTimeout(() => {
+      console.log('加载', url)
       setData({ name: '李四', age: 40 })
       setLoaing(false)
     }, 1000)
