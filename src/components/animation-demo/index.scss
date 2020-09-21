@@ -1,0 +1,95 @@
+// https://www.w3school.com.cn/css3/css3_2dtransform.asp
+
+.box {
+  width: 100px;
+  height: 100px;
+}
+.demo-1 {
+  &:hover {
+    width: 500px;
+  }
+  /*
+    transition 特点：
+    1、文档流属性有变化时才会过渡，文档流的属性一开始要有一个初始值，后续修改才会有变化
+    2、display 不能和 transition 一起使用，display 从 none 变为 block 时显示时瞬间加上一个属性值，transition 是读的瞬间属性值，属性值没有发生变化
+    3、transition 后尽量不要跟 all，否则会把所有属性看一遍，会消耗大量的计算资源
+    4、常见闪动可以 perspective 和 backface-visibility
+    过渡效果的css属性名称 过渡时间 过渡效果的速度曲线 延迟多久后执行
+  */
+  transition: width 1s linear 1s;
+  background-color: red;
+}
+.demo-2 {
+  &:hover {
+    transform: rotate(360deg);
+  }
+  // transform 后可以跟各种动画，此时的 transform 是总属性
+  transition: transform 2s linear 1s;
+  background-color: blue;
+}
+.demo-3 {
+  background-color: aqua;
+  &:hover {
+    .cell {
+      /*
+        animation 是升级版的 transition，可以定义播放次数、播放方向等
+      */
+      // 自定义的keyframes 过渡时间 过渡效果的速度曲线 延迟多久后执行
+      //   animation: move 2s linear 2 1s;
+      //   animation: move 2s linear infinite 1s;
+      animation: move 2s linear infinite alternate;
+    }
+  }
+  .cell {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+  }
+}
+// 自定义动画名称
+@keyframes move {
+  20% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+.demo-4 {
+  background-color: bisque;
+  &:hover {
+    .cell {
+      animation: jump 1s ease-out infinite alternate;
+    }
+  }
+  .cell {
+    width: 100px;
+    height: 100px;
+    background-color: cadetblue;
+  }
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  40% {
+    transform: translateY(-200px);
+  }
+  60% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.demo-5 {
+  background-color: chocolate;
+  animation: rotate 4s linear infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
