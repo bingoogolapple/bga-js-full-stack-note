@@ -51,6 +51,8 @@ yarn add @types/redux-logger --dev
 
 yarn add redux-devtools-extension --dev
 
+yarn add redux-thunk --dev
+
 npm install asar -g
 ```
 
@@ -66,6 +68,8 @@ npm install asar -g
 - [redux](https://www.redux.org.cn)
 - [redux-logger](https://github.com/LogRocket/redux-logger)
 - [redux-devtools](https://github.com/zalmoxisus/redux-devtools-extension)
+
+- [redux-thunk](https://github.com/reduxjs/redux-thunk)
 
 ```shell
 asar extract app.asar ./app

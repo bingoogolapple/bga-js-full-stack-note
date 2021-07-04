@@ -43,6 +43,7 @@ middlewares.push(customLogMiddleware, customErrorMiddleware)
 
 
 const composeEnhancers = composeWithDevTools({
+    name: '多个 reducer' // 可选，只是为了便于在开发者工具中区分同时存在多个 store 的情况
     // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 })
 const enhancer = composeEnhancers(

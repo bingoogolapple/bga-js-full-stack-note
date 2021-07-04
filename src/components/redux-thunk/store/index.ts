@@ -12,6 +12,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 // https://github.com/LogRocket/redux-logger
 import { createLogger } from 'redux-logger'
+// https://github.com/reduxjs/redux-thunk
+import thunk from 'redux-thunk'
 
 // 引入笔记本
 import reducer from './reducer'
@@ -40,9 +42,11 @@ const customErrorMiddleware = (store: any) => (next: any) => (action: any) => {
 }
 middlewares.push(customLogMiddleware, customErrorMiddleware)
 
+// 添加 thunk 中间件后即可进行异步处理
+middlewares.push(thunk)
 
 const composeEnhancers = composeWithDevTools({
-    name: '单个 reducer' // 可选，只是为了便于在开发者工具中区分同时存在多个 store 的情况
+    name: 'redux-thunk' // 可选，只是为了便于在开发者工具中区分同时存在多个 store 的情况
     // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 })
 const enhancer = composeEnhancers(
@@ -53,7 +57,6 @@ const enhancer = composeEnhancers(
 // 创建一个 store
 const store = createStore(
     reducer, // 把笔记本给管理员
-    { count: 5 }, // 可以在这里指定初始值来覆盖 reducer 中的 defaultState
     enhancer
 )
 

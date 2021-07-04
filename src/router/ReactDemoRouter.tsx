@@ -6,6 +6,7 @@ import TodoListState from '../components/state-todo'
 import TodoListHooks from '../components/hooks-todo'
 import HooksDemo from '../components/hooks-demo'
 import ReduxBasic from '../components/redux-basic'
+import ReduxThunk from '../components/redux-thunk'
 import ReactBasic from '../components/react-basic'
 import RouterDemo from '../components/router-demo'
 import AnimationDemo from '../components/animation-demo'
@@ -38,6 +39,9 @@ const ReactDemoNav: React.FC = () => {
           <Link to={`${match.path}/reduxBasic`}>ReduxBasic</Link>
         </li>
         <li>
+          <Link to={`${match.path}/reduxThunk`}>ReduxThunk</Link>
+        </li>
+        <li>
           <Link to={`${match.path}/routerDemo`}>RouterDemo</Link>
         </li>
         <li>
@@ -61,6 +65,7 @@ const ReactDemoRouter: React.FC = () => {
         <Route path={`${match.path}/todoListHooks`} component={TodoListHooks} />
         <Route path={`${match.path}/reactBasic`} component={ReactBasic} />
         <Route path={`${match.path}/reduxBasic`} component={ReduxBasic} />
+        <Route path={`${match.path}/reduxThunk`} component={ReduxThunk} />
         <Route path={`${match.path}/hooksDemo`} component={HooksDemo} />
         <Route path={`${match.path}/routerDemo`} component={RouterDemo} />
         <Route path={`${match.path}/animationDemo`} component={AnimationDemo} />

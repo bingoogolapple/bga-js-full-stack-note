@@ -1,20 +1,23 @@
 import React from 'react'
 import { Button, Card } from 'antd'
 
-import { CounterState } from './store/counter/reducer'
+import { CounterState } from './store/reducer'
 import { connect, ConnectedProps } from 'react-redux'
 import { Dispatch } from 'redux'
-import { CounterAction } from './store/counter/actionTypes'
+import { CounterAction } from './store/actionTypes'
 // 方式1
-import { decrement, increment } from './store/counter/actionCreators'
+import { decrement, increment } from './store/actionCreators'
 // 方式2
-import * as counterActions from './store/counter/actionCreators'
+import * as counterActions from './store/actionCreators'
 import { bindActionCreators } from 'redux'
+import Loading from '../loading'
 
 // 把 store 里的数据映射成组件的属性。connect 函数会将整个 IStoreState 作为参数传递到 mapStateToProps 函数中
 const mapStateToProps = (state: CounterState) => {
   return {
-    count: state.count
+    count: state.count,
+    followers: state.followers,
+    loading: state.loading
   }
 }
 // 把 store.dispatch 方法挂载到 props 上
@@ -33,10 +36,7 @@ const mapDispatchToProps = (dispatch: Dispatch<CounterAction>) => {
 
     // 方式1
     increment() {
-      // 创建一句话
-      const action = increment()
-      // 把这句话告诉管理员 store，管理员会把这句话转发给 reducer 处理
-      dispatch(action)
+      dispatch(increment())
     },
     decrement() {
       dispatch(decrement())
@@ -49,7 +49,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps)
 
 interface IProps extends ConnectedProps<typeof connector> {}
 
-class ReduxBasicWithProviderSingleReducer extends React.Component<IProps> {
+class ReduxThunk extends React.Component<IProps> {
   // connect 时如果不传入 mapDispatchToProps 的话 this.props 上是有 dispatch 方法的，传入 mapDispatchToProps 后就没有 dispatch 方法了
   // increment = () => {
   //   this.props.dispatch({ type: 'increment' })
@@ -63,7 +63,7 @@ class ReduxBasicWithProviderSingleReducer extends React.Component<IProps> {
     return (
       <>
         <Card
-          title="Redux-Basic-Provider-SingleReducer"
+          title="Redux-Thunk"
           extra={
             <div
               style={{
@@ -95,13 +95,28 @@ class ReduxBasicWithProviderSingleReducer extends React.Component<IProps> {
               >
                 加10
               </Button>
+              <Button
+                type="primary"
+                onClick={() =>
+                  this.props.counterActions.delayDecrementWithNum(10)
+                }
+              >
+                延时减10
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => this.props.counterActions.getUserInfo()}
+              >
+                获取个人信息
+              </Button>
             </div>
           }
         >
-          counter:{this.props.count}
+          counter:{this.props.count} followers:{this.props.followers}
         </Card>
+        <Loading visible={this.props.loading} />
       </>
     )
   }
 }
-export default connector(ReduxBasicWithProviderSingleReducer)
+export default connector(ReduxThunk)

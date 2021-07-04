@@ -5,10 +5,14 @@ import { CounterAction } from "./actionTypes"
 
 // 默认存储的数据
 export interface CounterState {
-    count: number
+    count: number,
+    followers: number,
+    loading: boolean
 }
 const defaultState: CounterState = {
-    count: 0
+    count: 0,
+    followers: 0,
+    loading: false
 }
 
 /**
@@ -31,6 +35,7 @@ const reducer: Reducer<CounterState, CounterAction> = (preState: CounterState = 
                 throw new Error('模拟异常由自定义中间件捕获')
             } else {
                 newState.count++
+                // return { ...preState, count: preState.count++ }
             }
             break
         case 'decrement':
@@ -39,6 +44,12 @@ const reducer: Reducer<CounterState, CounterAction> = (preState: CounterState = 
             } else {
                 newState.count--
             }
+            break
+        case 'updateFollowers':
+            newState.followers = action.followers ? action.followers : 0
+            break
+        case 'updateLoading':
+            newState.loading = action.loading!!
             break
         default:
             console.log("未知 Action", action.type)

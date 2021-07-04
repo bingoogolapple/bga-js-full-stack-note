@@ -22,7 +22,8 @@ const defaultState: ScoreState = {
  * reducer 必须是纯函数：给定固定的输入就一定会有固定的输出（不能有异步操作、时间相关操作），而且不会有任何副作用（不能修改入参的内容）
  */
 const reducer: Reducer<ScoreState, ScoreAction> = (preState: ScoreState = defaultState, action: ScoreAction) => {
-    const newState: ScoreState = JSON.parse(JSON.stringify(preState))
+    // const newState: ScoreState = JSON.parse(JSON.stringify(preState))
+    const newState: ScoreState = { ...preState }
     switch (action.type) {
         case 'incrementScore':
             if (action.diffNum) {
