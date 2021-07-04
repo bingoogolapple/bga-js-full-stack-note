@@ -43,6 +43,14 @@ yarn add tsconfig-paths-webpack-plugin --dev
 yarn add react-router-dom --dev
 yarn add @types/react-router-dom --dev
 
+yarn add redux --dev
+yarn add react-redux --dev
+
+yarn add redux-logger --dev
+yarn add @types/redux-logger --dev
+
+yarn add redux-devtools-extension --dev
+
 npm install asar -g
 ```
 
@@ -54,6 +62,10 @@ npm install asar -g
 - [electron-builder](https://www.npmjs.com/package/electron-builder)
 
 - [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+
+- [redux](https://www.redux.org.cn)
+- [redux-logger](https://github.com/LogRocket/redux-logger)
+- [redux-devtools](https://github.com/zalmoxisus/redux-devtools-extension)
 
 ```shell
 asar extract app.asar ./app
