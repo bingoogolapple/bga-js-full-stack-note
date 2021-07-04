@@ -5,6 +5,7 @@ import ReactDemoRouter from './router/ReactDemoRouter'
 import Loading from './components/loading'
 import { Tag } from 'antd'
 
+// 普通组件
 class App extends React.Component {
   get electronComponentType(): React.ComponentType {
     if (window.navigator.userAgent.indexOf('Electron') !== -1) {
@@ -56,6 +57,9 @@ class App extends React.Component {
   }
 }
 
+// 无状态组件：当一个普通组件只有 render 函数时，可以通过无状态组件替换普通组件
+// 无状态组件性能更高，就是一个函数。普通组件是一个类，还会有生命周期函数，除了执行 render 还会执行生命周期函数
+// 如果一个组件只有一个 render 函数，建议直接替换成无状态组件
 const Nav: React.FC = () => {
   return (
     <ul>

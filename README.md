@@ -53,6 +53,8 @@ yarn add redux-devtools-extension --dev
 
 yarn add redux-thunk --dev
 
+yarn add redux-saga --dev
+
 npm install asar -g
 ```
 
@@ -70,6 +72,8 @@ npm install asar -g
 - [redux-devtools](https://github.com/zalmoxisus/redux-devtools-extension)
 
 - [redux-thunk](https://github.com/reduxjs/redux-thunk)
+
+- [redux-saga](https://github.com/redux-saga/redux-saga)
 
 ```shell
 asar extract app.asar ./app
