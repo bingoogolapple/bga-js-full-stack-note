@@ -23,6 +23,14 @@
         "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
       },
       "args": ["./build/electron.js"]
+    },
+    // attach 到通过 node 或 nodemon 启动的应用进行调试
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "attach2server",
+      "restart": true,
+      "port": 8001
     }
   ]
 }
