@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Card } from 'antd'
-
 import { CounterState } from './store/reducer'
 import { connect, ConnectedProps } from 'react-redux'
 import { Dispatch } from 'redux'
@@ -63,7 +62,7 @@ class ReduxThunk extends React.Component<IProps> {
     return (
       <>
         <Card
-          title="Redux-Thunk"
+          title="Redux-Saga"
           extra={
             <div
               style={{

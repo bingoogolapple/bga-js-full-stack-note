@@ -1,23 +1,23 @@
 import React from 'react'
 import { Button, Card } from 'antd'
 
-import { CounterState } from './store/reducer'
+import { RootState } from './store/reducer'
 import { connect, ConnectedProps } from 'react-redux'
 import { Dispatch } from 'redux'
-import { CounterAction } from './store/actionTypes'
+import { CounterAction } from './store/counter/actionTypes'
 // 方式1
-import { decrement, increment } from './store/actionCreators'
+import { decrement, increment } from './store/counter/actionCreators'
 // 方式2
-import * as counterActions from './store/actionCreators'
+import * as counterActions from './store/counter/actionCreators'
 import { bindActionCreators } from 'redux'
 import Loading from '../loading'
 
 // 把 store 里的数据映射成组件的属性。connect 函数会将整个 IStoreState 作为参数传递到 mapStateToProps 函数中
-const mapStateToProps = (state: CounterState) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    count: state.count,
-    followers: state.followers,
-    loading: state.loading
+    count: state.counter.count,
+    followers: state.counter.followers,
+    loading: state.counter.loading
   }
 }
 // 把 store.dispatch 方法挂载到 props 上
