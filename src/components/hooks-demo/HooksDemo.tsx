@@ -10,6 +10,9 @@ import useMousePosition from './useMousePosition'
  * https://zh-hans.reactjs.org/docs/hooks-reference.html
  * https://usehooks.com
  * https://github.com/rehooks/awesome-react-hooks
+ * https://github.com/streamich/react-use
+ * https://github.com/alibaba/hooks
+ * https://codesandbox.io/s/20vzg
  *
  * Hook 规则 https://zh-hans.reactjs.org/docs/hooks-rules.html
  * 1、只在最顶层使用 Hook：不要在循环，条件或嵌套函数中调用 Hook
@@ -20,12 +23,31 @@ import useMousePosition from './useMousePosition'
  */
 
 /**
- * useCallback 是根据依赖(deps)缓存第一个入参的(callback)。useMemo 是根据依赖(deps)缓存第一个入参(callback)执行后的值
- * useMemo一般用于密集型计算大的一些缓存，通过 useMemo 的依赖我们就可以只在指定变量值更改时才执行计算，从而达到节约内存消耗
+ * 1、useCallback 是根据依赖(deps)缓存第一个入参的(callback)。useMemo 是根据依赖(deps)缓存第一个入参(callback)执行后的值
+ * 2、useMemo一般用于密集型计算大的一些缓存，通过 useMemo 的依赖我们就可以只在指定变量值更改时才执行计算，从而达到节约内存消耗
  * const calcValue = React.useMemo(() => {
  *  return Array(100000).fill('').map(v => v // 大量计算)
  * }, [count])
+ * 3、useCallback 的功能其实是可以用 useMemo 来实现的
+ * const myEventHandler = useMemo(() => {
+ * // 返回一个函数作为缓存结果
+ * return () => {
+ *  // 在这里进行事件处理
+ * }
+ * }, [dep1, dep2]);
  */
+
+/**
+ * 如何保证状态一致性？
+ * 1、保证状态最小化。这个状态是必须的吗？是否能通过 useMemo + 计算得到呢？
+ * 2、避免中间状态，确保唯一数据源。
+ */
+
+/**
+ * 如果事件处理函数是传递给原生节点，那么不写 useCallback，也几乎不会有任何性能的影响。
+ * 但是如果你使用的是自定义组件，或者一些 UI 框架的组件，那么回调函数还都应该用 useCallback 进行封装
+ */
+
 const HooksDemo: React.FC<IProps> = props => {
   // 初始值为 0，第一个为当前的 state 值，第二个是更新当前 state 的函数
   const [count, setCount] = useState(0)
@@ -49,6 +71,7 @@ const HooksDemo: React.FC<IProps> = props => {
     countRef.current = count + 1
   }
 
+  // useEffect 代表副作用，是在函数 render 完后执行，副作用一定是和当前 render 的结果没关系的，而只是 render 完之后做的一些额外的事情
   useEffect(() => {
     // 【组件加载完成时】或【第二个参数指定的属性或状态发生变更时】执行。不传第二个参数时每次属性或状态变更都会执行
     console.log(

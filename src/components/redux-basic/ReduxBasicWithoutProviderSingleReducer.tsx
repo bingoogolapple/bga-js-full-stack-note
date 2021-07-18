@@ -26,31 +26,29 @@ export default class ReduxBasicWithoutProviderSingleReducer extends React.Compon
 
   render() {
     return (
-      <>
-        <Card
-          title="Redux-Basic-NoProvider-SingleReducer"
-          extra={
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between'
-              }}
-            >
-              <Button type="primary" onClick={this.decrement}>
-                减1
-              </Button>
-              <Button type="primary" onClick={this.increment}>
-                加1
-              </Button>
-            </div>
-          }
-        >
-          counter:{store.getState().count}
-          {/* counter:{store.getState().counter.count}
+      <Card
+        title="Redux-Basic-NoProvider-SingleReducer"
+        extra={
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Button type="primary" onClick={this.decrement}>
+              减1
+            </Button>
+            <Button type="primary" onClick={this.increment}>
+              加1
+            </Button>
+          </div>
+        }
+      >
+        counter:{store.getState().count}
+        {/* counter:{store.getState().counter.count}
           score:{store.getState().score.score} */}
-        </Card>
-      </>
+      </Card>
     )
   }
 }

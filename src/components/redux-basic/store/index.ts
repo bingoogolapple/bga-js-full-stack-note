@@ -58,3 +58,16 @@ const store = createStore(
 )
 
 export default store
+
+
+/**
+ * 1、跨组件的状态共享：当某个组件发起一个请求时，将某个 Loading 的数据状态设为 True，另一个全局状态组件则显示 Loading 的状态。
+ * 2、同组件多个实例的状态共享：某个页面组件初次加载时，会发送请求拿回了一个数据，切换到另外一个页面后又返回。这时数据已经存在，无需重新加载。设想如果是本地的组件 state，那么组件销毁后重新创建，state 也会被重置，就还需要重新获取数据
+ */
+
+/**
+ * 理解 Redux 的三个基本概念：
+ * 1、其中 State 即 Store，一般就是一个纯 JavaScript Object。
+ * 2、Action 也是一个 Object，用于描述发生的动作。
+ * 3、Reducer 则是一个函数，接收 Action 和 State 并作为参数，通过计算得到新的 Store
+ */

@@ -29,53 +29,51 @@ interface IProps extends ConnectedProps<typeof connector> {}
 class ReduxBasicWithProviderMultiReducer extends React.Component<IProps> {
   render() {
     return (
-      <>
-        <Card
-          title="Redux-Basic-Provider-SingleReducer"
-          extra={
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between'
-              }}
+      <Card
+        title="Redux-Basic-Provider-MultiReducer"
+        extra={
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Button
+              type="primary"
+              onClick={this.props.counterActions.decrement}
             >
-              <Button
-                type="primary"
-                onClick={this.props.counterActions.decrement}
-              >
-                counter减1
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => this.props.counterActions.decrementWithNum(10)}
-              >
-                counter减10
-              </Button>
-              <Button
-                type="primary"
-                onClick={this.props.counterActions.increment}
-              >
-                counter加1
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => this.props.counterActions.incrementWithNum(10)}
-              >
-                counter加10
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => this.props.scoreActions.incrementWithNum(10)}
-              >
-                score加10
-              </Button>
-            </div>
-          }
-        >
-          counter:{this.props.count} score:{this.props.score}
-        </Card>
-      </>
+              counter减1
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => this.props.counterActions.decrementWithNum(10)}
+            >
+              counter减10
+            </Button>
+            <Button
+              type="primary"
+              onClick={this.props.counterActions.increment}
+            >
+              counter加1
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => this.props.counterActions.incrementWithNum(10)}
+            >
+              counter加10
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => this.props.scoreActions.incrementWithNum(10)}
+            >
+              score加10
+            </Button>
+          </div>
+        }
+      >
+        counter:{this.props.count} score:{this.props.score}
+      </Card>
     )
   }
 }

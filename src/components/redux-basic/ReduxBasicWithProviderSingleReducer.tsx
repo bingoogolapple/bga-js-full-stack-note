@@ -61,46 +61,44 @@ class ReduxBasicWithProviderSingleReducer extends React.Component<IProps> {
 
   render() {
     return (
-      <>
-        <Card
-          title="Redux-Basic-Provider-SingleReducer"
-          extra={
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between'
-              }}
+      <Card
+        title="Redux-Basic-Provider-SingleReducer"
+        extra={
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}
+          >
+            {/* 方式1 */}
+            <Button type="primary" onClick={this.props.decrement}>
+              减1
+            </Button>
+            {/* 方式2 */}
+            <Button
+              type="primary"
+              onClick={() => this.props.counterActions.decrementWithNum(10)}
             >
-              {/* 方式1 */}
-              <Button type="primary" onClick={this.props.decrement}>
-                减1
-              </Button>
-              {/* 方式2 */}
-              <Button
-                type="primary"
-                onClick={() => this.props.counterActions.decrementWithNum(10)}
-              >
-                减10
-              </Button>
-              <Button
-                type="primary"
-                onClick={this.props.counterActions.increment}
-              >
-                加1
-              </Button>
-              <Button
-                type="primary"
-                onClick={() => this.props.counterActions.incrementWithNum(10)}
-              >
-                加10
-              </Button>
-            </div>
-          }
-        >
-          counter:{this.props.count}
-        </Card>
-      </>
+              减10
+            </Button>
+            <Button
+              type="primary"
+              onClick={this.props.counterActions.increment}
+            >
+              加1
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => this.props.counterActions.incrementWithNum(10)}
+            >
+              加10
+            </Button>
+          </div>
+        }
+      >
+        counter:{this.props.count}
+      </Card>
     )
   }
 }
