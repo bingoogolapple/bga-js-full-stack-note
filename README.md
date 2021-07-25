@@ -55,6 +55,8 @@ yarn add redux-thunk --dev
 
 yarn add redux-saga --dev
 
+yarn add react-query --dev
+
 npm install asar -g
 ```
 
@@ -74,6 +76,8 @@ npm install asar -g
 - [redux-thunk](https://github.com/reduxjs/redux-thunk)
 
 - [redux-saga](https://github.com/redux-saga/redux-saga)
+
+- [react-query](https://cangsdarm.github.io/react-query-web-i18n/getstarted/installation)
 
 ```shell
 asar extract app.asar ./app

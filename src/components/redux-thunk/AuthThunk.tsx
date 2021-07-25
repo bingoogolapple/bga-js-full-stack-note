@@ -30,6 +30,7 @@ class AuthThunk extends React.Component<RouteComponentProps> {
           path={`${this.props.match.path}/userListWithAuthRoute`}
           component={UserList}
         />
+        <Route component={Login} />
       </Switch>
     )
   }

@@ -5,6 +5,7 @@ import TodoListMobx from '../components/mobx-todo'
 import TodoListState from '../components/state-todo'
 import TodoListHooks from '../components/hooks-todo'
 import HooksDemo from '../components/hooks-demo'
+import HooksTodoApp from '../components/hooks-todo-app'
 import ReduxBasic from '../components/redux-basic'
 import ReduxThunk from '../components/redux-thunk'
 import ReduxSaga from '../components/redux-saga'
@@ -29,6 +30,9 @@ const ReactDemoNav: React.FC = () => {
         </li>
         <li>
           <Link to={`${match.path}/todoListHooks`}>TodoListHooks</Link>
+        </li>
+        <li>
+          <Link to={`${match.path}/hooksTodoApp`}>HooksTodoApp</Link>
         </li>
         <li>
           <Link to={`${match.path}/hooksDemo`}>Hooks Demo</Link>
@@ -67,6 +71,7 @@ const ReactDemoRouter: React.FC = () => {
         <Route path={`${match.path}/todoListState`} component={TodoListState} />
         <Route path={`${match.path}/todoListMobx`} component={TodoListMobx} />
         <Route path={`${match.path}/todoListHooks`} component={TodoListHooks} />
+        <Route path={`${match.path}/hooksTodoApp`} component={HooksTodoApp} />
         <Route path={`${match.path}/reactBasic`} component={ReactBasic} />
         <Route path={`${match.path}/reduxBasic`} component={ReduxBasic} />
         <Route path={`${match.path}/reduxThunk`} component={ReduxThunk} />

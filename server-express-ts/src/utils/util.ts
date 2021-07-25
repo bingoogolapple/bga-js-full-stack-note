@@ -1,14 +1,14 @@
 interface Result<T> {
   sucesss: boolean
-  errMsg?: string
+  message?: string
   data: T
 }
 
-export const result = <T>(data: T, errMsg?: string): Result<T> => {
-  if (errMsg) {
+export const result = <T>(data: T, message?: string): Result<T> => {
+  if (message) {
     return {
       sucesss: false,
-      errMsg,
+      message,
       data
     }
   }
