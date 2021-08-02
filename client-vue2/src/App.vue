@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <top-nav />
+    <!-- 路由出口，路由匹配到的组件将渲染在这里 -->
     <router-view />
   </div>
 </template>
+
+<script>
+import TopNav from '@/components/TopNav.vue'
+
+export default {
+  components: {
+    TopNav
+  }
+}
+</script>
 
 <style lang="less">
 #app {
@@ -15,18 +23,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
