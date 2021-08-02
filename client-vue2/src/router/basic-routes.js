@@ -10,7 +10,15 @@ import SlotComponent from '../views/Basic/SlotComponent.vue'
 
 export default [
   {
-    path: 'lifecycle',
+    // 默认情况下 Basic/index.vue 出口是不会渲染任何东西，这是因为没有匹配到合适的子路由。如果你想要渲染点什么，可以提供一个空的子路由
+    path: '',
+    // component: Lifecycle, // 直接指定 Lifecycle 组件或者重定向
+    redirect: {
+      name: 'Lifecycle'
+    }
+  },
+  {
+    path: 'lifecycle', // 注意，以 / 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径
     name: 'Lifecycle',
     component: Lifecycle
   },
@@ -53,5 +61,11 @@ export default [
     path: 'slotComponent',
     name: 'SlotComponent',
     component: SlotComponent
+  },
+  {
+    path: '*',
+    redirect: {
+      name: 'Lifecycle'
+    }
   }
 ]

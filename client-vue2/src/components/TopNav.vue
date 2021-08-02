@@ -7,9 +7,8 @@
       -->
     <router-link to="/home">Home</router-link> |
     <router-link to="/basic">Basic</router-link> |
-    <router-link to="/vuex">Vuex</router-link> |
     <router-link to="/router">Router</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/vuex">Vuex</router-link>
   </div>
 </template>
 

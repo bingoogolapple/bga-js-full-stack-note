@@ -11,6 +11,7 @@
     </div>
     <div>
       <h2>Basic</h2>
+      <!-- 一个被渲染组件同样可以包含自己的嵌套 -->
       <router-view />
     </div>
   </div>
