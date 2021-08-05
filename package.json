@@ -87,6 +87,8 @@
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
+    "dva-core-ts": "^2.0.7",
+    "dva-loading-ts": "^3.0.23",
     "electron": "^9.2.0",
     "electron-builder": "^22.8.0",
     "electron-is-dev": "^1.2.0",

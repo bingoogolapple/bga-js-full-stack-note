@@ -9,6 +9,7 @@ import HooksTodoApp from '../components/hooks-todo-app'
 import ReduxBasic from '../components/redux-basic'
 import ReduxThunk from '../components/redux-thunk'
 import ReduxSaga from '../components/redux-saga'
+import ReduxDva from '../components/redux-dva'
 import ReactBasic from '../components/react-basic'
 import RouterDemo from '../components/router-demo'
 import AnimationDemo from '../components/animation-demo'
@@ -50,6 +51,9 @@ const ReactDemoNav: React.FC = () => {
           <Link to={`${match.path}/reduxThunk`}>ReduxThunk</Link>
         </li>
         <li>
+          <Link to={`${match.path}/reduxDva`}>ReduxDva</Link>
+        </li>
+        <li>
           <Link to={`${match.path}/routerDemo`}>RouterDemo</Link>
         </li>
         <li>
@@ -76,6 +80,7 @@ const ReactDemoRouter: React.FC = () => {
         <Route path={`${match.path}/reduxBasic`} component={ReduxBasic} />
         <Route path={`${match.path}/reduxThunk`} component={ReduxThunk} />
         <Route path={`${match.path}/reduxSaga`} component={ReduxSaga} />
+        <Route path={`${match.path}/reduxDva`} component={ReduxDva} />
         <Route path={`${match.path}/hooksDemo`} component={HooksDemo} />
         <Route path={`${match.path}/routerDemo`} component={RouterDemo} />
         <Route path={`${match.path}/animationDemo`} component={AnimationDemo} />
