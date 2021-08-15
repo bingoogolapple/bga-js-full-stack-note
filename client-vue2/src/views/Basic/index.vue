@@ -8,6 +8,9 @@
       <router-link to="/basic/for">列表渲染</router-link>
       <router-link to="/basic/classStyle">Class与Style绑定</router-link>
       <router-link to="/basic/computedWatch">计算属性与侦听器</router-link>
+      <router-link to="/basic/keyReuse">KeyReuse</router-link>
+      <router-link to="/basic/event">Event</router-link>
+      <router-link to="/basic/slotComponent">SlotComponent</router-link>
     </div>
     <div>
       <h2>Basic</h2>

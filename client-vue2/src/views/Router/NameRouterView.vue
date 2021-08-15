@@ -15,6 +15,3 @@ export default {
   name: 'NameRouterView'
 }
 </script>
-
-<style scoped lang="less">
-</style>

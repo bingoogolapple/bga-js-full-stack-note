@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'KeyReuse',
+  name: 'Event',
   data() {
     return {
       counter: 0

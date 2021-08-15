@@ -9,6 +9,3 @@ export default {
   name: 'UserEmailsSubscriptions'
 }
 </script>
-
-<style scoped lang="less">
-</style>

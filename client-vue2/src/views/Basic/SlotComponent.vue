@@ -24,7 +24,7 @@
 import ComponentOne from '@/components/ComponentOne.vue'
 
 export default {
-  name: 'Basic',
+  name: 'SlotComponent',
   components: {
     ComponentOne
   },

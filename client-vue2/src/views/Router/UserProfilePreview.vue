@@ -9,6 +9,3 @@ export default {
   name: 'UserProfilePreview'
 }
 </script>
-
-<style scoped lang="less">
-</style>

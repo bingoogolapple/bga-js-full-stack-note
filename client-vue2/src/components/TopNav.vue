@@ -9,6 +9,7 @@
     <router-link to="/basic">Basic</router-link> |
     <router-link to="/router">Router</router-link> |
     <router-link to="/vuex">Vuex</router-link>
+    <!-- <router-link :to="{ name: 'Vuex' }">Vuex</router-link> -->
   </div>
 </template>
 

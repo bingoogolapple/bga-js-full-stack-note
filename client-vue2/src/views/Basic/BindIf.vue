@@ -29,15 +29,15 @@
     <div v-show="messageVisibility" v-bind:title="tip">
       v-show 控制 | {{ message }} | {{ message + message }}
     </div>
-    <button v-on:click="switchMessageVisibility">
+    <el-button v-on:click="switchMessageVisibility">
       非缩写方式：修改消息可见状态
-    </button>
-    <button @click.prevent="switchMessageVisibility">
+    </el-button>
+    <el-button type="primary" @click.prevent="switchMessageVisibility">
       缩写方式+修饰符阻止默认行为：修改消息可见状态
-    </button>
-    <button @[eventname]="switchMessageVisibility">
+    </el-button>
+    <el-button type="success" @[eventname]="switchMessageVisibility">
       缩写方式+动态参数：修改消息可见状态
-    </button>
+    </el-button>
     <div>
       <a v-bind:href="website" target="_blank" rel="noopener"
         >非缩写方式：个人网站</a

@@ -1,11 +1,12 @@
 import Home from '../views/Home.vue'
 import Basic from '../views/Basic/index.vue'
 import Router from '../views/Router/index.vue'
-import Vuex from '../views/Vuex.vue'
+import Vuex from '../views/Vuex/index.vue'
 import NotFound from '../views/NotFound.vue'
 
 import basicRoutes from './basic-routes'
 import routerRoutes from './router-routes'
+import vuexRoutes from './vuex-routes'
 
 // 定义路由，每个路由应该映射一个组件
 export default [
@@ -33,7 +34,13 @@ export default [
   },
   {
     path: '/basic',
-    name: 'Basic',
+    /**
+     * [vue-router] Named Route 'Basic' has a default child route.
+     * When navigating to this named route (:to="{name: 'Basic'"),
+     * the default child route will not be rendered.
+     * Remove the name from this route and use the name of the default child route for named links instead.
+     */
+    // name: 'Basic',
     component: Basic,
     children: basicRoutes // 要在嵌套的出口中渲染组件，需要在 VueRouter 的参数中使用 children 配置
   },
@@ -45,8 +52,15 @@ export default [
   },
   {
     path: '/vuex',
-    name: 'Vuex',
-    component: Vuex
+    /**
+     * [vue-router] Named Route 'Vuex' has a default child route.
+     * When navigating to this named route (:to="{name: 'Vuex'"),
+     * the default child route will not be rendered.
+     * Remove the name from this route and use the name of the default child route for named links instead.
+     */
+    // name: 'Vuex',
+    component: Vuex,
+    children: vuexRoutes
   },
   {
     // 有时候，同一个路径可以匹配多个路由，此时，匹配的优先级就按照路由的定义顺序：路由定义得越早，优先级就越高
