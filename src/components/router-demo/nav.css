@@ -10,3 +10,12 @@
   color: orange;
   font-weight: bold;
 }
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+ul > li {
+  list-style: none;
+  padding: 5px;
+}

@@ -1,0 +1,561 @@
+.grid-box {
+  width: 300px;
+  height: 300px;
+  background-color: skyblue;
+  display: grid;
+  float: left;
+  margin: 5px;
+}
+
+.grid-box div {
+  background-color: pink;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.grid-demo-1 {
+  // grid-template-columns: 100px 100px 100px;
+  // grid-template-rows: 100px 100px 100px;
+
+  // grid-template-columns: 50px 50px 50px;
+  // grid-template-rows: 50px 50px 50px;
+
+  // grid-template-columns: 50px 20px auto; // 最后一列占满剩余宽度
+  // grid-template-rows: 50px 50px 50px;
+
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-rows: 1fr 2fr 1fr; // 1:2:1 均分高度
+
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-rows: 200px 1fr 1fr; // 第一行200px，剩下的 100px 有二三行均分
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.1fr 0.2fr 0.1fr; // 不满 1，则剩下的空白
+}
+
+.grid-demo-2 {
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-rows: 1fr 1fr 1fr;
+  // 用于定义区域，一个区域由一个或者多个单元格组成
+  // grid-template-areas:
+  //   'a1 a1 a2'
+  //   'a1 a1 a2'
+  //   'a3 a3 a3';
+
+  // 上面三个的缩写，末尾那一列设置行，末尾那一行设置列
+  grid-template:
+    'a1 a1 a2' 1fr
+    'a1 a1 a2' 1fr
+    'a3 a3 a3' 1fr
+    /1fr 1fr 1fr;
+}
+.grid-demo-2 div:nth-of-type(1) {
+  grid-area: a1; // 指定项目放在哪一个区域（单元格内）
+}
+.grid-demo-2 div:nth-of-type(2) {
+  grid-area: a2;
+}
+.grid-demo-2 div:nth-of-type(3) {
+  grid-area: a3;
+}
+
+.grid-demo-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 'a1 a2 a3';
+}
+.grid-demo-3 div:nth-of-type(1) {
+  grid-area: a2; // 设置位置1到了位置2，原本位置2的元素会跑到位置1去
+}
+
+.grid-demo-4 {
+  grid-template:
+    'a1 a1 a2' 1fr
+    'a1 a1 a2' 1fr
+    'a3 a3 a3' 1fr
+    /1fr 1fr 1fr;
+  // grid-row-gap: 20px; // 已废弃，推荐用 row-gap
+  // grid-column-gap: 10px; // 已废弃，推荐用 column-gap
+  // grid-gap: 20px 10px; // 已废弃，推荐用 gap
+  // 下面这种去掉 grid- 的方式在 flex 布局中也可以使用
+  // row-gap: 20px; // 设置行间距
+  // column-gap: 10px; // 设置列间距
+  gap: 20px 10px; // row-gap 和 column-gap 的简写形式，如果只指定一个值则行列间距相等
+}
+.grid-demo-4 div:nth-of-type(1) {
+  grid-area: a1;
+}
+.grid-demo-4 div:nth-of-type(2) {
+  grid-area: a2;
+}
+.grid-demo-4 div:nth-of-type(3) {
+  grid-area: a3;
+}
+
+.flex-box {
+  width: 320px;
+  height: 340px;
+  background-color: skyblue;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  // align-items: flex-end;
+  align-content: center;
+
+  float: left;
+  margin-right: 10px;
+  // row-gap: 20px;
+  // column-gap: 10px;
+  gap: 20px 10px;
+}
+.flex-box div {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+}
+
+// xxx-items：用于子项小于单元格的场景，控制单元格的子项。每个格子宽高还是 100px，单独设置子项宽高为 50px。默认情况下子项在其自身单元格的左上角
+.grid-demo-5 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  // align-items: end; // 子项自己在单元格里垂直方向对其方式
+  // justify-items: start; // 子项自己在单元格里水平方向对其方式
+  place-items: end start; // align-items 和 justify-items 的简写形式，第一个参数为垂直方向对其方式，第二个参数为水平方向对其方式；如果只指定一个值则垂直和水平是相同的值
+}
+.grid-demo-5 div {
+  width: 50px;
+  height: 50px;
+}
+// 用于子项小于单元格的场景，修改子项相对于单元格的位置。和 xxx-items 一样
+.grid-demo-5 div:nth-of-type(1) {
+  // align-self: start; // 设置单元格内容的垂直位置（上中下），跟 align-items 属性的用法完全一致，也是只作用于单个项目
+  // justify-self: end; // 设置单元格内容的水平位置（左中右），跟 justify-items 属性的用法完全一致，但只作用于单个项目
+  place-self: start end; // align-self 和 justify-self 的简写形式；垂直位置 水平位置，如果只指定一个值则垂直和水平是相同的值
+}
+
+// xxx-content：用于单元格总宽高小于容器宽高的场景，控制单元格自身。容器宽高为 300px，单元格宽高总的为 240px
+.grid-demo-6 {
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 80px 80px 80px;
+  place-items: center center;
+  // align-content: center; // 所有单元格整体（整个内容区域）在容器里面垂直方向上的对其方式或剩余空间占用方式
+  // justify-content: end; // 所有单元格整体（整个内容区域）在容器里面水平方向上的对其方式或剩余空间占用方式
+  place-content: center end; // align-content 和 justify-content 的简写形式，第一个参数为所有单元格整体（整个内容区域）在容器里面垂直方向对其方式或剩余空间占用方式，第二个参数为所有单元格整体（整个内容区域）在容器里面水平方向对其方式或剩余空间占用方式；如果只指定一个值则垂直和水平是相同的值
+}
+.grid-demo-6 div {
+  width: 50px;
+  height: 50px;
+}
+// 用于子项小于单元格的场景，修改子项相对于单元格的位置。和 xxx-items 一样
+.grid-demo-6 div:nth-of-type(1) {
+  // align-self: start; // 设置单元格内容的垂直位置（上中下），跟align-items属性的用法完全一致，也是只作用于单个项目
+  // justify-self: end; // 设置单元格内容的水平位置（左中右），跟 justify-items 属性的用法完全一致，但只作用于单个项目
+  place-self: start end; // align-self 和 justify-self 的简写形式；垂直位置 水平位置，如果只指定一个值则垂直和水平是相同的值
+}
+
+.grid-demo-7 {
+  grid-template-columns: 80px 80px 80px;
+  // grid-template-rows: 80px 80px 80px;
+  align-content: stretch; // 没设置 grid-template-rows，每一行高度相等占满容器高度。未指定单元格高度时默认值为 stretch 撑满父容器
+  justify-content: space-between; // 所有单元格整体在水平方向上的对其方式或剩余空间占用方式
+}
+
+// 指定在显示网格职位的隐式，如何排列及尺寸大小
+.grid-demo-8 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px;
+  grid-auto-flow: row; // 控制自动布局算法怎样运作，精确指定在网格中被自动布局的元素怎样排列；默认值为 row，行产生隐式网格；column 列产生隐式网格
+  grid-auto-rows: 50px; // 默认是拉伸的，可以调节产生隐式网格的高度
+}
+.grid-demo-8 div:nth-of-type(1) {
+  // 表示 grid 子项所占据的区域的起始和终止位置，包括水平方向和垂直方向；默认值是 auto，会把后续的元素往后顶，如果 column 和 row 都设置了则会变成紧密网格，不会把后面的元素往后顶
+  grid-column-start: 2;
+  // grid-column-end: 2;
+  // grid-row-start: 2;
+  // grid-row-end: 4; // 从第2根横线(即第2行单元格顶部)到第 4 根横线(即第3行单元格底部)，占两行单元格
+}
+
+// 指定在显示网格职位的隐式，如何排列及尺寸大小
+.grid-demo-9 {
+  grid-template-columns: 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-auto-flow: column;
+  grid-auto-columns: 50px; // 默认是拉伸的，可以调节产生隐式网格的宽度
+}
+
+// 指定在显示网格职位的隐式，如何排列及尺寸大小
+.grid-demo-10 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px;
+  grid-auto-flow: row dense; // 第二个参数指定了 dense 后就表示紧密的网格布局，如果子项中通过 span 方式指定 grid-column-start 导致一行展示不下或调整了展示的网格线开始位置时，则后续的网格会往前移动到之前的位置
+  grid-auto-rows: 50px; // 默认是拉伸的，可以调节产生隐式网格的高度
+}
+.grid-demo-10 div:nth-of-type(1) {
+  grid-column-start: 2;
+}
+
+.grid-demo-11 {
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-auto-flow: row dense; // 第二个参数指定了 dense 后就表示紧密的网格布局，如果子项中通过 span 方式指定 grid-column-start 导致一行展示不下或调整了展示的网格线开始位置时，则后续的网格会往前移动到之前的位置
+  grid-auto-rows: 50px; // 默认是拉伸的，可以调节产生隐式网格的高度
+}
+.grid-demo-11 div:nth-of-type(1) {
+  // grid-column-start: span 2; // 这样就不能表示位置了，表示从当前网格位置开始，占 2 列
+
+  // grid-column-start: 2; // 从 2 开始
+  // grid-column-end: 4; // 到 4 结束
+
+  // grid-column: 2/4; // column简写方式，从 2 开始到 4 结束
+
+  // grid-row: 2/4; // row简写方式，从 2 开始到 4 结束
+
+  grid-column-start: 2; // 从 2 开始
+  grid-column-end: span 2; // 占 2 列
+
+  // grid-area: 2/2/4/3; // row和column简写方式：grid-row-start/grid-column-start/grid-row-end/grid-column-end
+}
+
+// 给网格线重命名，子项中可以直接使用重命名后的网格线名称
+.grid-demo-12 {
+  grid-template-columns: [col1] 100px [col2] 100px [col3] 100px [col4];
+  grid-template-rows: [row1] 100px [row2] 100px [row3] 100px [row4];
+  grid-auto-flow: row dense; // 第二个参数指定了 dense 后就表示紧密的网格布局，如果子项中指定 grid-column-start，则后续的网格会往前移动到之前的位置
+  grid-auto-rows: 50px; // 默认是拉伸的，可以调节产生隐式网格的高度
+}
+.grid-demo-12 div:nth-of-type(1) {
+  grid-column-start: col2; // 从 col2 开始
+  grid-column-end: col4; // 到 col4 结束
+}
+
+.grid-demo-13 {
+  // grid-template-columns: 100px 100px 100px;
+  // grid-template-columns: repeat(3, 100px);
+
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-columns: repeat(3, 1fr);
+
+  // grid-template-columns: 150px 50px 50px;
+  // grid-template-columns: 150px repeat(2, 50px);
+
+  // grid-template-columns: repeat(3, 50px); // 设置了3列，即使容器还有剩余空间也会换行
+  // justify-content: center;
+
+  grid-template-columns: repeat(
+    auto-fill,
+    50px
+  ); // 自动根据容器宽度来判断是否换行，也就是列数是动态调整的
+
+  grid-template-rows: 100px;
+}
+
+.grid-demo-13 div {
+  width: 50px;
+  height: 100px;
+}
+
+.grid-demo-14 {
+  width: 100%;
+  height: 100px;
+  // grid-template-columns: 50px 1fr 50px;
+  // grid-template-columns: 50px minmax(100px, 1fr) 50px; // 中间那一列最小宽度为 100px，最大宽度自适应
+  grid-template-columns: 50px minmax(100px, 300px) 50px; // 中间那一列最小宽度为 100px，最大宽度 300px
+  grid-template-rows: 100px;
+}
+
+.grid-demo-15 {
+  width: 100%;
+  height: auto;
+  // grid-template-columns: repeat(
+  //   auto-fill,
+  //   200px
+  // ); // 固定列宽为 200px，列数量是自适应的，只要剩余空间能容纳得下一列 200px，就会往上排列来增加一列，但调整页面尺寸时右侧通常会留下空白
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); // 列宽至少 200px，如果还有空余则一起等分，列数量是自适应的，只要剩余空间能容纳得下一列 200px，就会往上排列来增加一列
+  grid-template-rows: 100px;
+  grid-auto-rows: 100px;
+  // grid-auto-flow: row;
+  grid-auto-flow: row dense; // 第二个参数指定了 dense 后就表示紧密的网格布局，如果子项中通过 span 方式指定 grid-column-start 导致一行展示不下或调整了展示的网格线开始位置时，则后续的网格会往前移动到之前的位置
+  gap: 10px;
+}
+.grid-demo-15 div:nth-of-type(3) {
+  grid-column-start: span 3;
+}
+
+.grid-demo-16 {
+  float: left;
+  width: 300px;
+  height: 150px;
+  display: grid;
+}
+.grid-demo-16 img {
+  width: 300px;
+  height: 150px;
+  grid-area: 1/1/1/1; // 设置到同一个单元格就能实现叠加布局，可以通过 z-index 来指定层级
+}
+.grid-demo-16 span {
+  grid-area: 1/1/1/1; // 设置到同一个单元格就能实现叠加布局，可以通过 z-index 来指定层级
+  align-self: end;
+  display: block;
+  width: 100%;
+  padding: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.grid-demo-17 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+}
+.grid-demo-17 div:nth-of-type(1) {
+  // grid-area: 1/1/3/3;
+  grid-area: 1/1 / span 2 / span 2;
+  // grid-area: 2/2 / span 2 / span 2;
+}
+
+// 利用 grid 实现栅格布局
+.grid-demo-18 {
+  width: 100%;
+  height: auto;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 50px;
+  grid-auto-rows: 50px;
+}
+.grid-demo-18 .col-1 {
+  grid-area: auto/auto/auto/span 1;
+}
+.grid-demo-18 .col-2 {
+  grid-area: auto/auto/auto/span 2;
+}
+.grid-demo-18 .col-3 {
+  grid-area: auto/auto/auto/span 3;
+}
+.grid-demo-18 .col-4 {
+  grid-area: auto/auto/auto/span 4;
+}
+.grid-demo-18 .col-5 {
+  grid-area: auto/auto/auto/span 5;
+}
+.grid-demo-18 .col-6 {
+  grid-area: auto/auto/auto/span 6;
+}
+.grid-demo-18 .col-7 {
+  grid-area: auto/auto/auto/span 7;
+}
+.grid-demo-18 .col-8 {
+  grid-area: auto/auto/auto/span 8;
+}
+.grid-demo-18 .col-9 {
+  grid-area: auto/auto/auto/span 9;
+}
+.grid-demo-18 .col-10 {
+  grid-area: auto/auto/auto/span 10;
+}
+.grid-demo-18 .col-11 {
+  grid-area: auto/auto/auto/span 11;
+}
+.grid-demo-18 .col-12 {
+  grid-area: auto/auto/auto/span 12;
+}
+
+.grid-demo-19 {
+  height: auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 80px;
+  gap: 5px;
+}
+
+.grid-demo-20 {
+  height: 300px;
+  width: auto;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 80px;
+  gap: 5px;
+}
+
+.grid-demo-21 {
+  float: left;
+  width: 308px;
+  border: 1px solid #dadadc;
+  .top-title {
+    height: 30px;
+    margin-left: 15px;
+    font-weight: bold;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+  }
+  .top-list {
+    margin: 0 14px;
+    height: 352px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      'a1 a3 a3'
+      'a2 a3 a3'
+      'a4 a4 a5'
+      'a6 a7 a7';
+    gap: 8px;
+
+    & > div > a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      color: white;
+
+      h3 {
+        text-align: right;
+        margin-right: 4px;
+        color: inherit;
+      }
+      p {
+        text-align: center;
+      }
+    }
+    & > div:nth-of-type(1) {
+      grid-area: a1;
+    }
+    & > div:nth-of-type(2) {
+      grid-area: a2;
+    }
+    & > div:nth-of-type(3) {
+      grid-area: a3;
+    }
+    & > div:nth-of-type(4) {
+      grid-area: a4;
+    }
+    & > div:nth-of-type(5) {
+      grid-area: a5;
+    }
+    & > div:nth-of-type(6) {
+      grid-area: a6;
+    }
+    & > div:nth-of-type(7) {
+      grid-area: a7;
+    }
+    .theme1 {
+      background-image: linear-gradient(#187fe6, #32aff2);
+      border: 1px solid #2a9adc;
+    }
+    .theme2 {
+      background-image: linear-gradient(#f2246c, #fe5bac);
+      border: 1px solid #da2061;
+    }
+    .theme3 {
+      background-image: linear-gradient(#d46300, #e5ad1c);
+      border: 1px solid #cd9818;
+    }
+  }
+
+  .top-page {
+    margin: 0 10px;
+    display: flex;
+    height: 40px;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+      margin-left: 2px;
+      padding: 3px 4px;
+    }
+    a {
+      border: 1px solid #cbcbcb;
+      margin-left: 2px;
+      padding: 3px 4px;
+    }
+  }
+}
+
+.grid-demo-22 {
+  width: 233px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.3);
+  float: left;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+
+  & > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 42px;
+    padding: 0 28px;
+    cursor: pointer;
+    color: white;
+    position: relative;
+
+    &:hover {
+      background-color: #ff6801;
+
+      .nav-menu {
+        display: grid;
+      }
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .nav-menu {
+      display: none;
+      padding: 0px;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: white;
+      border: 1px solid #e1e1e1;
+      box-shadow: 5px 5px 10px #ccc;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: 250px;
+      grid-auto-flow: column;
+      grid-auto-columns: 250px;
+
+      & > li {
+        color: black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &:hover {
+          color: white;
+          background-color: #ff6801;
+        }
+
+        img {
+          width: 100px;
+          height: 50px;
+          margin-left: 26px;
+          margin-right: 21px;
+        }
+      }
+    }
+  }
+}
+
+.grid-demo-23 {
+  width: 100%;
+  float: left;
+  background-color: skyblue;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-rows: 100px 300px 100px;
+  gap: 10px;
+  & > div {
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > div:first-of-type {
+    grid-area: 1/1 / span 1 / span 3;
+  }
+  & > div:last-of-type {
+    grid-area: 3/1 / span 1 / span 3;
+  }
+}

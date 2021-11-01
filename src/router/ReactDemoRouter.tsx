@@ -13,6 +13,7 @@ import ReduxDva from '../components/redux-dva'
 import ReduxTookit from '../components/redux-toolkit'
 import ReactBasic from '../components/react-basic'
 import RouterDemo from '../components/router-demo'
+import GridDemo from '../components/grid-demo'
 import AnimationDemo from '../components/animation-demo'
 
 const ReactDemoNav: React.FC = () => {
@@ -61,6 +62,9 @@ const ReactDemoNav: React.FC = () => {
           <Link to={`${match.path}/routerDemo`}>RouterDemo</Link>
         </li>
         <li>
+          <Link to={`${match.path}/gridDemo`}>GridDemo</Link>
+        </li>
+        <li>
           <Link to={`${match.path}/animationDemo`}>AnimationDemo</Link>
         </li>
       </ul>
@@ -88,6 +92,7 @@ const ReactDemoRouter: React.FC = () => {
         <Route path={`${match.path}/reduxToolkit`} component={ReduxTookit} />
         <Route path={`${match.path}/hooksDemo`} component={HooksDemo} />
         <Route path={`${match.path}/routerDemo`} component={RouterDemo} />
+        <Route path={`${match.path}/gridDemo`} component={GridDemo} />
         <Route path={`${match.path}/animationDemo`} component={AnimationDemo} />
         <Route>
           <h3>请选择一个 React 案例</h3>
