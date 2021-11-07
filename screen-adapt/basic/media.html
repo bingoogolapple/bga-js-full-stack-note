@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem</title>
+    <style>
+        /*
+        媒体查询(Media Query)是 CSS3 新语法
+        使用 @media 查询，可以针对不同的媒体类型定义不同的样式；
+        @media 可以针对不同的屏幕尺寸设置不同的样式；
+        当你重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染页面；
+        目前针对很多苹果手机、Android 手机、平板等设备都用得到媒体查询；
+
+        @media mediatype and|not|only (media feature) {
+            CSS-Code;
+        }
+        mediatype 媒体类型：
+        all 用于所有设备；
+        print 用于打印机和打印预览；
+        screen 用于电脑屏幕、平板电脑、智能手机等；
+        speech 主要用于语音合成器；
+
+        关键字「关键字前后必须由空格」：
+        关键字将媒体类型或多个媒体特性链接到一起作为媒体查询的条件；
+        and 可以将多个媒体特性链接到一起，相当于且的意思；
+        not 排除某个媒体类型，相当于非的意思，可省略；
+        only 指定某个特定的媒体类型，可以省略，用于旧版浏览器识别媒体类型使用；
+        逗号 用于将多个媒体查询合并为一个规则，相当于「或」的意思，例如 @media screen, print and (max-width: 539px) {} 表示屏幕和打印都适用
+
+        媒体特性：每种媒体类型都具有各自不同的特性，根据不同媒体类型的媒体特性设置不同的展示风格，需要加小括号包含；
+        width、height 定义输出设备中页面可见区域（viewport）的宽度、高度；
+        min-width、min-height 定义输出设备中页面最小可见区域（viewport）的宽度、高度；
+        max-width、max-height 定义输出设备中页面最大可见区域（viewport）的宽度、高度；
+        min-width、min-height、max-width、max-height 都是包含等于的；
+        aspect-ratio 定义 viewport 的宽高比
+        orientation 定义 viewport 的旋转方向
+
+        添加到样式表的底部，对 CSS 进行优先级的覆盖；
+        移动端 -> PC 端的适配原则：min-width 从小到大，移动端优先的原则，先编写移动端设备，然后响应式过渡到 PC 端；
+        PC 端 -> 移动端的适配原则：max-width 从大到小，PC 端优先的原则，先编写 PC 端设备，然后响应式过渡到移动端；
+        可以按照从小到大或者从大到小的思路；但推荐按从小到大的思路；
+        */
+
+        /* 当屏幕小于 540px，背景色变为红色 max-width: 539px */
+        @media screen and (max-width: 539px) {
+            .box1 {
+                background-color: red;
+            }
+        }
+
+        /* not 表示取反，表示大于 539px 时才生效 */
+        /* @media not screen and (max-width: 539px) {
+            .box1 {
+                background-color: red;
+            }
+        } */
+
+        /* 当屏幕大于等于 540px 并且小于等于 969px 时背景色变为绿色 */
+        /* 这样会覆盖上面写的 539px 的情况 */
+        /*
+        @media screen and (max-width: 969px) {
+            .box1 {
+                background-color: green;
+            }
+        }
+        */
+        /* 这样写没问题 */
+        /*
+        @media screen and (min-width: 540px) and (max-width: 969px) {
+            .box1 {
+                background-color: green;
+            }
+        }
+        */
+        /* 这样写更简洁，下一个 min-width: 970px 会自动覆盖 */
+        /*
+        @media screen and (min-width: 540px) {
+            .box1 {
+                background-color: green;
+            }
+        }
+        */
+        /* 更简洁的写法，默认情况下 screen and 可以省略不写 */
+        @media (min-width: 540px) {
+            .box1 {
+                background-color: green;
+            }
+        }
+
+        /* 当屏幕大于等于 970px 时背景色为蓝色 */
+        @media screen and (min-width: 970px) {
+            .box1 {
+                background-color: blue;
+            }
+        }
+
+        /* @media screen and (orientation: portrait) { */
+        @media screen and (orientation: landscape) {
+            .box1 {
+                background-color: skyblue;
+            }
+        }
+
+        .box1 {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .d-none {
+            display: none;
+        }
+
+        @media (min-width: 576px) {
+            .d-sm-none {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .d-md-none {
+                display: none;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .d-lg-none {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .d-xl-none {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .d-xxl-none {
+                display: none;
+            }
+        }
+    </style>
+    <!--
+        当样式比较繁多的时候，我们可以针对不同的媒体使用不同的样式表；
+        原理就是直接在 link 中判断设备的尺寸，然后引入不同的 css 文件；
+        「最好的方式是从小到大」
+    -->
+    <link rel="stylesheet" media="screen and (max-width: 539px)" href="media-small.css" />
+    <link rel="stylesheet" media="screen and (min-width: 540px)" href="media-normal.css" />
+    <link rel="stylesheet" media="screen and (min-width: 970px)" href="media-large.css" />
+
+    <!--
+    响应式需要一个父级作为布局容器，来配合子级元素来实现变化效果；原理就是再不同屏幕下，通过媒体查询来改变这个容器的大小，再改变里面子元素的排列方式和大小，从而实现不同屏幕下看到不同的页面布局和样式变化
+
+    响应式尺寸划分（也可以根据实际情况自定义划分）：
+    超小屏幕（手机，尺寸区间： 768px > width）：设置版心宽度为 100%
+    小屏设备（平板，尺寸区间： 768px <= width < 992px）：设置版心宽度为 750px
+    中等屏幕（桌面显示器，尺寸区间： 992px <= width < 1200px）：设置版心宽度为 970px
+    宽屏设备（大桌面显示器，尺寸区间： 1200 <= width）：设置版心宽度为 1170px
+
+    另一个响应式断点（阈值）设定：
+    Extra small < 576px
+    Small >= 576px, -sm
+    Medium >= 768px, -md
+    Large >= 992px, -lg
+    X-Large >= 1200px, -xl
+    XX-Large >= 1400px, -xxl
+    -->
+</head>
+
+<body>
+    <div class="box1">
+        8
+    </div>
+    <div class="box2">
+        <div>1</div>
+        <div>2</div>
+    </div>
+    <div class="d-none">d-none</div>
+    <div class="d-sm-none">d-sm-none</div>
+    <div class="d-md-none">d-md-none</div>
+    <div class="d-lg-none">d-lg-none</div>
+    <div class="d-xl-none">d-xl-none</div>
+    <div class="d-xxl-none">d-xxl-none</div>
+</body>
+
+</html>

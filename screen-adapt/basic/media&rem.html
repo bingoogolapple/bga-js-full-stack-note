@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+        页面布局文字能否随着屏幕大小变化而变化？流式布局和 flex 布局主要针对于宽度布局，那高度如何设置？怎么样让屏幕发生变化的时候元素高度和宽度等比例缩放？
+
+        rem(root em)是一个相对单位，类似于 em，em 是自身或父元素字体大小，不同的是 rem 的基准是相对于 html 元素的字体大小
+
+        1、页面元素的 rem 值 = 页面元素值(px) / (屏幕宽度 / 划分的份数)
+        2、html font-size 的值 = 屏幕宽度 / 划分的份数
+        3、即页面元素的 rem 值 = 页面元素值(px) / html font-size 的值
+        */
+        /*
+        1、页面元素的 rem 值 = 页面元素值(px) / (屏幕宽度 / 划分的份数)
+        2、html font-size 的值 = 屏幕宽度 / 划分的份数
+        3、即页面元素的 rem 值 = 页面元素值(px) / html font-size 的值
+        */
+
+        /* iPhone 5 上 font-size = 26.666666666666668 / 100 * 320 = 85.33333333333333px */
+        @media screen and (max-width: 374px) {
+            html {
+                font-size: 85.33333333333333px;
+                background-color: red;
+            }
+        }
+
+        /* iPhone 6/7/8 上 font-size = 26.666666666666668 / 100 * 375 = 100px */
+        @media screen and (min-width: 375px) {
+            html {
+                font-size: 100px;
+                background-color: green;
+            }
+        }
+
+        /* iPhone 6/7/8 Plus 上 font-size = 26.666666666666668 / 100 * 414 = 110.39999999999999px */
+        @media screen and (min-width: 414px) {
+            html {
+                font-size: 110.39999999999999px;
+                background-color: blue;
+            }
+        }
+
+        body {
+            /* rem 布局一定要在 body 中重置 font-size 为默认值 16px，即 0.16rem */
+            /* font-size: 16px; */
+            font-size: 0.16rem;
+        }
+
+        li {
+            font-size: 16px;
+        }
+
+        .box1 {
+            /* 页面可视区分成了 100vw 和 100vh */
+            width: 50vw;
+            height: 50vh;
+            background: pink;
+            font-size: 1rem;
+        }
+
+        .box2 {
+            width: 1rem;
+            height: 1rem;
+            background: pink;
+        }
+
+        .box3 {
+            /* vw 方式更好些；media 方式只有在特定宽度时才准确，有些情况存在空白 */
+            width: 3.75rem;
+            height: 1rem;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        8
+    </div>
+    <div class="box2">
+        8
+    </div>
+    <div class="box3">
+        8
+    </div>
+</body>
+
+</html>

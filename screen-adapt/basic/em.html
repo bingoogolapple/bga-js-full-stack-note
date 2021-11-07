@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>em</title>
+    <style>
+        .box1 {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            /* 此时的 border 宽度为 16px，和默认的 font-size 是一样的；即 1em = font-size 的值 */
+            border: 1em skyblue solid;
+        }
+
+        .box2 {
+            margin: 5px;
+            font-size: 12px;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            /* 此时的 border 宽度为 12px；即 1em = font-size 的值 */
+            border: 1em skyblue solid;
+        }
+
+        .box3 {
+            margin: 5px;
+            font-size: 12px;
+            width: 200px;
+            height: 200px;
+            background: pink;
+            /* 此时的 border 宽度为 24px；即 1em = font-size 的值 */
+            border: 2em skyblue solid;
+        }
+
+        .box31 {
+            width: 50px;
+            height: 50px;
+            background-color: yellowgreen;
+            /* 此处的 1em 等于自身 font-size，font-size 继承自父亲，所以当前的 border 宽度为 24px */
+            border: 2em seagreen solid;
+        }
+
+        .box4 {
+            margin: 5px;
+            font-size: 12px;
+            width: 200px;
+            height: 200px;
+            background: pink;
+            /* 此时的 border 宽度为 24px；即 1em = font-size 的值 */
+            border: 2em skyblue solid;
+        }
+
+        .box41 {
+            /* 此处的 1em 等于父亲的 font-size，所以当前的 font-size 为 24px */
+            font-size: 2em;
+            width: 50px;
+            height: 50px;
+            background-color: yellowgreen;
+            /* 此处的 1em 等于自身 font-size，所以当前的 border 宽度为 48px */
+            border: 2em seagreen solid;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>font-size 的值中，1em 等于父容器 font-size 的值</li>
+        <li>非 font-size 的值中，1em 等于自身 font-size 的值</li>
+    </ul>
+    <div class="box1">
+        8
+    </div>
+    <div class="box2">
+        8
+    </div>
+    <div class="box3">
+        <div class="box31">
+            8
+        </div>
+    </div>
+
+    <div class="box4">
+        <div class="box41">
+            8
+        </div>
+    </div>
+</body>
+
+</html>

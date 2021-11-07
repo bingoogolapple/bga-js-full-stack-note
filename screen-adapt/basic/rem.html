@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /*
+            页面布局文字能否随着屏幕大小变化而变化？流式布局和 flex 布局主要针对于宽度布局，那高度如何设置？怎么样让屏幕发生变化的时候元素高度和宽度等比例缩放？
+
+            rem(root em)是一个相对单位，类似于 em，em 是自身或父元素字体大小，不同的是 rem 的基准是相对于 html 元素的字体大小
+
+            1、页面元素的 rem 值 = 页面元素值(px) / (屏幕宽度 / 划分的份数)
+            2、html font-size 的值 = 屏幕宽度 / 划分的份数
+            3、即页面元素的 rem 值 = 页面元素值(px) / html font-size 的值
+            */
+            /*
+            不同设备尺寸动态修改 html 的 font-size 的值来实现适配
+            1、JS 动态计算，flexible.js 库
+            2、利用 vw 相对单位，动态换算 font-size
+            3、less + 媒体查询
+            */
+            /*
+            1、首先选一套标准尺寸宽度，一般以 750px 为准
+            2、用「标准屏幕尺寸宽度 / 划分份数」得到 html 里的 font-size 的值，但是不同屏幕尺寸下得到的 html font-size 的值是不一样的
+            3、页面元素的 rem 值 = 页面元素在标准尺寸宽度为 750px 下的值(px) / html font-size 的值
+            */
+            font-size: 20px;
+        }
+
+        li {
+            font-size: 16px;
+        }
+
+        .box1 {
+            margin: 5px;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            /* 此时的 border 宽度为 20px */
+            border: 1rem skyblue solid;
+        }
+
+        .box2 {
+            margin: 5px;
+            font-size: 12px;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            /* 此时的 border 宽度为 20px；即 1rem = html 的 font-size 的值 */
+            border: 1rem skyblue solid;
+        }
+
+        .box3 {
+            margin: 5px;
+            font-size: 12px;
+            width: 200px;
+            height: 200px;
+            background: pink;
+            /* 此时的 border 宽度为 40px；即 1rem = html 的 font-size 的值 */
+            border: 2rem skyblue solid;
+        }
+
+        .box31 {
+            width: 50px;
+            height: 50px;
+            background-color: yellowgreen;
+            /* 此时的 border 宽度为 40px */
+            border: 2rem seagreen solid;
+        }
+
+        .box4 {
+            margin: 5px;
+            font-size: 12px;
+            width: 200px;
+            height: 200px;
+            background: pink;
+            /* 此时的 border 宽度为 40px；即 1rem = html 的 font-size 的值 */
+            border: 2rem skyblue solid;
+        }
+
+        .box41 {
+            /* 此处的 1em 等于父亲的 font-size，所以当前的 font-size 为 24px */
+            font-size: 2em;
+            width: 50px;
+            height: 50px;
+            background-color: yellowgreen;
+            /* 此时的 border 宽度为 40px */
+            border: 2rem seagreen solid;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>rem：root + em</li>
+        <li>rem 不是看自己的 font-size，也不是看父亲的 font-size，而是看根 html 的 font-size</li>
+    </ul>
+    <div class="box1">
+        8
+    </div>
+    <div class="box2">
+        8
+    </div>
+    <div class="box3">
+        <div class="box31">
+            8
+        </div>
+    </div>
+
+    <div class="box4">
+        <div class="box41">
+            8
+        </div>
+    </div>
+</body>
+
+</html>

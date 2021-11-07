@@ -1,0 +1,19 @@
+.box2 {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}
+
+.box2 > div {
+  width: 50%;
+  height: 100%;
+}
+
+.box2 > div:first-child {
+  background-color: green;
+}
+.box2 > :last-child {
+  background-color: blue;
+}

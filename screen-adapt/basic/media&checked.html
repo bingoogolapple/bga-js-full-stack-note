@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            display: none;
+        }
+
+        input {
+            display: none;
+        }
+
+        input:checked+ul {
+            display: block;
+        }
+
+        @media (min-width: 700px) {
+            ul {
+                display: block;
+            }
+
+            span {
+                display: none;
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: red;
+        }
+
+        .left {
+            position: absolute;
+            left: 10px;
+            width: 100px;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2)
+        }
+
+        .main {
+            width: 100%;
+            margin-left: 10px;
+            height: 100%;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="menu">
+        <span>
+            菜单按钮
+        </span>
+    </label>
+    <input id="menu" type="checkbox">
+    <ul>
+        <li>首页</li>
+        <li>教程</li>
+        <li>论坛</li>
+        <li>文章</li>
+    </ul>
+    <div class="container">
+        <div class="left"></div>
+        <div class="main"></div>
+    </div>
+</body>
+
+</html>
