@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 600px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table,
+        th,
+        td {
+            /* border:1px black solid; */
+        }
+
+        th,
+        td {
+            border-bottom: 1px black solid;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .style1 {
+            background: pink;
+            width: 100px;
+        }
+
+        .style2 {
+            background: skyblue;
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <table>
+            <colgroup span="1" class="style1"></colgroup>
+            <colgroup span="2" class="style2"></colgroup>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>张三<br>张三<br>张三<br>张三<br>张三</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>李四</td>
+                    <td>22</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>王五</td>
+                    <td>24</td>
+                </tr>
+            </tbody>
+            <!-- <tfoot></tfoot> -->
+        </table>
+    </div>
+</body>
+
+</html>

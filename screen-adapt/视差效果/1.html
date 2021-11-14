@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+
+        .box {
+            width: 800px;
+            height: 600px;
+            border: 10px pink solid;
+            background-image: url(./img/1930.jpg);
+            background-attachment: fixed;
+        }
+
+        .box2 {
+            width: 500px;
+            height: 100px;
+            background: skyblue;
+            margin-top: 400px;
+        }
+    </style>
+    <script src="./skrollr.min.js"></script>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+
+    <div class="box2" data-200="width: 500px;" data-400="width: 1000px; transform:rotate(0deg)"
+        data-600="transform:rotate(360deg)">
+        bbbbbbbbbbbbbbb
+    </div>
+    <script>
+
+        skrollr.init();
+
+    </script>
+</body>
+
+</html>

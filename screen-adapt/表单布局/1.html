@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .button {
+            height: 44px;
+            background: #409eff;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            padding: 0 23px;
+            cursor: pointer;
+        }
+
+        .text {
+            height: 57px;
+            border: 1px #dcdfe6 solid;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        .text:focus {
+            border: 1px #409eff solid;
+        }
+
+        .text::-ms-clear {
+            display: none;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+        }
+
+        .checkbox input {
+            display: none;
+        }
+
+        .checkbox div {
+            width: 100%;
+            height: 100%;
+            border: 1px #dcdfe6 solid;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .checkbox input:checked+div {
+            background: #409eff;
+            border: 1px #409eff solid;
+        }
+
+        .checkbox input:checked+div::after {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 5px;
+            border: 2px white solid;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            margin: 5px auto;
+        }
+
+        .file {
+            height: 44px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .file input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .my-form {
+            width: 700px;
+            padding: 20px;
+            border: 1px #ebebeb solid;
+            margin: 20px auto;
+        }
+
+        .my-form li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .my-form-text {
+            width: 100px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .my-form-control {
+            flex-grow: 1;
+            margin-left: 20px;
+            display: flex;
+        }
+
+        .my-form-control>div {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .my-form-control .checkbox {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="my-form">
+        <li>
+            <div class="my-form-text">
+                活动名称
+            </div>
+            <div class="my-form-control">
+                <input class="text" type="text">
+            </div>
+        </li>
+        <li>
+            <div class="my-form-text">
+                活动性质
+            </div>
+            <div class="my-form-control">
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <div></div>
+                    </label>
+                    美食
+                </div>
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <div></div>
+                    </label>
+                    美食
+                </div>
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <div></div>
+                    </label>
+                    美食
+                </div>
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <div></div>
+                    </label>
+                    美食
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="my-form-text">
+                上传
+            </div>
+            <div class="my-form-control">
+                <label class="file">
+                    <input type="file">
+                    <button class="button">上传</button>
+                </label>
+            </div>
+        </li>
+        <li>
+            <div class="my-form-text"></div>
+            <div class="my-form-control">
+                <button class="button">立即创建</button>
+            </div>
+        </li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 600px;
+            position: relative;
+        }
+
+        .wrapper {
+            overflow: auto;
+        }
+
+        .wrapper table {
+            width: 200%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px black solid;
+        }
+
+        table tr td:first-child,
+        table tr th:first-child {
+            width: 100px;
+        }
+
+        .wrapper-fixed {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            width: 100px;
+        }
+
+        .wrapper-fixed table {
+            border-collapse: collapse;
+            background: white;
+            border-right: none;
+        }
+
+        .wrapper-fixed th,
+        .wrapper-fixed td {
+            border-right: none;
+            box-shadow: 3px 0 5px rgba(0, 0, 0, .2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>李四</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>王五</td>
+                        <td>24</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>李四</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>王五</td>
+                        <td>24</td>
+                    </tr>
+                </tbody>
+                <!-- <tfoot></tfoot> -->
+            </table>
+        </div>
+        <div class="wrapper-fixed">
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let wrapper = document.querySelector('.wrapper');
+        let wrapperFixed = document.querySelector('.wrapper-fixed');
+        wrapper.addEventListener('scroll', show);
+        show();
+        function show() {
+            if (wrapper.scrollLeft > 0) {
+                wrapperFixed.style.display = 'block';
+            }
+            else {
+                wrapperFixed.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

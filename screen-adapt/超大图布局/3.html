@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 1400px;
+            height: 600px;
+            /* background: url(./2.jpg); */
+            position: relative;
+            left: 50%;
+            margin-left: -700px;
+        }
+
+        header img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .left-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background-image: linear-gradient(270deg, transparent, white);
+        }
+
+        .right-mask {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background-image: linear-gradient(-270deg, transparent, white);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="left-mask"></div>
+        <div class="right-mask"></div>
+        <img src="./2.jpg" alt="">
+    </header>
+    <main>
+
+    </main>
+</body>
+
+</html>

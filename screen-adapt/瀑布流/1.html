@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不需要加载更多的情况下直接用 flex 布局实现横向瀑布流</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .main .item {
+            flex-grow: 1;
+            height: 200px;
+            /* flex-basis: 200px; */
+        }
+
+        .main .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="item">
+            <img src="./imgs/1.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/2.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/3.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/4.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/5.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/6.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/7.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/8.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/9.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/10.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/11.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/12.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/13.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/14.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/15.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        var items = document.querySelectorAll('.item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].style.flexBasis = Math.random() * 200 + 200 + 'px';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .main {
+            width: 300px;
+            border: 1px black solid;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            float: left;
+            margin: 10px;
+            border-radius: 50%;
+        } */
+
+        /* .main {
+            width: 300px;
+            border: 1px black solid;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            float: left;
+            margin: 10px;
+            border-radius: 50%;
+            shape-outside: margin-box;
+        } */
+
+        /* .main {
+            width: 300px;
+            border: 1px black solid;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            float: left;
+            margin: 10px;
+            clip-path: polygon(0 0, 0 100px, 100px 100px);
+            shape-outside: polygon(0 0, 0 100px, 100px 100px);
+            shape-margin: 15px;
+        } */
+
+        .main {
+            width: 300px;
+            border: 1px black solid;
+        }
+
+        .box {
+            width: 100px;
+            height: 164px;
+            float: left;
+            margin: 10px;
+            shape-outside: url(./birds.png);
+            shape-margin: 5px;
+            background-color: pink;
+            -webkit-mask: url(./birds.png) no-repeat;
+            mask: url(./birds.png) no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box"></div>
+        ^测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字$
+    </div>
+</body>
+
+</html>

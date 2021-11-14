@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不需要加载更多功能时通过 Multi-Columns 多栏布局实现瀑布流</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .main {
+            /* column-count 和 column-width 最终是计算出来列数较小的那个生效，可以各自独立使用也可配合使用；例如这里是宽度小于 1200px 时是 column-width 生效，大于 1200px 时是 column-count 生效 */
+            /* 设置总共有多少列 */
+            column-count: 4;
+            /* 设置每一列的宽度 */
+            column-width: 300px;
+            /* 设置列间距 */
+            column-gap: 20px;
+            /* 设置每一列钟建的分割线 */
+            column-rule: 1px gray dashed;
+        }
+
+        h1 {
+            /* 多栏合并 */
+            column-span: all;
+            text-align: center;
+        }
+
+        .main .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>我是标题</h1>
+        <div class="item">
+            <img src="./imgs/1.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/2.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/3.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/4.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/5.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/6.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/7.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/8.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/9.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/10.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/11.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/12.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/13.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/14.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="./imgs/15.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
