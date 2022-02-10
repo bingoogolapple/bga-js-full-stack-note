@@ -3,10 +3,15 @@ import BindIf from '../views/Basic/BindIf.vue'
 import Form from '../views/Basic/Form.vue'
 import For from '../views/Basic/For.vue'
 import ClassStyle from '../views/Basic/ClassStyle.vue'
+import TransitionAnimate from '../views/Basic/TransitionAnimate.vue'
 import ComputedWatch from '../views/Basic/ComputedWatch.vue'
 import KeyReuse from '../views/Basic/KeyReuse.vue'
 import Event from '../views/Basic/Event.vue'
 import SlotComponent from '../views/Basic/SlotComponent.vue'
+import DynamicComponent from '../views/Basic/DynamicComponent.vue'
+import Mixin from '../views/Basic/Mixin.vue'
+import Directive from '../views/Basic/Directive.vue'
+import RenderFunction from '../views/Basic/RenderFunction.vue'
 
 export default [
   {
@@ -43,6 +48,11 @@ export default [
     component: ClassStyle
   },
   {
+    path: 'transitionAnimate',
+    name: 'TransitionAnimate',
+    component: TransitionAnimate
+  },
+  {
     path: 'computedWatch',
     name: 'ComputedWatch',
     component: ComputedWatch
@@ -61,6 +71,26 @@ export default [
     path: 'slotComponent',
     name: 'SlotComponent',
     component: SlotComponent
+  },
+  {
+    path: 'dynamicComponent',
+    name: 'DynamicComponent',
+    component: DynamicComponent
+  },
+  {
+    path: 'mixin',
+    name: 'Mixin',
+    component: Mixin
+  },
+  {
+    path: 'directive',
+    name: 'Directive',
+    component: Directive
+  },
+  {
+    path: 'renderFunction',
+    name: 'RenderFunction',
+    component: RenderFunction
   },
   {
     path: '*',

@@ -28,12 +28,15 @@
     </div>
     <h5>绑定内联样式</h5>
     <span
-      >当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS property
-      时，如transform，Vue.js 会自动侦测并添加相应的前缀</span
+      >当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS property 时，如
+      transform，Vue.js 会自动侦测并添加相应的前缀</span
     >
     <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
-      对象：CSS property 名可以用驼峰式 (camelCase) 或短横线分隔
-      (kebab-case，记得用引号括起来) 来命名
+      对象：CSS property 名可以用驼峰式(camelCase)来命名
+    </div>
+    <div v-bind:style="{ color: activeColor, 'font-size': fontSize + 'px' }">
+      对象：CSS property
+      名也可以用短横线分隔(kebab-case，记得用引号括起来)来命名
     </div>
     <div v-bind:style="styleObject">
       对象：直接绑定到一个样式对象通常更好，这会让模板更清晰
@@ -64,8 +67,9 @@ export default {
       activeColor: 'red',
       fontSize: 15,
       styleObject: {
-        color: 'red',
-        fontSize: '13px'
+        color: 'green',
+        fontSize: '13px' // CSS property 名可以用驼峰式(camelCase)来命名
+        // 'font-size': '13px' // CSS property 名也可以用短横线分隔(kebab-case，记得用引号括起来)来命名
       },
       baseStyles: {
         color: 'red',

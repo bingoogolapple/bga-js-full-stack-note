@@ -1,17 +1,24 @@
 <template>
   <div>
     <h4>数据绑定、条件渲染</h4>
+    <div>{{ rootMsg }}</div>
+    <div>{{ $customGlobalMsg1 }}</div>
     <input v-model="message" /><br />
-    <div v-once>
+    <!-- 还有 number、trim 等修饰符 -->
+    <input
+      v-model.lazy="message"
+      placeholder="加了 .lazy 修饰符后，输入内容后不会立即触发属性变化，失去焦点时才会触发属性变化"
+    /><br />
+    <div v-once ref="testRef">
       一次性的插值，当数据改变时，插值处的内容不会更新：{{ message }}
     </div>
     <div v-if="messageVisibility" v-bind:title="tip">
       v-if 控制 | {{ message }} | {{ message + message }}
     </div>
     <ul v-else>
-      <li>不满足 v-if 条件时元素不会被添加到 dom 树中，惰性的</li>
+      <li>不满足 v-if、v-else-if 条件时元素不会被添加到 dom 树中，惰性的</li>
       <li>
-        不满足 v-show 条件时元素还是会添加到 dom 树中，只是讲 css 样式中的
+        不满足 v-show 条件时元素还是会添加到 dom 树中，只是将 css 样式中的
         display 设置为了 none
       </li>
       <li>
@@ -48,14 +55,17 @@
         >缩写方式+动态参数：个人网站</a
       >
     </div>
-    <p>Using mustaches: {{ rawHtml }}</p>
-    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <p>双大括号会将数据解释为普通文本，而非 HTML 代码: {{ rawHtml }}</p>
+    <p>
+      为了输出真正的 HTML，需要使用 v-html 指令: <span v-html="rawHtml"></span>
+    </p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'BindIf',
+  inject: ['rootMsg'],
   data() {
     return {
       message: '我是消息',
@@ -73,6 +83,13 @@ export default {
     switchMessageVisibility() {
       this.messageVisibility = !this.messageVisibility
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.testRef.innerHTML = '通过 ref 拿到节点的引用后进行修改'
+
+      this.$customGlobalMsg1 = '我是修改后全局自定义属性消息1，不会影响其他组件'
+    }, 5000)
   }
 }
 </script>

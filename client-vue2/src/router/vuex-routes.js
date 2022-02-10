@@ -20,7 +20,7 @@ export default [
   {
     path: '*',
     redirect: {
-      name: 'Lifecycle'
+      name: 'Counter'
     }
   }
 ]

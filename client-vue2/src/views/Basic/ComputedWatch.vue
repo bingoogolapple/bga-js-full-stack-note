@@ -14,7 +14,7 @@
     fullNameComputedWithSetter:<input
       v-model="fullNameComputedWithSetter"
     /><br />
-    <div>侦听属性实现：{{ fullName }}</div>
+    <div>侦听属性实现：{{ fullNameWatch }}</div>
     <div>计算属性实现：{{ fullNameComputed }}</div>
   </div>
 </template>
@@ -27,11 +27,12 @@ export default {
       message: '我是消息',
       firstName: 'Foo',
       lastName: 'Bar',
-      fullName: 'Foo Bar'
+      fullNameWatch: 'FooWatch BarWatch'
     }
   },
   computed: {
     // 算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值
+    // 监听器是惰性的 lazy，首次加载时不会执行
     // 计算属性的 getter
     // reversedMessage: function () {
     // 两种写法都可以
@@ -65,11 +66,11 @@ export default {
     // 两种写法都可以
     firstName(newValue, oldValue) {
       console.log(`oldFirstName ${oldValue}, newFirstName ${newValue}`)
-      this.fullName = newValue + ' ' + this.lastName
+      this.fullNameWatch = newValue + ' ' + this.lastName
     },
     // 可以只写第一个参数，新的值
     lastName(newValue) {
-      this.fullName = this.firstName + ' ' + newValue
+      this.fullNameWatch = this.firstName + ' ' + newValue
     }
   }
 }

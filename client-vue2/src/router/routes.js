@@ -18,9 +18,9 @@ export default [
     // redirect: {
     //   name: 'Home' // 重定向也可以是命名的路径对象
     // }
-    // redirect: to => { // 甚至是一个方法，动态返回重定向目标
-    //   // const { hash, params, query } = to
-    //   console.log('重定向 to', to)
+    // redirect: from => { // 甚至是一个方法，动态返回重定向目标
+    //   // const { hash, params, query } = from
+    //   console.log('重定向 from', from)
     //   // return '/home'
     //   return {
     //     name: 'Home'

@@ -21,7 +21,7 @@
       <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
       <label for="mike">Mike</label>
       <br />
-      <span>Checked names: {{ checkedNames }}</span>
+      <span>多个复选框值为: {{ checkedNames }}</span>
     </div>
     <div>
       单选按钮<br />
@@ -31,26 +31,28 @@
       <input type="radio" id="two" value="Two" v-model="picked" />
       <label for="two">Two</label>
       <br />
-      <span>Picked: {{ picked }}</span>
+      <span>单选按钮值为: {{ picked }}</span>
     </div>
     <div>
       单选选择框，绑定到一个属性<br />
       <select v-model="selected">
         <option disabled value="">请选择</option>
-        <option>A</option>
+        <!-- 单独指定了 value 值那么选中后的值就是指定的 value，否则就是 A -->
+        <option value="aa">A</option>
         <option>B</option>
         <option>C</option>
       </select>
-      <span>Selected: {{ selected }}</span
+      <span>单选选择框值为: {{ selected }}</span
       ><br />
       多选选择框，绑定到一个数组
+      <!-- 要按住 Shift 或 Command 键才能选中多个 -->
       <select v-model="selectedArr" multiple style="width: 50px">
         <option>A</option>
         <option>B</option>
         <option>C</option>
       </select>
       <br />
-      <span>Selected: {{ selectedArr }}</span>
+      <span>多选选框值为: {{ selectedArr }}</span>
     </div>
   </div>
 </template>
@@ -65,8 +67,7 @@ export default {
       checkedNames: [],
       picked: '',
       selected: '',
-      selectedArr: [],
-      searchText: ''
+      selectedArr: []
     }
   }
 }
