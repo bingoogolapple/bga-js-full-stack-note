@@ -1,0 +1,1151 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "baddd764-d6c0-438d-990d-ed143553f652",
+        "name": "test"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Service",
+            "id": "6bb5015e-6416-487d-9acd-ec6a098bf456",
+            "name": "sequelize"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/basicDelete"
+                },
+                "id": "b5e3448c-d2a2-4ccc-a71c-994dbda911da",
+                "name": "basicDelete",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/basicDeleteAll"
+                },
+                "id": "e8ce2311-97c1-4fdb-9edd-e94cefc7545e",
+                "name": "basicDeleteAll",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/basicInit"
+                },
+                "id": "5c4426ca-9882-452e-b78d-0c82a44827e8",
+                "name": "basicInit",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/basicQuery"
+                },
+                "id": "09622590-f74d-4725-b350-2398e74d4e29",
+                "name": "basicQuery",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/basicUpdate"
+                },
+                "id": "3bb28a74-fc06-4f82-b875-ce136bcc94ac",
+                "name": "basicUpdate",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/dropAllTable"
+                },
+                "id": "d5c23f64-e4e2-4b51-9c53-39dcb966d58d",
+                "name": "dropAllTable",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/dropSingleTable"
+                },
+                "id": "3feb436b-2dd2-41eb-90b0-93629abb561f",
+                "name": "dropSingleTable",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/incrementOrDecrement"
+                },
+                "id": "576d0c7f-d338-4d68-9aed-1169951e2a9a",
+                "name": "incrementOrDecrement",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/manyToManyInit"
+                },
+                "id": "27579821-7d68-44c1-ac7b-69e00ef36b2a",
+                "name": "manyToManyInit",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/manyToManyQuery"
+                },
+                "id": "121431de-f220-4f0d-9db0-1b9f454ce80c",
+                "name": "manyToManyQuery",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/manyToManyQueryInclude"
+                },
+                "id": "9c2dd46e-0145-4849-9a6a-50469d098778",
+                "name": "manyToManyQueryInclude",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToManyInit"
+                },
+                "id": "f89b4cd9-c71c-4cc6-b644-18ce2fd54147",
+                "name": "oneToManyInit",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToManyQuery"
+                },
+                "id": "d4d0fda4-f049-4394-85a3-1fa1a88026fb",
+                "name": "oneToManyQuery",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToManyQueryInclude"
+                },
+                "id": "5f157676-9821-4681-9440-9cd3b4aa795a",
+                "name": "oneToManyQueryInclude",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToOneInit"
+                },
+                "id": "7e94a42c-b860-4aa7-9383-c32ba4da8c80",
+                "name": "oneToOneInit",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToOneQuery"
+                },
+                "id": "44f52e06-1d72-4a9d-9c88-3061b962be5d",
+                "name": "oneToOneQuery",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8000",
+                  "path": "/api/sequelize/oneToOneQueryInclude"
+                },
+                "id": "c458646d-2f42-4b54-8e3e-64c91b375084",
+                "name": "oneToOneQueryInclude",
+                "headers": []
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "zhangsan7"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "email",
+                    "value": "zhangsan7@bga.com"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users"
+            },
+            "id": "fe267bab-4389-49d6-9712-41647c710623",
+            "name": "addUser",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/bulkCreate"
+            },
+            "id": "eceb6a36-f8f6-4ebf-9b12-2de120e4cbe3",
+            "name": "bulkCreate",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.5",
+              "name": "DELETE"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/c950933b706c4afd8cfe0eb1d8a5b005"
+            },
+            "id": "42ed4a7b-d261-4645-8039-851401242b79",
+            "name": "deleteUser",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6eyJpZCI6IjkzNTBiYTVkZjgyYjExZWI4ODA4MDI0MmFjMTEwMDAyIiwidXNlcm5hbWUiOiJsaXNpIiwiZW1haWwiOiJsaXNpQGJnYS5jb20ifSwiaWF0IjoxNjQ3MTUyMjIzLCJleHAiOjE2NDc3NTcwMjN9.MqvZJJWy6k32O9YsPyAOzf4KK803ZG9SuI-wozcu2Cw"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/c950933b706c4afd8cfe0eb1d8a5b005"
+            },
+            "id": "58476c5b-df32-4345-9b13-8e44d7175b33",
+            "name": "getUser",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/getUserByEmail/zhangsan8@bga.com"
+            },
+            "id": "2d38f559-25e0-43df-83a7-6ebc16346b82",
+            "name": "getUserByEail",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/getUserByUsername/zhangsan8"
+            },
+            "id": "9300e377-e02e-4307-91ff-9de4ad202e19",
+            "name": "getUserByUsername",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "lisi"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  }
+                ]
+              },
+              "bodyType": "Form",
+              "textBody": "{\n  \"username\": \"zhangsan3\",\n  \"password:: \"111111\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/auth/login"
+            },
+            "id": "9fc4a322-1bd4-43d0-ac2d-ab1c664e4906",
+            "name": "login",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "bingoogolapple"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": [
+                  {
+                    "enabled": true,
+                    "name": "aakey",
+                    "value": "aavalue"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "bbkey",
+                    "value": "bbvalue"
+                  }
+                ]
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/test/aa/bb/cc"
+            },
+            "id": "5f669033-4750-4b42-91f1-44381ca4a38b",
+            "name": "postform",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "bingoogolapple"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"username\": \"bingoogolapple\",\n  \"password\": \"111111\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": [
+                  {
+                    "enabled": true,
+                    "name": "aakey",
+                    "value": "aavalue"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "bbkey",
+                    "value": "bbvalue"
+                  }
+                ]
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/test/aa/bb/cc"
+            },
+            "id": "9863e49c-0815-40e7-8e73-82394e686b9f",
+            "name": "postjson",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "bingoogolapple"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  }
+                ]
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"username\": \"bingoogolapple\",\n  \"password\": \"111111\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": [
+                  {
+                    "enabled": true,
+                    "name": "aakey",
+                    "value": "aavalue"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "bbkey",
+                    "value": "bbvalue"
+                  }
+                ]
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/test/aa/bb/cc"
+            },
+            "id": "369d0808-dfab-499d-aa69-62d7d75a60ab",
+            "name": "testGet",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users/testTransaction1"
+            },
+            "id": "432268fe-cbe7-445c-beec-25e88dd81987",
+            "name": "testTransaction1",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": [
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "username",
+                    "value": "zhangsan2"
+                  },
+                  {
+                    "enabled": true,
+                    "type": "Text",
+                    "name": "password",
+                    "value": "111111"
+                  }
+                ]
+              },
+              "bodyType": "Form"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": [
+                  {
+                    "enabled": true,
+                    "name": "currentPage",
+                    "value": "1"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "pageSize",
+                    "value": "10"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "username",
+                    "value": "user11"
+                  },
+                  {
+                    "enabled": true,
+                    "name": "email",
+                    "value": "user12"
+                  }
+                ]
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8000",
+              "path": "/api/users"
+            },
+            "id": "57a812b2-f54b-4a68-b538-1921328bd1af",
+            "name": "userList",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6eyJpZCI6IjkzNTBiYTVkZjgyYjExZWI4ODA4MDI0MmFjMTEwMDAyIiwidXNlcm5hbWUiOiJsaXNpIiwiZW1haWwiOiJsaXNpQGJnYS5jb20ifSwiaWF0IjoxNjQ3MTUyMjIzLCJleHAiOjE2NDc3NTcwMjN9.MqvZJJWy6k32O9YsPyAOzf4KK803ZG9SuI-wozcu2Cw"
+              },
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // 直接使用 nodemon 启动并调试
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "nodemon启动",
+      "program": "${workspaceFolder}/src/index.ts",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": ["--ext", "ts,json"],
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    // attach 到通过 node 或 nodemon 启动的应用进行调试
+    {
+      "name": "Attach",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    }
+  ]
+}

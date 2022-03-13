@@ -1,0 +1,5 @@
+export * from './TestController'
+export * from './AuthController'
+export * from './UserController'
+export * from './SequelizeUserController'
+export * from './SequelizeController'
