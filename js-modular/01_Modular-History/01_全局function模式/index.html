@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>01_全局function模式</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="module1.js"></script>
+    <script type="text/javascript" src="module2.js"></script>
+    <script type="text/javascript">
+      // 与模块中的全局变量冲突了
+      data2 = '全局 function：index.html data'
+      foo()
+      bar()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <!-- 报错，默认不支持 ES6 模块化，Cannot use import statement outside a module -->
+    <!-- <script type="text/javascript" src="src/app.js"></script> -->
+    <!-- 报错，不支持 CommonJS 模块化，require is not defined -->
+    <!-- <script type="text/javascript" src="build/pre/app.js"></script> -->
+    <!-- 正常：Babel、Browserify 打包 -->
+    <script type="text/javascript" src="build/bundle.js"></script>
+    <!-- 正常：Webpack 打包 -->
+    <script type="text/javascript" src="dist/main.js"></script>
+    <!-- 正常：Chrome 支持 ES6 模块化，需要指定 type 为 module，并且写依赖时需要加上 .js 文件后缀 -->
+    <script type="module" src="src/app.js"></script>
+    <script type="module">
+      import person from './src/module3.js'
+      person.setName('index.html')
+      console.log(person.name)
+    </script>
+  </body>
+</html>

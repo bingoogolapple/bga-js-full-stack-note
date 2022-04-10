@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+
+.DS_Store
+.editorconfig
+.eslintignore
+.gitignore
+.prettierignore
+
+package-lock.json
+yarn.lock

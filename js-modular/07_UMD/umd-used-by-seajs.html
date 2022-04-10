@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test UMD used by seajs</title>
+    <!-- 测试 CMD 模块规范，seajs 引用 umd 模块 -->
+    <script src="js/lib/sea-3.0.3.js"></script>
+    <script>
+      // seajs 的简单配置
+      seajs.config({
+        base: './js/modules/', // 前面必须要加上 ./
+        alias: {
+          umd: 'umd-module.js',
+          depModule: 'umd-module-depended.js',
+        },
+      })
+
+      // 加载入口模块，前面必须要加上 ./
+      seajs.use('./js/umd-main-seajs')
+    </script>
+  </head>
+  <body>
+    <h2></h2>
+    <p id="content"></p>
+    <p id="content2"></p>
+  </body>
+</html>

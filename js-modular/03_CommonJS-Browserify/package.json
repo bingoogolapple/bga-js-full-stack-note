@@ -1,0 +1,16 @@
+{
+  "name": "commonjs-browserify",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "browserify src/app.js -o build/bundle.js",
+    "dist": "webpack ./src/app.js -o ./dist --mode=development"
+  },
+  "dependencies": {
+    "uniq": "^1.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
