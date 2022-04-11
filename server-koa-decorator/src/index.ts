@@ -1,3 +1,4 @@
-import run from './app'
+import { BaseApp } from './decorator'
 
-run()
+const app = new BaseApp()
+app.start()

@@ -112,6 +112,11 @@
   resolved "http://r.npm.sankuai.com/@types/keygrip/download/@types/keygrip-1.0.2.tgz#513abfd256d7ad0bf1ee1873606317b33b1b2a72"
   integrity sha1-UTq/0lbXrQvx7hhzYGMXszsbKnI=
 
+"@types/lodash@^4.14.181":
+  version "4.14.181"
+  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.181.tgz#d1d3740c379fda17ab175165ba04e2d03389385d"
+  integrity sha512-n3tyKthHJbkiWhDZs3DkhkCzt2MexYHXlX0td5iMplyfwketaOeKboEVBqzceH7juqvEg3q5oUoBFxSLu7zFag==
+
 "@types/md5@^2.3.1":
   version "2.3.1"
   resolved "http://r.npm.sankuai.com/@types/md5/download/@types/md5-2.3.1.tgz#010bcf3bb50a2cff3a574cb1c0b4051a9c67d6bc"

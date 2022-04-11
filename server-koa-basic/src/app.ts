@@ -5,6 +5,7 @@ import { Server } from 'http'
 import Koa from 'koa'
 import koaBody from 'koa-body'
 import koaStatic from 'koa-static'
+import session from 'koa-session'
 import cors from '@koa/cors'
 import error from 'koa-json-error'
 import AccessLogMiddleware from './middleware/AccessLogMiddleware'
@@ -17,7 +18,7 @@ import path from 'path'
 import { verifyToken } from './utils/jwt'
 db()
 
-const { NODE_ENV, SERVER_PORT } = process.env
+const { NODE_ENV, SERVER_PORT, KOA_SESSION_SECRET_KEY, KOA_SESSION_MAX_AGE } = process.env
 
 startupLogger.info('环境', NODE_ENV)
 
@@ -62,9 +63,12 @@ app.use(
         delete obj.stack
       }
       return obj
-    }
-  })
+    },
+  }),
 )
+
+app.keys = [KOA_SESSION_SECRET_KEY || '']
+app.use(session({ maxAge: KOA_SESSION_MAX_AGE ? parseInt(KOA_SESSION_MAX_AGE) : 24 * 60 * 60 * 1000 }, app))
 
 app
   .use(async (ctx, next) => {
@@ -120,7 +124,7 @@ app
       //   }
       //   return ''
       // }
-    })
+    }),
   )
   // .use(verifyToken)
   .use(koaStatic(path.join(__dirname, '..', 'upload')))
@@ -130,9 +134,9 @@ app
       formidable: {
         uploadDir: path.join(__dirname, '../upload-temp'), // 默认上传到 /var/folders/kt/zsr04x5s3r582r3x2wkzxt6w0000gp/T 临时目录中
         keepExtensions: true, // 上传到临时目录中的文件保留文件后缀
-        maxFileSize: 2 * 1024 * 1024 // 设置上传文件大小最大限制，默认为 2M
-      }
-    })
+        maxFileSize: 2 * 1024 * 1024, // 设置上传文件大小最大限制，默认为 2M
+      },
+    }),
   )
   .use(AccessLogMiddleware)
   .use(router.routes())
@@ -147,9 +151,7 @@ app
 
 const run = (callback?: Function): Server => {
   return app.listen(SERVER_PORT, () => {
-    startupLogger.info(
-      `listening on ${SERVER_PORT} port, http://localhost:${SERVER_PORT}`
-    )
+    startupLogger.info(`listening on ${SERVER_PORT} port, http://localhost:${SERVER_PORT}`)
     callback && callback()
   })
 }

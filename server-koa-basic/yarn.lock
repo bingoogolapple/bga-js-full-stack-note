@@ -763,6 +763,14 @@
   dependencies:
     "@types/koa" "*"
 
+"@types/koa-session@^5.10.6":
+  version "5.10.6"
+  resolved "https://registry.npmmirror.com/@types/koa-session/-/koa-session-5.10.6.tgz#879d677cc454c784c50a58ece52bb0e071db3092"
+  integrity sha512-p4rgkeRmiJu8XGC3eH2duRCNgnLUl6sjadEXH/AsieH/9fqYfXSZoZNC9CAe+FQK+QmM76hVyvuJ5Jrl5xxNeA==
+  dependencies:
+    "@types/cookies" "*"
+    "@types/koa" "*"
+
 "@types/koa-static@^4.0.2":
   version "4.0.2"
   resolved "http://r.npm.sankuai.com/@types/koa-static/download/@types/koa-static-4.0.2.tgz#a199d2d64d2930755eb3ea370aeaf2cb6f501d67"
@@ -791,6 +799,11 @@
   integrity sha512-O7MBkCocnLrpEvkMrYAp17arUDS+KuS5bXMG/Z4aPSbrO7vrYB6YrqcsTD3Dp2OnAL3j4WME2k/x2kOcyzwNUw==
   dependencies:
     "@types/koa" "*"
+
+"@types/lodash@^4.14.181":
+  version "4.14.181"
+  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.181.tgz#d1d3740c379fda17ab175165ba04e2d03389385d"
+  integrity sha512-n3tyKthHJbkiWhDZs3DkhkCzt2MexYHXlX0td5iMplyfwketaOeKboEVBqzceH7juqvEg3q5oUoBFxSLu7zFag==
 
 "@types/mime@^1":
   version "1.3.2"
@@ -1059,6 +1072,11 @@ balanced-match@^1.0.0:
   resolved "http://r.npm.sankuai.com/balanced-match/download/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha1-6D46fj8wCzTLnYf2FfoMvzV2kO4=
 
+base64-js@^1.3.1:
+  version "1.5.1"
+  resolved "https://registry.npmmirror.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
+  integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+
 bcryptjs@^2.4.3:
   version "2.4.3"
   resolved "https://registry.npmmirror.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
@@ -1137,6 +1155,14 @@ buffer-from@^1.0.0:
   version "1.1.2"
   resolved "http://r.npm.sankuai.com/buffer-from/download/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha1-KxRqb9cugLT1XSVfNe1Zo6mkG9U=
+
+buffer@^5.1.0:
+  version "5.7.1"
+  resolved "https://registry.npmmirror.com/buffer/-/buffer-5.7.1.tgz#ba62e7c13133053582197160851a8f648e99eed0"
+  integrity sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==
+  dependencies:
+    base64-js "^1.3.1"
+    ieee754 "^1.1.13"
 
 bytes@3.1.2:
   version "3.1.2"
@@ -1369,6 +1395,18 @@ cookies@~0.8.0:
   dependencies:
     depd "~2.0.0"
     keygrip "~1.1.0"
+
+core-util-is@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
+  integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
+
+crc@^3.4.4:
+  version "3.8.0"
+  resolved "https://registry.npmmirror.com/crc/-/crc-3.8.0.tgz#ad60269c2c856f8c299e2c4cc0de4556914056c6"
+  integrity sha512-iX3mfgcTMIq3ZKLIsVFAbv7+Mc10kxabAGQb8HvjA1o3T1PIYprbakQ65d3I+2HGHt6nSKkM9PYjgoJO2KcFBQ==
+  dependencies:
+    buffer "^5.1.0"
 
 create-require@^1.1.0:
   version "1.1.1"
@@ -2025,6 +2063,11 @@ iconv-lite@^0.6.3:
   dependencies:
     safer-buffer ">= 2.1.2 < 3.0.0"
 
+ieee754@^1.1.13:
+  version "1.2.1"
+  resolved "https://registry.npmmirror.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
+  integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
+
 ignore-by-default@^1.0.1:
   version "1.0.1"
   resolved "http://r.npm.sankuai.com/ignore-by-default/download/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"
@@ -2105,6 +2148,11 @@ is-ci@^2.0.0:
   dependencies:
     ci-info "^2.0.0"
 
+is-class-hotfix@~0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npmmirror.com/is-class-hotfix/-/is-class-hotfix-0.0.6.tgz#a527d31fb23279281dde5f385c77b5de70a72435"
+  integrity sha512-0n+pzCC6ICtVr/WXnN2f03TK/3BfXY7me4cjCAqT8TYXEl0+JBRoqBo94JJHXcyDSLUeWbNX8Fvy5g5RJdAstQ==
+
 is-core-module@^2.8.1:
   version "2.8.1"
   resolved "http://r.npm.sankuai.com/is-core-module/download/is-core-module-2.8.1.tgz#f59fdfca701d5879d0a6b100a40aa1560ce27211"
@@ -2184,6 +2232,15 @@ is-stream@^2.0.0:
   resolved "http://r.npm.sankuai.com/is-stream/download/is-stream-2.0.1.tgz#fac1e3d53b97ad5a9d0ae9cef2389f5810a5c077"
   integrity sha1-+sHj1TuXrVqdCunO8jifWBClwHc=
 
+is-type-of@^1.0.0:
+  version "1.2.1"
+  resolved "https://registry.npmmirror.com/is-type-of/-/is-type-of-1.2.1.tgz#e263ec3857aceb4f28c47130ec78db09a920f8c5"
+  integrity sha512-uK0kyX9LZYhSDS7H2sVJQJop1UnWPWmo5RvR3q2kFH6AUHYs7sOrVg0b4nyBHw29kRRNFofYN/JbHZDlHiItTA==
+  dependencies:
+    core-util-is "^1.0.2"
+    is-class-hotfix "~0.0.6"
+    isstream "~0.1.2"
+
 is-typedarray@^1.0.0:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/is-typedarray/download/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
@@ -2198,6 +2255,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "http://r.npm.sankuai.com/isexe/download/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+
+isstream@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmmirror.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
+  integrity sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
   version "3.2.0"
@@ -2823,6 +2885,16 @@ koa-send@^5.0.0:
     http-errors "^1.7.3"
     resolve-path "^1.4.0"
 
+koa-session@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npmmirror.com/koa-session/-/koa-session-6.2.0.tgz#c0da2a808b520f62a25dac9f2914b580b2402078"
+  integrity sha512-l2ZC6D1BnRkIXhWkRgpewdqKn38/9/2WScmxyShuN408TxX+J/gUzdzGBIvGZaRwmezOU819sNpGmfFGLeDckg==
+  dependencies:
+    crc "^3.4.4"
+    debug "^3.1.0"
+    is-type-of "^1.0.0"
+    uuid "^3.3.2"
+
 koa-static@^5.0.0:
   version "5.0.0"
   resolved "http://r.npm.sankuai.com/koa-static/download/koa-static-5.0.0.tgz#5e92fc96b537ad5219f425319c95b64772776943"
@@ -2944,8 +3016,8 @@ lodash.once@^4.0.0:
 
 lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
-  resolved "http://r.npm.sankuai.com/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
+  resolved "https://registry.npmmirror.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log4js@^6.4.3:
   version "6.4.3"
@@ -4043,6 +4115,11 @@ util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "http://r.npm.sankuai.com/util-deprecate/download/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+uuid@^3.3.2:
+  version "3.4.0"
+  resolved "https://registry.npmmirror.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
+  integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
 uuid@^8.3.2:
   version "8.3.2"

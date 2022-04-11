@@ -1,13 +1,7 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescriptreact",
-    "typescript"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "jest.jestCommandLine": "yarn test"
 }

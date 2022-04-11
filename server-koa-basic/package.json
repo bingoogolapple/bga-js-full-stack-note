@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon --ext 'ts,json' --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/index.ts'",
     "start": "nodemon",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
     "preset": "ts-jest"
@@ -18,8 +20,10 @@
     "@types/koa": "^2.13.4",
     "@types/koa-json-error": "^3.1.4",
     "@types/koa-router": "^7.4.4",
+    "@types/koa-session": "^5.10.6",
     "@types/koa-static": "^4.0.2",
     "@types/koa__cors": "^3.1.1",
+    "@types/lodash": "^4.14.181",
     "@types/supertest": "^2.0.12",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
@@ -38,7 +42,9 @@
     "koa-body": "^4.2.0",
     "koa-json-error": "^3.1.2",
     "koa-router": "^10.1.1",
+    "koa-session": "^6.2.0",
     "koa-static": "^5.0.0",
+    "lodash": "^4.17.21",
     "log4js": "^6.4.3",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",

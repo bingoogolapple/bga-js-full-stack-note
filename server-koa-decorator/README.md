@@ -80,6 +80,13 @@ yarn add @koa/cors
 yarn add @types/koa__cors -D
 ```
 
+- 如果要通过 session 来管理登录状态的话还需要添加 [koa-session](https://www.npmjs.com/package/koa-session) 依赖
+
+```shell
+yarn add koa-session
+yarn add @types/koa-session --dev
+```
+
 ### 其他依赖
 
 - [log4js](https://www.npmjs.com/package/log4js)
