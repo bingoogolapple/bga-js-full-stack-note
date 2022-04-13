@@ -1,4 +1,4 @@
-# hackernews-async-ts
+# server-egg-ts
 
 ## 初始化项目
 
