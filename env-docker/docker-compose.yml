@@ -1,0 +1,67 @@
+# reference to https://docs.docker.com/compose/compose-file
+# https://github.com/bingoogolapple/bingoogolapple.github.io/issues/151
+
+version: "3.8"
+services:
+  study-npm-registry-nexus:
+    # https://hub.docker.com/r/sonatype/nexus3
+    image: sonatype/nexus3:3.42.0
+    ports:
+      # 本机端口:容器内部服务器端口
+      # 8081 为 Nexus3 Web 页面的端口，6000 和 6001 分别为 docker 代理和私服的端口
+      - "9001:8081"
+      - "9002:6000"
+      - "9003:6001"
+
+  study-npm-registry-verdaccio:
+    # https://hub.docker.com/r/verdaccio/verdaccio
+    image: verdaccio/verdaccio:5.15.4
+    ports:
+      # 本机端口:容器内部服务器端口
+      - "9004:4873"
+
+  study-mysql:
+    # https://hub.docker.com/_/mysql
+    image: mysql:5.7.34
+    environment:
+      - MYSQL_USER=developer
+      - MYSQL_PASSWORD=111111
+      - MYSQL_DATABASE=study
+      - MYSQL_ROOT_PASSWORD=222222
+    ports:
+      # 本机端口:容器内部服务器端口
+      - "3306:3306"
+    # volumes:
+    #   # 本机目录:容器内部服务目录
+    #   - ./mysql:/var/lib/mysql
+
+  # study-postgres:
+  #   image: postgres:10.14
+  #   environment:
+  #     - POSTGRES_USER=developer
+  #     - POSTGRES_PASSWORD=111111
+  #     - POSTGRES_DB=study
+  #   ports:
+  #     - '5432:5432'
+  #   volumes:
+  #     - ./postgres/data:/var/lib/postgresql/data
+  #     - ./postgres/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+
+  # study-mongodb:
+  #   image: mongo:4.4
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=developer
+  #     - MONGO_INITDB_ROOT_PASSWORD=111111
+  #   ports:
+  #     - '27017:27017'
+  #   volumes:
+  #     - ./mongo/data:/data/db
+
+  # study-redis:
+  #   image: redis:6.0.8
+  #   ports:
+  #     - '6379:6379'
+  #   environment:
+  #     - REDIS_REPLICATION_MODE=master
+  #   volumes:
+  #     - ./redis/data:/data
