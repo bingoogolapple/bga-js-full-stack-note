@@ -198,3 +198,9 @@ yarn workspace @monorepo-yarn-workspaces/package-b remove @monorepo-yarn-workspa
 ```shell
 yarn workspace @monorepo-yarn-workspaces/package-b dev
 ```
+
+## 参考文档
+
+- https://yarn.bootcss.com/docs/cli
+- https://yarnpkg.com/features/workspaces#publishing-workspaces
+- https://mp.weixin.qq.com/s/Ll4_luqH_-2ejZIWi7AwCQ

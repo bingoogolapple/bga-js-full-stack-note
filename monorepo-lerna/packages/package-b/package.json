@@ -1,6 +1,6 @@
 {
   "name": "@monorepo-lerna/package-b",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "> TODO: description",
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npm.taobao.org/"
+    "registry": "http://localhost:9004/"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
   },
   "dependencies": {
-    "@monorepo-lerna/package-a": "^1.0.0",
+    "@monorepo-lerna/package-a": "^1.0.1",
     "lodash": "4.17.21"
   },
   "gitHead": "1de970c2ef746e41b524a7e2480b489faec75b7d"

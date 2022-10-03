@@ -8,17 +8,17 @@ services:
     image: sonatype/nexus3:3.42.0
     ports:
       # 本机端口:容器内部服务器端口
-      # 8081 为 Nexus3 Web 页面的端口，6000 和 6001 分别为 docker 代理和私服的端口
+      # 8081 为 Nexus3 Web 页面的端口。点击右上角 Sign in 开始登录，用户为 admin ，密码在 /nexus-data/admin.password 中
+      # https://www.yukapril.com/2020/12/13/npm-server.html
+      # https://juejin.cn/post/6990280825652641828
       - "9001:8081"
-      - "9002:6000"
-      - "9003:6001"
 
   study-npm-registry-verdaccio:
     # https://hub.docker.com/r/verdaccio/verdaccio
     image: verdaccio/verdaccio:5.15.4
     ports:
       # 本机端口:容器内部服务器端口
-      - "9004:4873"
+      - "9002:4873"
 
   study-mysql:
     # https://hub.docker.com/_/mysql
@@ -30,7 +30,7 @@ services:
       - MYSQL_ROOT_PASSWORD=222222
     ports:
       # 本机端口:容器内部服务器端口
-      - "3306:3306"
+      - "9003:3306"
     # volumes:
     #   # 本机目录:容器内部服务目录
     #   - ./mysql:/var/lib/mysql

@@ -87,3 +87,10 @@ lerna run --scope @monorepo-lerna/package-b dev
 - `lerna changed` 查看上个版本以来的所有变更
 - `lerna diff` 查看 diff
 - `lerna publish` 发布项目，lerna.json 中 version 指定为 independent 时表示不同模块不同版本，否则表示不同模块使用相同版本
+
+## 参考文档
+
+- https://lerna.js.org/docs/getting-started
+- http://www.ptbird.cn/lerna-app-npm.html
+- https://mp.weixin.qq.com/s/Yl56pLDeVPAF5JbeYPTlOw
+- https://mp.weixin.qq.com/s/4xQTeK0ViMKcCAhSg9P3Vg

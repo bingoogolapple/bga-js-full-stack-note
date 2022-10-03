@@ -1,8 +1,13 @@
 {
   "name": "@monorepo-yarn-workspaces/package-b",
   "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "main": "index.js",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "http://localhost:9004/"
+  },
   "scripts": {
     "dev": "node index.js"
   },
