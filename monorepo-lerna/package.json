@@ -1,0 +1,15 @@
+{
+  "name": "monorepo-lerna",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/lodash"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "^5.5.1"
+  }
+}

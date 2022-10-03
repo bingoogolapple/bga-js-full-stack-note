@@ -178,6 +178,9 @@ yarn workspaces v1.22.18
 - 安装依赖
 
 ```shell
+# 给多个包增加公共依赖：给所有包都安装 lodash
+yarn workspace add lodash@4.17.21
+# 给某个包单独安装指定依赖：给 @monorepo-yarn-workspaces/package-b 这个包安装 lodash
 yarn workspace @monorepo-yarn-workspaces/package-b add lodash@4.17.21
 # 如果是安装当前 monorepo 中的子包，需要指定版本号，否则会安装失败
 yarn workspace @monorepo-yarn-workspaces/package-b add @monorepo-yarn-workspaces/package-a@1.0.0
