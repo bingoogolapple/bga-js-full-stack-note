@@ -15,8 +15,6 @@
   ```json
   {
     "name": "monorepo-yarn-workspaces",
-    "version": "1.0.0",
-    "license": "MIT",
     "private": true,
     "workspaces": {
       "packages": ["packages/*"]

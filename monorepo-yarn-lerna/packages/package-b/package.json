@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo-lerna/package-b",
+  "name": "@monorepo-yarn-lerna/package-b",
   "version": "1.0.1",
   "description": "> TODO: description",
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
@@ -21,14 +21,14 @@
     "url": "git+https://github.com/bingoogolapple/bga-js-full-stack-note.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@monorepo-lerna/package-b.test.js",
+    "test": "node ./__tests__/@monorepo-yarn-lerna/package-b.test.js",
     "dev": "node lib/package-b.js"
   },
   "bugs": {
     "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
   },
   "dependencies": {
-    "@monorepo-lerna/package-a": "^1.0.1",
+    "@monorepo-yarn-lerna/package-a": "^1.0.1",
     "lodash": "4.17.21"
   },
   "gitHead": "1de970c2ef746e41b524a7e2480b489faec75b7d"

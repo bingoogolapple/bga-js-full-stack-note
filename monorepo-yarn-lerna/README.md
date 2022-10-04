@@ -1,4 +1,4 @@
-# monorepo-lerna
+# monorepo-yarn-lerna
 
 yarn workspace 和 lerna 结合着使用，用 yarn workspace 来处理依赖问题，用 lerna 来处理发布问题
 
@@ -26,9 +26,9 @@ npm install -g lerna
 
 ```shell
 # 创建 CommonJS 模块规范的包
-lerna create @monorepo-lerna/package-a
+lerna create @monorepo-yarn-lerna/package-a
 # 创建 ES Module 规范的包
-lerna create @monorepo-lerna/package-b --es-module
+lerna create @monorepo-yarn-lerna/package-b --es-module
 ```
 
 - `lerna add` 安装依赖
@@ -36,22 +36,22 @@ lerna create @monorepo-lerna/package-b --es-module
 ```shell
 # 给多个包增加公共依赖：给所有包都安装 lodash
 lerna add lodash@4.17.21
-# 给某个包单独安装指定依赖：给 @monorepo-lerna/package-b 这个包安装 lodash
-lerna add lodash@4.17.21 --scope @monorepo-lerna/package-b
+# 给某个包单独安装指定依赖：给 @monorepo-yarn-lerna/package-b 这个包安装 lodash
+lerna add lodash@4.17.21 --scope @monorepo-yarn-lerna/package-b
 
 # 通过 lerna 安装被 lerna 管理的子包时，不指定版本也能安装成功
-lerna add @monorepo-lerna/package-a --scope @monorepo-lerna/package-b
+lerna add @monorepo-yarn-lerna/package-a --scope @monorepo-yarn-lerna/package-b
 ```
 
 - `lerna link` 链接依赖
 - `lerna ls` 查看有哪些包，`lerna ls --json` 加上 --json 参数后会输出包的路径
 
 ```txt
-➜  monorepo-lerna git:(master) ✗ lerna ls
+➜  monorepo-yarn-lerna git:(master) ✗ lerna ls
 info cli using local version of lerna
 lerna notice cli v5.5.4
-@monorepo-lerna/package-a
-@monorepo-lerna/package-b
+@monorepo-yarn-lerna/package-a
+@monorepo-yarn-lerna/package-b
 lerna success found 2 packages
 ```
 
@@ -62,8 +62,8 @@ lerna success found 2 packages
 ```shell
 # 给多个包移除公共依赖：给所有包都移除 lodash
 lerna exec -- yarn remove lodash
-# 给某个包单独安装指定依赖：给 @monorepo-lerna/package-b 这个包安装 lodash
-lerna exec --scope @monorepo-lerna/package-b -- yarn remove lodash
+# 给某个包单独安装指定依赖：给 @monorepo-yarn-lerna/package-b 这个包安装 lodash
+lerna exec --scope @monorepo-yarn-lerna/package-b -- yarn remove lodash
 
 # 多个包中都执行 yarn dev
 lerna exec -- yarn dev
@@ -74,8 +74,8 @@ lerna exec -- yarn dev
 ```shell
 # 多个包中都执行 dev
 lerna run dev
-# 仅 @monorepo-lerna/package-b 这个包执行 dev
-lerna run --scope @monorepo-lerna/package-b dev
+# 仅 @monorepo-yarn-lerna/package-b 这个包执行 dev
+lerna run --scope @monorepo-yarn-lerna/package-b dev
 ```
 
 - `lerna clean` 从所有保重删除 node_modules 目录
