@@ -1,0 +1,13 @@
+{
+  "name": "@monorepo-pnpm/package-b",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "@monorepo-pnpm/package-a": "workspace:^1.0.0",
+    "lodash": "4.17.21"
+  }
+}

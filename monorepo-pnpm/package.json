@@ -1,0 +1,10 @@
+{
+  "name": "monorepo-pnpm",
+  "private": true,
+  "scripts": {
+    "package-b:dev": "pnpm --filter @monorepo-pnpm/package-b dev"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}
