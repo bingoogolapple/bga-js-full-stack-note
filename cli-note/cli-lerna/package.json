@@ -1,0 +1,15 @@
+{
+  "name": "cli-lerna",
+  "version": "1.0.0",
+  "description": "脚手架学习笔记-lerna",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {},
+  "devDependencies": {
+    "lerna": "^6.0.0"
+  }
+}

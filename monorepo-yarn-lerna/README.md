@@ -78,8 +78,8 @@ lerna run dev
 lerna run --scope @monorepo-yarn-lerna/package-b dev
 ```
 
-- `lerna clean` 从所有保重删除 node_modules 目录
-- `lerna bootstrap` 重新安装依赖并链接所有的交叉依赖
+- `lerna clean` 从所有包中删除 node_modules 目录
+- `lerna bootstrap` 重新安装依赖
 
 ### 发布上线
 
@@ -90,6 +90,7 @@ lerna run --scope @monorepo-yarn-lerna/package-b dev
 
 ## 参考文档
 
+- https://github.com/lerna/lerna/tree/main/commands/create
 - https://lerna.js.org/docs/getting-started
 - http://www.ptbird.cn/lerna-app-npm.html
 - https://mp.weixin.qq.com/s/Yl56pLDeVPAF5JbeYPTlOw
