@@ -69,3 +69,11 @@ lerna version
 ```bash
 lerna publish
 ```
+
+- 使用
+
+```bash
+npm i @dwit/cli-lerna-core -g --registry https://registry.npmjs.org/
+
+bga-cli-lerna
+```

@@ -1,6 +1,6 @@
 {
   "name": "@dwit/cli-lerna-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "脚手架学习笔记-lerna-core",
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
@@ -32,6 +32,6 @@
     "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
   },
   "dependencies": {
-    "@dwit/cli-lerna-utils": "^0.0.1"
+    "@dwit/cli-lerna-utils": "^0.0.2"
   }
 }
