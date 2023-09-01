@@ -1,0 +1,269 @@
+<!-- https://developer.chrome.com/articles/file-system-access -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/File_System_API -->
+<html>
+
+<body>
+    <button id="openFileBtn">读文件</button>
+    <button id="saveOpenedFileBtn">保存到已打开的文件</button>
+    <button id="saveNewFileBtn">保存到新的文件</button>
+    <button id="saveUrlContentNewFileBtn">保存 url 内容到新的文件</button>
+    <button id="specifyingPurposeBtn">指定目录</button>
+    <button id="openDirBtn">打开目录</button>
+    <button id="createDirectoryAndFileBtn">新建目录和文件</button>
+    <button id="deleteSubDirectoryAndSubFileBtn">删除子目录和子文件</button>
+    <button id="deleteDirectoryBtn">删除目录</button>
+    <button id="deleteFileBtn">删除文件</button>
+    <button id="renameFileBtn">重命名文件</button>
+    <button id="renameDirectoryBtn">重命名目录</button>
+    <button id="moveFileToDirectoryBtn">移动文件到指定目录</button>
+    <button id="moveFileToDirectoryAndRenameBtn">移动文件到指定目录并重命名</button>
+    <button id="verifyPermissionBtn">权限校验</button>
+    <button id="originPrivateFileSystemBtn">原始是有文件系统</button>
+    <div style="display: flex;width: 1024px;margin-top: 20px">
+        <div id="dir" style="width: 236px;margin-right: 20px"></div>
+        <textarea id="fileContent" style="flex:1; height: 300px"></textarea>
+    </div>
+    <div id="dragDiv" style="width:200px; height: 200px; background-color: gray;"></div>
+    <input type="file" webkitdirectory>
+    <script>
+        // 保存内容到文件
+        const writeFile = async (fileHandle, content) => {
+            try {
+                const writable = await fileHandle.createWritable()
+                await writable.write(content)
+                await writable.close()
+            } catch (e) {
+                console.log('保存文件失败', e)
+            }
+        }
+        // 保存 url 内容到文件
+        const writeURLToFile = async (fileHandle, url) => {
+            const writable = await fileHandle.createWritable()
+            const response = await fetch(url)
+            try {
+                await response.body.pipeTo(writable)
+            } catch (e) {
+                console.log('保存文件失败', e)
+            }
+        }
+
+        const verifyPermission = async (fileHandle, readWrite) => {
+            const options = {}
+            if (readWrite) {
+                options.mode = 'readwrite'
+            }
+            if ((await fileHandle.queryPermission(options)) === 'granted') {
+                return true
+            }
+            if ((await fileHandle.requestPermission(options)) === 'granted') {
+                return true
+            }
+            return false
+        }
+
+        let fileHandle
+        let directoryHandle
+        document.getElementById('openFileBtn').addEventListener('click', async () => {
+            const fileHandleList = await window.showOpenFilePicker()
+            fileHandle = fileHandleList[0]
+            const file = await fileHandle.getFile()
+            const content = await file.text()
+
+            document.getElementById('fileContent').value = content
+        })
+
+        document.getElementById('saveOpenedFileBtn').addEventListener('click', async (e) => {
+            const content = document.getElementById('fileContent').value
+            console.log('111111', typeof content)
+
+            await writeFile(fileHandle, content)
+        })
+        document.getElementById('saveNewFileBtn').addEventListener('click', async (e) => {
+            const content = document.getElementById('fileContent').value
+            const options = {
+                // suggestedName: '我是建议的文件名.txt', // 可以通过该参数指定建议的文件名
+                // startIn: 'desktop', // desktop documents downloads music pictures videos
+                // startIn: fileHandle, // 基于现有文件或文件夹打开
+                types: [
+                    {
+                        description: 'Text Files',
+                        accept: {
+                            'text/plain': ['.txt'],
+                        },
+                    },
+                ],
+            }
+            const handle = await window.showSaveFilePicker(options)
+            await writeFile(handle, content)
+        })
+        document.getElementById('saveUrlContentNewFileBtn').addEventListener('click', async (e) => {
+            const options = {
+                types: [
+                    {
+                        description: 'Text Files',
+                        accept: {
+                            'text/plain': ['.txt'],
+                        },
+                    },
+                ],
+            }
+            const handle = await window.showSaveFilePicker(options)
+            await writeURLToFile(handle, 'http://127.0.0.1:5500/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99.html')
+        })
+        document.getElementById('specifyingPurposeBtn').addEventListener('click', async (e) => {
+            const options = {
+                // id: 'openText',
+                id: 'importImage',
+            }
+            const handle = await window.showSaveFilePicker(options)
+            await writeURLToFile(handle, 'http://127.0.0.1:5500/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99.html')
+        })
+
+        document.getElementById('openDirBtn').addEventListener('click', async (e) => {
+            const opts = { type: 'openDirectory' }
+            directoryHandle = await window.showDirectoryPicker()
+            console.log('目录为', directoryHandle)
+            let dirHTML = ''
+            // for await (const entry of directoryHandle.entries()) {
+            //     console.log('entry 为', entry)
+            //     // entry 是个元组，0 为文件名，1 为句柄
+            //     // dirHTML += `<div>${entry[0]} - ${entry[1].kind} - ${entry[1].name}</div>`
+            // }
+            // for await (const key of directoryHandle.keys()) {
+            //     console.log('key 为', key)
+            // }
+            const promises = []
+            for await (const value of directoryHandle.values()) {
+                console.log('value 为', value)
+                dirHTML += `<div>${value.kind} - ${value.name}</div>`
+
+                if (value.kind !== 'file') {
+                    continue
+                }
+                promises.push(value.getFile().then((file) => `${file.name} (${file.size})`))
+            }
+            document.getElementById('dir').innerHTML = dirHTML
+
+            console.log('文件大小', await Promise.all(promises))
+        })
+
+        document.getElementById('createDirectoryAndFileBtn').addEventListener('click', async (e) => {
+            // 创建新目录
+            const newDirectoryHandle = await directoryHandle.getDirectoryHandle('我是新创建的目录1', {
+                create: true,
+            })
+            // 创建新文件
+            const newFileHandle1 = await newDirectoryHandle.getFileHandle('我是新创建的文件11.txt', { create: true })
+            // 解析路径
+            const path = await newDirectoryHandle.resolve(newFileHandle1)
+            console.log('解析后的路径', path)
+            const newFileHandle2 = await directoryHandle.getFileHandle('我是新创建的文件2.txt', { create: true })
+        })
+
+        document.getElementById('deleteSubDirectoryAndSubFileBtn').addEventListener('click', async (e) => {
+            // 删除目录中的指定文件
+            await directoryHandle.removeEntry('我是新创建的文件2.txt')
+            // 删除指定的子目录，如果目录中存在子文件或文件夹则需要指定 recursive 为 true
+            await directoryHandle.removeEntry('我是新创建的目录1', { recursive: true })
+            // 如果目录中没有子文件或子文件夹则可以不指定第二个参数
+            // await directoryHandle.removeEntry('我是新创建的目录1')
+        })
+
+        document.getElementById('deleteDirectoryBtn').addEventListener('click', async (e) => {
+            // 直接删除目录，如果目录中存在子文件或文件夹则需要指定 recursive 为 true
+            await directoryHandle.remove({ recursive: true })
+            // 如果目录中没有子文件或子文件夹则可以不指定第二个参数
+            // await directoryHandle.remove()
+        })
+
+        document.getElementById('deleteFileBtn').addEventListener('click', async (e) => {
+            // 直接删除文件
+            await fileHandle.remove()
+        })
+
+        document.getElementById('renameFileBtn').addEventListener('click', async (e) => {
+            // 重命名文件
+            await fileHandle.move('文件重命名后.txt')
+        })
+        document.getElementById('renameDirectoryBtn').addEventListener('click', async (e) => {
+            // TODO 报错，不支持重命名目录
+            // 重命名目录
+            await directoryHandle.move('目录重命名后')
+        })
+        document.getElementById('moveFileToDirectoryBtn').addEventListener('click', async (e) => {
+            // TODO 报错
+            // 移动文件到指定目录
+            await fileHandle.move(directoryHandle)
+        })
+        document.getElementById('moveFileToDirectoryAndRenameBtn').addEventListener('click', async (e) => {
+            // TODO 报错
+            // 移动文件到指定目录并重命名
+            await fileHandle.move(directoryHandle, '移动文件到指定目录并重命名.txt')
+        })
+
+
+        document.getElementById('verifyPermissionBtn').addEventListener('click', async (e) => {
+            if (verifyPermission(fileHandle)) {
+                console.log('有文件权限')
+            } else {
+                console.log('无文件权限')
+            }
+            if (verifyPermission(directoryHandle)) {
+                console.log('有目录权限')
+            } else {
+                console.log('无目录权限')
+            }
+        })
+
+        document.getElementById('originPrivateFileSystemBtn').addEventListener('click', async (e) => {
+            const root = await navigator.storage.getDirectory()
+            console.log('11111111', root)
+            for await (const value of root.values()) {
+                console.log('11111 value 为', value)
+            }
+            // // 创建文件
+            const fileHandle = await root.getFileHandle('Untitled.txt', { create: true })
+            // // 创建目录
+            const dirHandle = await root.getDirectoryHandle('New Folder', { create: true })
+            // // 删除目录
+            await root.removeEntry('Old Stuff', { recursive: true })
+
+            for await (const value of root.values()) {
+                console.log('2222 value 为', value)
+            }
+        })
+
+        const dragFile = () => {
+            const dragDiv = document.getElementById('dragDiv')
+            dragDiv.addEventListener('dragover', (e) => {
+                e.preventDefault()
+            });
+
+            dragDiv.addEventListener('drop', async (e) => {
+                e.preventDefault()
+                console.log('DataTransferItemList', e.dataTransfer.items, e.dataTransfer.items.length)
+                console.log('DataTransferItem', e.dataTransfer.items[0])
+
+                const fileHandlesPromises = [...e.dataTransfer.items]
+                    .filter((item) => item.kind === 'file')
+                    .map((item) => item.getAsFileSystemHandle())
+
+                for await (const handle of fileHandlesPromises) {
+                    if (handle.kind === 'directory') {
+                        console.log(`Directory: ${handle.name}`)
+                    } else {
+                        console.log(`File: ${handle.name}`)
+                    }
+                }
+            })
+        }
+        dragFile()
+
+        // 用于同步读写操作在 FileSystemFileHandle 上公开，但仅在 Web Workers 中公开
+        // const accessHandle = await fileHandle.createSyncAccessHandle()
+        // const writtenBytes = accessHandle.write(buffer)
+        // const readBytes = accessHandle.read(buffer, { at: 1 })
+    </script>
+</body>
+
+</html>
