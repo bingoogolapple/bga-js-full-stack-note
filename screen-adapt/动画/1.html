@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        /* 浏览器开发者模式的控制台面板的平级面板中能打开动画面板来调试动画，可以先在动画调试面板中调试好动画效果，然后直接复制样式面板中生成的样式到代码中 */
+        /* 可以在控制台中通过 $0 来获取当前选中的元素 */
+
+        /* 无动画 */
+        .container1 {
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+
+        .container1:hover {
+            width: 200px;
+            height: 200px;
+        }
+
+        .container2 {
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+            background: red;
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition-delay.html
+            指定何时将开始切换效果，延迟秒 s 或毫秒 ms 后开始动画，默认值为 0
+
+            在 js 中通过 object.style.transitionDelay="2s" 来修改
+            */
+            /* transition-delay: 0.5s; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition-property.html
+            定义应用过渡效果的 CSS 属性，默认值为 all
+
+            none: 没有属性会获得过渡效果
+            all: 所有属性都将获得过渡效果
+            property: 定义应用过渡效果的 CSS 属性名称列表，多个时以逗号分隔
+
+            在 js 中通过 object.style.transitionProperty="width,height" 来修改
+            */
+            /* transition-property: width; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition-duration.html
+            完成过渡效果需要花费的时间，默认值为 0
+            始终指定 transition-duration 属性，否则持续时间为 0，transition 不会有任何效果
+
+            在 js 中通过 object.style.transitionDuration="5s" 来修改
+            */
+            /* transition-duration: 1s; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition-timing-function.html
+            设置动画过渡效果，默认值为 ease
+
+            linear: 以相同速度开始至结束。等于 cubic-bezier(0,0,1,1)
+            ease: 慢速开始（幅度较大），然后变快，然后慢速结束（幅度较小）。等于 cubic-bezier(0.25,0.1,0.25,1)
+            ease-in: 以慢速开始。等于 cubic-bezier(0.42,0,1,1)
+            ease-out: 以慢速结束。等于 cubic-bezier(0,0,0.58,1)
+            ease-in-out: 以慢速开始和结束。等于 cubic-bezier(0.42,0,0.58,1)
+            cubic-bezier(n,n,n,n): 在 cubic-bezier 函数中定义自己的值，可能的值是 0 至 1 之间的数值。可以在开发者工具的样式面板中拖拽或选择来生成，可以拖出来反弹效果
+
+            在 js 中通过 object.style.transitionTimingFunction="linear" 来修改
+            */
+            /* transition-timing-function: cubic-bezier(0.55, 0.09, 0.68, 0.53); */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition.html
+            设置元素当过渡效果，四个简写属性为 property duration timing-function delay
+            */
+            /* 指定单个属性的动画 */
+            /* transition: width 1s; */
+            /* 指定所有属性的动画 */
+            /* transition: 1s; */
+            /* transition: all 1s; */
+
+            /* 动画属性 动画持续时间 延迟开始时间*/
+            /* transition: width 1s 0.5s; */
+            /* transition: width 1s ease 0.5s; */
+
+            transition: width 1s ease-in 0.5s, height 2s ease-out, background 3s;
+        }
+
+        .container2:hover {
+            width: 200px;
+            background: green;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1"></div>
+    <div class="container2"></div>
+</body>
+
+</html>
