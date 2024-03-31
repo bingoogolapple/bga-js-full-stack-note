@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡动画案例</title>
+    <style>
+        .container1 {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 20px;
+            padding: 20px;
+            border: 1px solid gray;
+            color: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            /* 实现省略号效果 */
+            text-overflow: ellipsis;
+            overflow: hidden;
+            /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/white-space */
+            /* 必须设置 white-space 为 nowrap（和 normal 一样合并空白符，但阻止源码中的文本换行） */
+            white-space: nowrap;
+            /* 实现过渡效果 */
+            transition: all 0.5s linear;
+        }
+
+        .container1:hover {
+            height: 180px;
+            background-color: azure;
+            /* 必须设置 white-space 为 normal（连续的空白符会被合并，源码中的换行符会被当作空白符来处理，并根据填充行框盒子的需要来换行） */
+            white-space: normal;
+        }
+
+        .container2 {
+            display: block;
+            margin: 0 auto;
+            width: 500px;
+        }
+
+        .container2 .wrap {
+            width: 220px;
+            height: 330px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container2 .wrap img {
+            border: 0;
+            width: 220px;
+            height: 330px;
+        }
+
+        .container2 .wrap p {
+            display: block;
+            width: 220px;
+            height: 330px;
+            position: absolute;
+            left: 0;
+            top: 300px;
+            background-color: rgba(0, 0, 0, 0.3);
+            font-size: 12px;
+            color: #ffffff;
+            padding: 0;
+            margin: 0;
+            line-height: 16px;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .container2 .wrap p b {
+            display: block;
+            font-size: 22px;
+            color: #fc0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 30px;
+        }
+
+        .container2 .wrap p span {
+            display: block;
+            padding: 10px;
+            line-height: 20px;
+        }
+
+        .container2 .wrap:hover p {
+            top: 0;
+        }
+
+        .container3 {
+            display: block;
+            margin: 0 auto;
+            width: 300px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .container3 .item {
+            float: left;
+            width: 20%;
+            height: 100%;
+            transition: all 0.5s;
+        }
+
+        .container3 .item:nth-child(1) {
+            width: 40%;
+            background-color: red;
+        }
+
+        .container3 .item:nth-child(2) {
+            background-color: orange;
+        }
+
+        .container3 .item:nth-child(3) {
+            background-color: yellow;
+        }
+
+        .container3 .item:nth-child(4) {
+            background-color: green;
+        }
+
+        .container3:hover .item {
+            width: 20%;
+        }
+
+        .container3 .item:hover {
+            cursor: pointer;
+            width: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容，鼠标放上去显示全部内容...
+    </div>
+    <div class="container2">
+        <div class="wrap">
+            <img src="https://avatars.githubusercontent.com/u/8949716?v=4">
+            <p>
+                <b>我是标题1</b>
+                <span>我是内容1，我是内容1，我是内容1，我是内容1，我是内容1，我是内容1<br />我是内容2，我是内容2，我是内容2，我是内容2，我是内容2，我是内容2</span>
+            </p>
+        </div>
+        <div class="wrap">
+            <img src="https://avatars.githubusercontent.com/u/8949716?v=4">
+            <p>
+                <b>我是标题2</b>
+                <span>我是内容3，我是内容3，我是内容3，我是内容3，我是内容3，我是内容3<br />我是内容4，我是内容4，我是内容4，我是内容4，我是内容4，我是内容4</span>
+            </p>
+        </div>
+    </div>
+    <div class="container3">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+
+</html>
