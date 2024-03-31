@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关键帧动画基础</title>
+    <style>
+        .container {
+            width: 80px;
+            height: 80px;
+            background: red;
+            position: relative;
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-delay.html
+            指定何时将开始动画，延迟秒 s 或毫秒 ms 后开始动画，默认值为 0。允许负值，-2s 使动画马上开始，但跳过 2 秒进入动画
+
+            在 js 中通过 object.style.animationDelay="2s" 来修改
+            */
+            /* animation-delay: 0.5s; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-direction.html
+            定义是否循环交替反向播放动画，默认值为 normal
+
+            normal: 默认值。动画按正常播放
+            reverse: 动画反向播放
+            alternate: 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放
+            alternate-reverse: 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放
+
+            在 js 中通过 object.style.animationDirection="reverse" 来修改
+            */
+            /* animation-direction: normal; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-duration.html
+            定义动画完成一个周期需要多少秒或毫秒，默认值为 0
+            始终指定 transition-duration 属性，否则持续时间为 0，transition 不会有任何效果
+
+            在 js 中通过 object.style.animationDuration="3s" 来修改
+            */
+            /* animation-duration: 5s; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-fill-mode.html
+            规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式，默认值为 none
+
+            none: 默认值。动画在动画执行之前和之后不会应用任何样式到目标元素
+            forwards: 在动画结束后（由 animation-iteration-count 决定），动画将应用该属性值
+            backwards: 动画将应用在 animation-delay 定义期间启动动画的第一次迭代的关键帧中定义的属性值。这些都是 from 关键帧中的值（当 animation-direction 为 "normal" 或 "alternate" 时）或 to 关键帧中的值（当 animation-direction 为 "reverse" 或 "alternate-reverse" 时）
+            both: 动画遵循 forwards 和 backwards 的规则。也就是说，动画会在两个方向上扩展动画属性
+
+            在 js 中通过 object.style.animationFillMode="forwards" 来修改
+            */
+            /* animation-fill-mode: forwards; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-iteration-count.html
+            定义动画应该播放多少次，默认值为 1
+
+            n: 一个数字，定义应该播放多少次动画
+            infinite: 指定动画应该播放无限次
+
+            在 js 中通过 object.style.animationIterationCount=3 来修改
+            */
+            /* animation-iteration-count: infinite; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-name.html
+            为 @keyframes 动画指定名称，默认值为 none
+
+            在 js 中通过 object.style.animationName="mymove" 来修改
+            */
+            /* animation-name: mymove; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-play-state.html
+            指定动画是否正在运行或已暂停，默认值为 running
+
+            paused: 指定暂停动画
+            running: 默认值。指定正在运行的动画
+
+            在 js 中通过 object.style.animationPlayState="paused" 来修改
+            */
+            /* animation-play-state: running; */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-animation-timing-function.html
+            指定动画将如何完成一个周期，速度曲线定义动画从一套 CSS 样式变为另一套所用的时间，速度曲线用于使变化更为平滑，默认值为 linear
+
+            linear: 动画从头到尾的速度是相同的。等于 cubic-bezier(0,0,1,1)
+            ease: 慢速开始（幅度较大），然后变快，然后慢速结束（幅度较小）。等于 cubic-bezier(0.25,0.1,0.25,1)
+            ease-in: 以慢速开始。等于 cubic-bezier(0.42,0,1,1)
+            ease-out: 以慢速结束。等于 cubic-bezier(0,0,0.58,1)
+            ease-in-out: 以慢速开始和结束。等于 cubic-bezier(0.42,0,0.58,1)
+            steps(int,start|end): 指定了时间函数中的间隔数量（步长）。有两个参数，第一个参数指定函数的间隔数，该参数是一个正整数（大于 0）。 第二个参数是可选的，表示动画是从时间段的开头连续(start: 表示直接开始)还是末尾连续(end: 默认值，表示戛然而止)
+            cubic-bezier(n,n,n,n): 在 cubic-bezier 函数中定义自己的值，可能的值是 0 至 1 之间的数值。可以在开发者工具的样式面板中拖拽或选择来生成，可以拖出来反弹效果
+
+            在 js 中通过 object.style.animationTimingFunction="linear" 来修改
+            */
+            /* animation-timing-function: cubic-bezier(0.55, 0.09, 0.68, 0.53); */
+
+            /*
+            https://www.runoob.com/cssref/css3-pr-transition.html
+            通过简写的方式设置关键帧动画的各个属性
+
+            animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+            */
+            /* animation: mymove 3s linear 0.5s infinite; */
+        }
+
+        .container1 {
+            animation: mymove 3s linear 0.5s infinite;
+        }
+
+        .container2 {
+            animation-name: mymove;
+            animation-duration: 3s;
+            animation-play-state: paused;
+            animation-iteration-count: 1;
+        }
+
+        .container3 {
+            animation-name: mymove;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
+        }
+
+        /*
+        https://www.runoob.com/cssref/css3-pr-animation-keyframes.html
+        使用 @keyframes 规则创建动画，通过逐步改变从一个 CSS 样式设定到另一个，在动画过程中可以更改 CSS 样式的设定多次
+        指定的变化时发生时使用 ％，或关键字 from（等价于 0％） 和 to（等价于 100%）
+        0％ 是开头动画，100％ 是当动画完成
+        为了获得最佳的浏览器支持，您应该始终定义为 0％ 和 100％ 的选择器
+        */
+        @keyframes mymove {
+            0% {
+                top: 0px;
+                left: 0px;
+                background: red;
+            }
+
+            25% {
+                top: 0px;
+                left: 100px;
+                background: blue;
+            }
+
+            50% {
+                top: 100px;
+                left: 100px;
+                background: yellow;
+            }
+
+            75% {
+                top: 100px;
+                left: 0px;
+                background: green;
+            }
+
+            100% {
+                top: 0px;
+                left: 0px;
+                background: red;
+            }
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            var container2 = document.getElementById("container2")
+            container2.addEventListener("animationend", () => {
+                console.log('container2 animationend')
+            })
+            document.getElementById("running").onclick = () => {
+                container2.style.animationPlayState = "running"
+            }
+            document.getElementById("paused").onclick = () => {
+                container2.style.animationPlayState = "paused"
+            }
+
+            var container3 = document.getElementById("container3")
+            container3.addEventListener("animationend", () => {
+                console.log('container3 animationend')
+            })
+            document.getElementById("addAnimForContainer3").onclick = () => {
+                container3.classList.add("container3")
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container container1" id="container1">container1</div>
+    <div class="container container2" id="container2">container2</div>
+    <div class="container" id="container3">container3</div>
+    <div>
+        <button id="running">开始 container2</button>
+        <button id="paused">暂停 container2</button>
+        <button id="addAnimForContainer3">为 container3 添加动画</button>
+    </div>
+</body>
+
+</html>
