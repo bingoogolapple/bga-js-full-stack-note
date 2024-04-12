@@ -12,91 +12,126 @@
             padding: 0;
         }
 
-        html {
-            /*
-            页面布局文字能否随着屏幕大小变化而变化？流式布局和 flex 布局主要针对于宽度布局，那高度如何设置？怎么样让屏幕发生变化的时候元素高度和宽度等比例缩放？
-
-            rem(root em)是一个相对单位，类似于 em，em 是自身或父元素字体大小，不同的是 rem 的基准是相对于 html 元素的字体大小
-
-            1、页面元素的 rem 值 = 页面元素值(px) / (屏幕宽度 / 划分的份数)
-            2、html font-size 的值 = 屏幕宽度 / 划分的份数
-            3、即页面元素的 rem 值 = 页面元素值(px) / html font-size 的值
-            */
-            /*
-            不同设备尺寸动态修改 html 的 font-size 的值来实现适配
-            1、JS 动态计算，flexible.js 库
-            2、利用 vw 相对单位，动态换算 font-size
-            3、less + 媒体查询
-            */
-            /*
-            1、首先选一套标准尺寸宽度，一般以 750px 为准
-            2、用「标准屏幕尺寸宽度 / 划分份数」得到 html 里的 font-size 的值，但是不同屏幕尺寸下得到的 html font-size 的值是不一样的
-            3、页面元素的 rem 值 = 页面元素在标准尺寸宽度为 750px 下的值(px) / html font-size 的值
-            */
-            font-size: 20px;
+        li {
+            font-size: 0.16rem;
         }
 
-        li {
-            font-size: 16px;
+        .box0 {
+            box-sizing: border-box;
+            /* 屏幕宽度 */
+            /* width: 7.5rem; */
+            /* 屏幕一半宽度 */
+            width: 3.75rem;
+            height: 1rem;
+            background: pink;
+            border: 0.2rem skyblue solid;
+            font-size: 0.2rem;
         }
 
         .box1 {
-            margin: 5px;
-            width: 100px;
-            height: 100px;
+            margin: 0.05rem;
+            width: 1rem;
+            height: 1rem;
             background: pink;
-            /* 此时的 border 宽度为 20px */
-            border: 1rem skyblue solid;
+            border: 0.2rem skyblue solid;
+            font-size: 0.2rem;
         }
 
         .box2 {
-            margin: 5px;
-            font-size: 12px;
-            width: 100px;
-            height: 100px;
+            margin: 0.05rem;
+            font-size: 0.12rem;
+            width: 1rem;
+            height: 1rem;
             background: pink;
-            /* 此时的 border 宽度为 20px；即 1rem = html 的 font-size 的值 */
-            border: 1rem skyblue solid;
+            border: 0.2rem skyblue solid;
         }
 
         .box3 {
-            margin: 5px;
-            font-size: 12px;
-            width: 200px;
-            height: 200px;
+            margin: 0.05rem;
+            font-size: 0.12rem;
+            width: 2rem;
+            height: 2rem;
             background: pink;
-            /* 此时的 border 宽度为 40px；即 1rem = html 的 font-size 的值 */
-            border: 2rem skyblue solid;
+            border: 0.4rem skyblue solid;
         }
 
         .box31 {
-            width: 50px;
-            height: 50px;
+            width: 0.5rem;
+            height: 0.5rem;
             background-color: yellowgreen;
-            /* 此时的 border 宽度为 40px */
-            border: 2rem seagreen solid;
+            border: 0.4rem seagreen solid;
         }
 
         .box4 {
-            margin: 5px;
-            font-size: 12px;
-            width: 200px;
-            height: 200px;
+            margin: 0.05rem;
+            font-size: 0.12rem;
+            width: 2rem;
+            height: 2rem;
             background: pink;
-            /* 此时的 border 宽度为 40px；即 1rem = html 的 font-size 的值 */
-            border: 2rem skyblue solid;
+            border: 0.4rem skyblue solid;
         }
 
         .box41 {
-            /* 此处的 1em 等于父亲的 font-size，所以当前的 font-size 为 24px */
+            /* 此处的 1em 等于父亲的 font-size，所以当前的 font-size 为 0.24rem */
             font-size: 2em;
-            width: 50px;
-            height: 50px;
+            width: 0.5rem;
+            height: 0.5rem;
             background-color: yellowgreen;
             /* 此时的 border 宽度为 40px */
-            border: 2rem seagreen solid;
+            border: 0.4rem seagreen solid;
         }
     </style>
+    <script>
+        /*
+        页面布局文字能否随着屏幕大小变化而变化？流式布局和 flex 布局主要针对于宽度布局，那高度如何设置？怎么样让屏幕发生变化的时候元素高度和宽度等比例缩放？
+
+        rem(root em)是一个相对单位，类似于 em，em 是自身或父元素字体大小，不同的是 rem 的基准是相对于 html 元素的字体大小
+
+        1、1rem = html font-size 的值
+
+        2、页面元素 px = 页面元素 rem * html font-size => 页面元素 rem = 页面元素 px / html font-size
+        为了方便后续换算 px 为 rem，假设将 html font-size 设置为 100px，设计稿宽度和屏幕宽度为 750px，则设计稿宽度就是 750px / 100px = 7.5rem，也就是相当于将屏幕分为 7.5 份，1rem 等于 1 份
+        在 750px 的设计稿时，每一份为 100px，页面元素 0.5rem = 页面元素 50px / html font-size 100px
+
+        3、1rem = html font-size 的值 = 设计稿宽度 / 划分的份数 = 每一份的值
+        份数是固定的 7.5 份，后续根据不同设备动态设置 html font-size
+        宽度为 750 的屏幕上每一份为 750 / 7.5 = 100px = 1rem
+        宽度为 375 的屏幕上每一份为 375 / 7.5 = 50px = 1rem
+
+        4、页面元素的 rem 值 = 页面元素 px / html font-size = 页面元素值 px / 每一份的值 = 页面元素值 px / (设计稿宽度 / 划分的份数)
+        */
+
+        /*
+        不同设备尺寸动态修改 html 的 font-size 的值来实现适配
+        1、JS 动态计算，flexible.js 库
+        2、利用 vw 相对单位，动态换算 font-size
+        3、less + 媒体查询
+        */
+
+        /*
+        VSCode 插件「px to rem & rpx & vw (cssrem)」中配置「Root Font Size」为 100 来快速转换
+        */
+        const updateHtmlFontSize = () => {
+            // 设计稿宽度
+            const designWidth = 750;
+            // 基准大小，即设计稿宽度为 750 时，每一份为 100px，将宽度分为 7.5 份
+            const remBase = 100
+
+            const { documentElement } = document;
+            const clientWidth = documentElement.clientWidth > 320 ? documentElement.clientWidth : 320;
+
+            // 不管是哪种分辨率，宽度划分的份数是一样的，于是有 clientWidth / realRem = designWidth / remBase
+            const realRem = clientWidth / (designWidth / remBase);
+            documentElement.style.fontSize = `${realRem}px`;
+            console.log(`html font-size 为 ${realRem}px`);
+        };
+        // 先立即修改一次
+        updateHtmlFontSize();
+
+        const resize = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        window.addEventListener(resize, updateHtmlFontSize);
+        document.addEventListener('DOMContentLoaded', updateHtmlFontSize);
+    </script>
 </head>
 
 <body>
@@ -104,6 +139,9 @@
         <li>rem：root + em</li>
         <li>rem 不是看自己的 font-size，也不是看父亲的 font-size，而是看根 html 的 font-size</li>
     </ul>
+    <div class="box0">
+        8
+    </div>
     <div class="box1">
         8
     </div>
