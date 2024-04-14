@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟态风格</title>
+    <style>
+        /*
+        https://www.runoob.com/cssref/css3-pr-box-shadow.html
+        把一个或多个下拉阴影添加到框上。该属性是一个用逗号分隔阴影的列表，每个阴影由 2-4 个长度值、一个可选的颜色值和一个可选的 inset 关键字来规定。省略长度的值是 0
+        如果元素同时设置了 border-radius属性，那么阴影也会有圆角效果
+        不会影响到盒模型的构成
+        可以通过逗号分隔添加多个阴影
+
+        当 x-offset、y-offset 和 blur 都是 0，盒阴影将是一个四边都是一样长度的带有颜色的outline
+
+        box-shadow: inset offset-x offset-y blur-radius spread-radius color;
+
+        inset: 可选。如果没有指定 inset，默认阴影在边框外（外阴影），即阴影向外扩散。使用 inset 关键字会使得阴影落在盒子内部（内阴影），这样看起来就像是内容被压低了。此时阴影会在边框之内 (即使是透明边框）、背景之上、内容之下。
+        offset-x: 必需的。设置阴影水平偏移量（不是指阴影的大小，阴影最大就是元素本身的宽高），正值阴影则位于元素右边，负值阴影则位于元素左边，如果是 0，那么阴影位于元素后面
+        offset-y: 必需的。设置阴影垂直偏移量（不是指阴影的大小，阴影最大就是元素本身的宽高），正值阴影则位于元素下方，负值阴影则位于元素上方，如果是 0，那么阴影位于元素后面
+        blur-radius: 可选。模糊半径; 值越大，模糊面积越大，阴影就越大越淡。不能为负值。默认为 0，此时阴影边缘锐利
+        spread-radius: 可选。扩散半径; 取正值时，阴影扩大；取负值时，阴影收缩。默认为 0，此时阴影与元素同样大。需要考虑 inset
+        color: 可选。阴影的颜色
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo {
+            margin: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* 拟态盒子 */
+        .demo1,
+        .demo2 {
+            background-color: #acbaca;
+        }
+
+        .demo1 .box,
+        .demo2 .box {
+            margin: 50px;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            background-color: #c9d5e0;
+        }
+
+        .demo1 .box1 {
+            /* 在元素外部往右和下偏移 30px 比较实的阴影 */
+            box-shadow: 30px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo1 .box2 {
+            /* 添加 20px 的模糊距离，让阴影看起来比较虚，有种浮起来的感觉 */
+            box-shadow: 30px 30px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo1 .box3 {
+            /* 阴影扩大 10px */
+            box-shadow: 30px 30px 20px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo1 .box4 {
+            /* 阴影收缩 10px */
+            box-shadow: 30px 30px 20px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo1 .box5 {
+            /* 添加第二个阴影，在元素内部往右下偏移 */
+            box-shadow: 30px 30px 20px -10px rgba(0, 0, 0, 0.15),
+                inset 15px 15px 10px rgba(255, 255, 255, 0.75);
+        }
+
+        .demo1 .box6 {
+            /* 添加第三个阴影，一束光从元素的左上角照过来的感觉 */
+            box-shadow: 30px 30px 20px -10px rgba(0, 0, 0, 0.15),
+                inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+                -15px -15px 35px rgba(255, 255, 255, 0.55);
+        }
+
+        .demo1 .box7 {
+            /* 添加第四个阴影，右下角添加很窄的内阴影 */
+            box-shadow: 30px 30px 20px -10px rgba(0, 0, 0, 0.15),
+                inset 15px 15px 10px rgba(255, 255, 255, 0.75),
+                -15px -15px 35px rgba(255, 255, 255, 0.55),
+                inset 1px 1px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .demo2 .box1 {
+            /* 在元素内部往右和下偏移 30px 比较实的阴影 */
+            box-shadow: inset 30px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo2 .box2 {
+            /* 添加 20px 的模糊距离，让阴影看起来比较虚，有种浮起来的感觉 */
+            box-shadow: inset 30px 30px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo2 .box3 {
+            /* 阴影扩大 10px */
+            box-shadow: inset 30px 30px 20px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .demo2 .box4 {
+            /* 阴影收缩 10px */
+            box-shadow: inset 30px 30px 20px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 拟态按钮效果 */
+        .demo3 {
+            background-color: #efeeee;
+        }
+
+        .demo3 .box {
+            margin: 30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-out;
+            box-shadow: 18px 18px 30px rgba(0, 0, 0, 0.2),
+                -18px -18px 30px rgba(255, 255, 255, 1);
+        }
+
+        .demo3 .box img {
+            width: 60px;
+            height: 60px;
+            transition: all 0.2s ease-out;
+        }
+
+        .demo3 .box:hover {
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.2),
+                0 0 0 rgba(255, 255, 255, 0.8),
+                /* 左上角黑色内阴影 */
+                inset 18px 18px 30px rgba(0, 0, 0, 0.1),
+                /* 右下角白色内阴影 */
+                inset -18px -18px 30px rgba(255, 255, 255, 1);
+        }
+
+        .demo3 .box:hover img {
+            width: 58px;
+            height: 58px;
+        }
+
+        /* 拟态按下开关效果 */
+        .demo4 {
+            background-color: #ececec;
+        }
+
+        .demo4 .box {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 50px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .demo4 .box input[type="checkbox"] {
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            /* 移除 checkbox 默认样式 */
+            -webkit-appearance: none;
+            border-radius: 50%;
+            border: 8px solid #ececec;
+            outline: none;
+            cursor: pointer;
+            box-shadow:
+                -10px -10px 15px rgba(255, 255, 255, 0.5),
+                10px 10px 15px rgba(70, 70, 70, 0.12);
+        }
+
+        .demo4 .box .icon-box {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            /* background-color: red; */
+            position: relative;
+            pointer-events: none;
+        }
+
+        .demo4 .box .icon-box .cir {
+            position: absolute;
+            /* 宽高继承父元素 */
+            width: inherit;
+            height: inherit;
+            box-sizing: border-box;
+            /* background-color: green; */
+            /* 裁剪多边形遮罩：根据这些点连成一个多边形，把这个形状裁剪出来 */
+            clip-path: polygon(50% 50%, 65% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 35% 0%);
+            border-radius: 50%;
+            border: 8px solid #7a7a7a;
+        }
+
+        .demo4 .box .icon-box .hh {
+            position: absolute;
+            width: 8px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: #7a7a7a;
+            left: 50%;
+            top: -10px;
+            transform: translateX(-50%);
+        }
+
+        .demo4 .box input[type="checkbox"]:checked {
+            box-shadow:
+                -10px -10px 15px rgba(255, 255, 255, 0.5),
+                10px 10px 15px rgba(70, 70, 70, 0.12),
+                inset -15px -15px 15px rgba(255, 255, 255, 0.5),
+                inset 15px 15px 15px rgba(70, 70, 70, 0.12);
+        }
+
+        .demo4 .box input[type="checkbox"]:checked~.icon-box .cir {
+            border: 8px solid #15e38a;
+        }
+
+        .demo4 .box input[type="checkbox"]:checked~.icon-box .hh {
+            background-color: #15e38a;
+        }
+
+        /* 拟态滑动开关效果 */
+        .demo5 {
+            background-color: #ececec;
+        }
+
+        /* 整个开关容器，开关可点击区域 */
+        .demo5 .label-box {
+            position: relative;
+            width: 120px;
+            height: 60px;
+            margin: 50px;
+            cursor: pointer;
+            /* background-color: red; */
+        }
+
+        /* 中间的横杠 */
+        .demo5 .label-box::before {
+            width: 60%;
+            height: 4px;
+            background-color: #444;
+            content: '';
+            border-radius: 4px;
+            /* 绝对定位到父容器正中间 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .demo5 .label-box input[type="checkbox"] {
+            /* checkbox 已经被 label 包裹了并且以 label 的宽高为准，所以这里无需设置宽高 */
+            /* 但要设置绝对定位来脱离文档流 */
+            position: absolute;
+            /* 移除 checkbox 默认样式 */
+            -webkit-appearance: none;
+            outline: none;
+            /* background-color: green; */
+        }
+
+        /* 可滑动的开关盒子 */
+        .demo5 .label-box .icon {
+            width: 60px;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: left 0.6s;
+            /* background-color: blue; */
+        }
+
+        /* 开关选中时移动开关盒子 */
+        .demo5 .label-box input[type="checkbox"]:checked~.icon {
+            left: 60px;
+        }
+
+        /* 往右下投射的阴影，元素背景色做的，而不是 box-shadow */
+        .demo5 .label-box .shadow {
+            position: absolute;
+            top: 50%;
+            left: -12px;
+            width: 85px;
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), transparent, transparent);
+            /* 顶部中点为旋转中锚点 */
+            transform-origin: top center;
+            transform: rotate(315deg);
+            /* 阴影区域超过了 label 区域，会导致点击开关外部时也会触发切换，这里需要禁止下阴影接收鼠标事件 */
+            pointer-events: none;
+        }
+
+        /* 开关盒子左侧竖条 */
+        .demo5 .label-box .icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(#fff, #fff, #e3e3e3);
+            filter: blur(1px);
+            z-index: 1;
+        }
+
+        /* 开关盒子右侧竖条 */
+        .demo5 .label-box .icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 10px;
+            height: 100%;
+            background-color: #9d9d9d;
+            filter: blur(1px);
+        }
+
+        /* 开关盒子内部图标容器 */
+        .demo5 .label-box .icon-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            pointer-events: none;
+            /* 从上往下 */
+            background: linear-gradient(#dbdae1, #a3aaba);
+            box-shadow: 5px 5px rgba(0, 0, 0, 0.1),
+                15px 15px 15px rgba(0, 0, 0, 0.1),
+                20px 20px 15px rgba(0, 0, 0, 0.1),
+                30px 30px 15px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 2px #fff;
+        }
+
+        .demo5 .label-box .cir {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            box-sizing: border-box;
+            /* 裁剪多边形遮罩：根据这些点连成一个多边形，把这个形状裁剪出来 */
+            clip-path: polygon(50% 50%, 65% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 35% 0%);
+            border-radius: 50%;
+            border: 2px solid #7a7a7a;
+            transition: all 0.2s;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .demo5 .label-box .icon .hh {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #7a7a7a;
+            left: 50%;
+            top: 13px;
+            transform: translateX(-50%);
+            transition: all 0.2s;
+        }
+
+        .demo5 .label-box input[type="checkbox"]:checked~.icon .cir {
+            border: 2px solid #15e38a;
+        }
+
+        .demo5 .label-box input[type="checkbox"]:checked~.icon .hh {
+            background-color: #15e38a;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 拟态盒子 -->
+    <div class="demo demo1">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+        <div class="box box5"></div>
+        <div class="box box6"></div>
+        <div class="box box7"></div>
+    </div>
+    <!-- 拟态盒子 -->
+    <div class="demo demo2">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+    </div>
+    <!-- 拟态按钮效果 -->
+    <div class="demo demo3">
+        <div class="box box1">
+            <img src="./imgs/lilibili.webp" />
+        </div>
+        <div class="box box2">
+            <img src="./imgs/bga.png" />
+        </div>
+    </div>
+    <!-- 拟态按下开关效果 -->
+    <div class="demo demo4">
+        <div class="box">
+            <input type="checkbox" />
+            <div class="icon-box">
+                <div class="cir"></div>
+                <div class="hh"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 拟态滑动开关效果 -->
+    <div class="demo demo5">
+        <label class="label-box">
+            <input type="checkbox" />
+            <div class="icon">
+                <div class="shadow"></div>
+                <div class="icon-box">
+                    <div class="cir"></div>
+                    <div class="hh"></div>
+                </div>
+            </div>
+    </div>
+    </div>
+</body>
+
+</html>
