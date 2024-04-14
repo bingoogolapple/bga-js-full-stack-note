@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水滴效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /* https://flatuicolors.com */
+            background-color: #00a8ff;
+        }
+
+        .water {
+            position: relative;
+            box-sizing: border-box;
+            margin-top: 100px;
+            width: 300px;
+            height: 300px;
+            /* border: 1px solid black; */
+
+            /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius */
+
+            /* 全部都是 10% */
+            /* border-radius: 10%; */
+
+            /* 左上和右下 10%，左下和右上 20% */
+            /* border-radius: 10% 20%; */
+
+            /* 左上 10%，左下和右上 20%，右下 30% */
+            /* border-radius: 10% 20% 30%; */
+
+            /* 左上 10%，右上 20%，右下 30%，左下 40% */
+            /* border-radius: 10% 20% 30% 40%; */
+
+            /* 上下 20%，左右 50% */
+            /* border-radius: 20% / 50%; */
+
+            /*
+            border-top-left-radius 10% 90%
+            border-top-right-radius 30% 70%
+            border-bottom-right-radius 10% 90%
+            border-bottom-left-radius 30% 70%
+            */
+            /* border-radius: 10% 30% / 90% 70%; */
+
+            /* 设置不规则 border-radius https://9elements.github.io/fancy-border-radius */
+            /*
+            border-top-left-radius 17% 88%
+            border-top-right-radius 83% 14%
+            border-bottom-right-radius 90% 86%
+            border-bottom-left-radius 10% 12%
+            */
+            border-radius: 17% 83% 90% 10% / 88% 14% 86% 12%;
+
+            box-shadow:
+                /* 左上黑色内阴影 */
+                inset 10px 20px 30px rgba(0, 0, 0, 0.5),
+                /* 右下黑色外阴影 */
+                10px 10px 20px rgba(0, 0, 0, 0.3),
+                /* 右下黑色外阴影 */
+                15px 15px 30px rgba(0, 0, 0, 0.05),
+                /* 右下白色内阴影 */
+                inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+
+            animation-name: water-action;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .water::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 30%;
+            top: 25%;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 80% 20% 79% 21% / 74% 52% 48% 26%;
+        }
+
+        .water::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 60%;
+            top: 35%;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 32% 68% 31% 69% / 74% 67% 33% 26%;
+        }
+
+        @keyframes water-action {
+            25% {
+                border-radius: 32% 68% 78% 22% / 74% 24% 76% 26%;
+            }
+
+            50% {
+                border-radius: 51% 49% 63% 37% / 62% 36% 64% 38%;
+            }
+
+            75% {
+                border-radius: 68% 32% 29% 71% / 32% 27% 73% 68%;
+            }
+
+            100% {
+                border-radius: 84% 16% 23% 77% / 18% 14% 86% 82%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="water"></div>
+</body>
+
+</html>
