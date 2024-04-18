@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飘雪花</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* height: 100vh;
+            background-size: 100% 100%; */
+            background-size: cover;
+            background-image: url(./imgs/snow.jpg);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const context = canvas.getContext('2d');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        // 雪花个数
+        const num = 200;
+        // 雪花信息
+        const snows = [];
+        for (let i = 0; i < num; i++) {
+            snows.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 8 + 1
+            });
+        }
+
+        const move = () => {
+            for (let i = 0; i < num; i++) {
+                const snow = snows[i];
+                snow.x += Math.random() * 1 + 1;
+
+                if (snow.x > width) {
+                    snow.x = 0;
+                }
+                snow.y += Math.random() * 1 + 1;
+                if (snow.y > height) {
+                    snow.y = 0;
+                }
+            }
+        }
+
+        const draw = () => {
+            // 清空画布
+            context.clearRect(0, 0, width, height);
+            context.beginPath();
+            // 设置填充颜色
+            context.fillStyle = 'rgb(255, 255, 255)';
+            // 设置阴影颜色和模糊半径
+            context.shadowColor = 'rgb(255, 255, 255)';
+            context.shadowBlur = 10;
+
+            for (let i = 0; i < num; i++) {
+                const snow = snows[i];
+                context.moveTo(snow.x, snow.y);
+                context.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2);
+            }
+
+            context.fill();
+            context.closePath();
+
+            move();
+        }
+
+        setInterval(draw, 30);
+    </script>
+</body>
+
+</html>
