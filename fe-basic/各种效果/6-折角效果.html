@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折角效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+            /* 默认从上往下 */
+            /* background: linear-gradient(red, blue); */
+            /* 0 度表示从下往上 */
+            /* background: linear-gradient(0deg, red, blue); */
+            /* 90 度表示从左往右 */
+            /* background: linear-gradient(90deg, red, blue); */
+            /* 180 度表示从上往下 */
+            /* background: linear-gradient(180deg, red, blue); */
+            /* 270 度表示从右往左 */
+            /* background: linear-gradient(270deg, red, blue); */
+
+            /* 50px 之前是纯红色，从 50px 开始渐变到 150px 渐变结束，150px~300px 是纯绿色，然后再从 300px 开始渐变到 400px 渐变结束，400px 之后是纯蓝色 */
+            /* background: linear-gradient(90deg, red 50px, green 150px 300px, blue 400px); */
+            /* 等价于下面这行 */
+            /* background: linear-gradient(90deg, red 0 50px, green 150px 300px, blue 400px 500px); */
+
+            /* 20% 之前是纯红色，从 20% 开始渐变到 40% 渐变结束，40%~60% 是纯绿色，然后再从 60% 开始渐变到 80% 渐变结束，80% 之后是纯蓝色 */
+            /* background: linear-gradient(90deg, red 20%, green 40% 60%, blue 80%); */
+            /* 等价于下面这行 */
+            /* background: linear-gradient(90deg, red 0% 20%, green 40% 60%, blue 80% 100%); */
+
+            /* 默认情况下，中间的颜色纯色开始和结束时相等的 */
+            /* background: linear-gradient(90deg, red 20%, green 40%, blue 80%); */
+            /* background: linear-gradient(90deg, red 20%, green 40% 40%, blue 80%); */
+
+            /* 默认是等分的，两个色值时默认是 0%、100%，三个色值时默认是 0%、50%、100% */
+            /* background: linear-gradient(90deg, red, green, blue); */
+            /* background: linear-gradient(90deg, red 0%, green 50%, blue 100%); */
+            /* 四个色值时同理 0%、33.333%、66.666%、100% */
+            /* background: linear-gradient(90deg, red, green, blue, #ff0); */
+            /* background: linear-gradient(90deg, red 0%, green 33.333%, blue 66.666%, #ff0 100%); */
+
+            /* 右侧色值纯色值开始值（模糊结束值）小于等于左侧色值纯色结束值（模块开始值）时就不会有模糊阶段（过渡效果），并且多个色值时还会右侧色值还会覆盖左侧色值；例如这里，只有红色和蓝色，绿色被蓝色覆盖了 */
+            /* background: linear-gradient(90deg, red 20%, green 20%, blue 20%); */
+            /* 开始和结束设置为一样就不会有过度效果，0~50px 纯红色，50px ~50px 红蓝过渡，50px~500px 纯蓝色 */
+            /* background: linear-gradient(90deg, red 50px, blue 50px); */
+
+            /* 从右上角到左下角，把右上部分设置为透明 */
+            /* background: linear-gradient(225deg, transparent 50px, blue 50px); */
+            /* 从右上角到左下角，把右上部分设置为透明 */
+            /* background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, 0.6) 50%); */
+
+            /* 设置 background-position 到右上角 */
+            /* background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, 0.6) 50%) no-repeat 100% 0 / 3em 3em; */
+
+            /* x² + x² = 3²，x 为 2.12 */
+            background: linear-gradient(to left bottom, transparent 50%, rgba(0, 0, 0, 0.6) 50%) no-repeat 100% 0 / 3em 3em,
+                linear-gradient(225deg, transparent 2.12em, #58a 2.12em);
+
+            /* background: linear-gradient(red 50%, green 50%) no-repeat 0 0/ 50% 100%, linear-gradient(blue 50%, #ff0 50%) no-repeat 100% 0/ 50% 100%; */
+            /* 左侧会覆盖右侧 */
+            /* background: linear-gradient(red 50%, green 50%) no-repeat 25% 0/ 50% 100%, linear-gradient(blue 50%, #ff0 50%) no-repeat 75% 0/ 50% 100%; */
+            /* background-color: #ccc; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page"></div>
+</body>
+
+</html>
