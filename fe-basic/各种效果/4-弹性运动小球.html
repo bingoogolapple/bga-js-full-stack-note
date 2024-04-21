@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性运动小球</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bounceBall {
+            width: 350px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ball {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(#e55, #b00);
+            animation-name: move;
+            animation-duration: 500ms;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-350px);
+            }
+        }
+
+        .shadow {
+            margin-top: -30px;
+            width: 100px;
+            height: 40px;
+            background-color: #000;
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.2;
+            transform: scale(1);
+            animation-name: shadowMove;
+            animation-duration: 500ms;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes shadowMove {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.05;
+                transform: scale(0.75);
+            }
+        }
+
+        .bounceBall:nth-child(2) .ball {
+            background: linear-gradient(rgb(161, 201, 128), rgb(1, 99, 37));
+        }
+
+        .bounceBall:nth-child(2) .ball,
+        .bounceBall:nth-child(2) .shadow {
+            animation-delay: 50ms;
+        }
+
+        .bounceBall:nth-child(3) .ball {
+            background: linear-gradient(#00a8ff, #8c7ae6);
+        }
+
+        .bounceBall:nth-child(3) .ball,
+        .bounceBall:nth-child(3) .shadow {
+            animation-delay: 80ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bounceBall">
+        <div class="ball"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="bounceBall">
+        <div class="ball"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="bounceBall">
+        <div class="ball"></div>
+        <div class="shadow"></div>
+    </div>
+</body>
+
+</html>
