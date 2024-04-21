@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有伸缩功能的搜索框</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .searchBar {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            transition: width 0.5s;
+        }
+
+        .longSearchBar {
+            width: 400px;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            /* background-color: red; */
+        }
+
+        .icon::before {
+            /* 加个绝对定位让两者重叠，然后再平移和旋转 */
+            position: absolute;
+            content: '';
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 3px solid dodgerblue;
+            transform: translate(-3px, -3px);
+        }
+
+        .icon::after {
+            content: '';
+            width: 3px;
+            height: 12px;
+            background-color: dodgerblue;
+            transform: translate(8px, 8px) rotate(315deg);
+        }
+
+        .textInput {
+            /* 总宽度 400 - 图标宽度 60 - 右侧半径 30 */
+            width: 310px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background: red; */
+            position: absolute;
+            top: 0;
+            /* 图标宽度 */
+            left: 60px;
+        }
+
+        .textInput input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* 去除获取焦点后的聚焦效果 */
+            outline: none;
+            font-size: 18px;
+            /* background-color: green; */
+        }
+
+        .clear {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            top: 50%;
+            right: 22%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: blue; */
+        }
+
+        .clear::before {
+            /* 加个绝对定位让两者重叠，然后再旋转 */
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 15px;
+            background-color: #ccc;
+            transform: rotate(45deg);
+        }
+
+        .clear::after {
+            content: '';
+            width: 1px;
+            height: 15px;
+            background-color: #ccc;
+            transform: rotate(315deg);
+        }
+
+        #go {
+            width: 12%;
+            height: 60%;
+            position: absolute;
+            top: 20%;
+            right: 0;
+            border-radius: 8px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(skyblue, deepskyblue);
+            cursor: pointer;
+        }
+
+        #go:hover {
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="searchBar">
+        <div class="icon"></div>
+        <div class="textInput">
+            <input type="text" placeholder="search something here...">
+            <div class="clear"></div>
+            <input type="submit" value="go" id="go">
+        </div>
+    </div>
+    <script>
+        const $ = (selectorName) => document.querySelector(selectorName);
+        let $searchBar = $('.searchBar');
+        let $icon = $('.icon');
+        let $clear = $('.clear');
+        let $input = $('input[type="text"]');
+
+        $icon.addEventListener('click', () => {
+            $searchBar.classList.toggle('longSearchBar');
+        })
+        $clear.addEventListener('click', () => {
+            $input.value = '';
+        })
+    </script>
+</body>
+
+</html>
