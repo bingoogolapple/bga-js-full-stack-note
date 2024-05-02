@@ -1,0 +1,22 @@
+{
+  "name": "@bga-note/main-react-vite",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@bga-note/lib-react-vite": "workspace:*",
+    "@bga-note/lib-ts-vite": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.2.0"
+  }
+}

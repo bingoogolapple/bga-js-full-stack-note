@@ -1,0 +1,32 @@
+{
+  "name": "@bga-note/lib-js",
+  "description": "学习发布 js 库",
+  "private": false,
+  "version": "0.0.14",
+  "keywords": [
+    "bga-note",
+    "lib-js"
+  ],
+  "files": [
+    "src"
+  ],
+  "main": "src/index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "node ./example/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingoogolapple/bga-js-full-stack-note.git",
+    "directory": "components/lib-js"
+  },
+  "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
+  "bugs": {
+    "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
+  },
+  "author": "bingoogolapple <bingoogolapple@gmail.com>",
+  "license": "MIT"
+}

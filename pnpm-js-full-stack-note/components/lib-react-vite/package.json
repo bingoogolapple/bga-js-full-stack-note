@@ -1,0 +1,55 @@
+{
+  "name": "@bga-note/lib-react-vite",
+  "description": "学习使用 vite 发布 React 库",
+  "private": false,
+  "version": "0.0.4",
+  "type": "module",
+  "keywords": [
+    "bga-note",
+    "lib-react-vite"
+  ],
+  "files": [
+    "dist"
+  ],
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "main": "dist/index.umd.js",
+    "module": "dist/index.es.js",
+    "types": "dist/index.d.ts"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build-no-dts": "tsc && vite build && tsc --p tsconfig.build.json",
+    "preview": "vite preview",
+    "release": "pnpm build && pnpm publish"
+  },
+  "devDependencies": {
+    "@bga-note/lib-ts-vite": "workspace:*",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-dts": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@bga-note/lib-ts-vite": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingoogolapple/bga-js-full-stack-note.git",
+    "directory": "components/lib-ts-vite"
+  },
+  "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
+  "bugs": {
+    "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
+  },
+  "author": "bingoogolapple <bingoogolapple@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@bga-note/lib-ts-vite",
+  "description": "学习使用 vite 发布 ts 库",
+  "private": false,
+  "version": "0.0.10",
+  "type": "module",
+  "keywords": [
+    "bga-note",
+    "lib-ts-vite"
+  ],
+  "files": [
+    "dist"
+  ],
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "main": "dist/index.umd.js",
+    "module": "dist/index.es.js",
+    "types": "dist/index.d.ts"
+  },
+  "scripts": {
+    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm --no-warnings ./example/index.ts",
+    "build": "tsc && vite build",
+    "build-watch": "tsc && vite build --watch",
+    "build-no-dts": "tsc && vite build && tsc --p tsconfig.build.json",
+    "release": "pnpm build && pnpm publish"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "vite-plugin-dts": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingoogolapple/bga-js-full-stack-note.git",
+    "directory": "components/lib-ts-vite"
+  },
+  "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
+  "bugs": {
+    "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
+  },
+  "author": "bingoogolapple <bingoogolapple@gmail.com>",
+  "license": "MIT"
+}

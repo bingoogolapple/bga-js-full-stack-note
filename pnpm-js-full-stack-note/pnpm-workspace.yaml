@@ -1,0 +1,9 @@
+packages:
+  # 存放客户端项目
+  - 'clients/*'
+  # 存放服务端项目
+  - 'servers/*'
+  # 存放脚手架项目
+  - 'clis/*'
+  # 存放通用组件和工具方法等
+  - 'components/*'
