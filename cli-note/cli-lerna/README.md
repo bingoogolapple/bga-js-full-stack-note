@@ -1,5 +1,19 @@
 # cli-lerna
 
+- 通过 npx 使用 lerna 来初始化
+
+```bash
+npx lerna -v
+npx lerna init
+```
+
+- 或者全局安装 lerna 来初始化
+
+```bash
+npm install -g lerna
+lerna init
+```
+
 - 安装 lerna
 
 ```bash
@@ -23,7 +37,7 @@ lerna add @dwit/cli-lerna-utils --scope=@dwit/cli-lerna-core
 lerna add @dwit/cli-lerna-utils packages/core
 ```
 
-- 链接依赖
+- 链接依赖，会把我们自己开发的模块软链接到最外层的 node_modules 中
 
 ```bash
 lerna link

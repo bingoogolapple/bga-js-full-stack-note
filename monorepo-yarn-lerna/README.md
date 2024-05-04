@@ -43,7 +43,7 @@ lerna add lodash@4.17.21 --scope @monorepo-yarn-lerna/package-b
 lerna add @monorepo-yarn-lerna/package-a --scope @monorepo-yarn-lerna/package-b
 ```
 
-- `lerna link` 链接依赖
+- `lerna link` 链接依赖，会把我们自己开发的模块软链接到最外层的 node_modules 中
 - `lerna ls` 查看有哪些包，`lerna ls --json` 加上 --json 参数后会输出包的路径
 
 ```txt

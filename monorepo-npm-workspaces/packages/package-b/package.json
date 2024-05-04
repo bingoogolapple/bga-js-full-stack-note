@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo-npm-workspaces/package-b",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "@monorepo-npm-workspaces/package-a": "1.0.0"
+  }
+}
