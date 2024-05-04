@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const importLocal = require("import-local");
+const log = require("npmlog");
+const entryYargs = require("../lib/entry-yargs");
+const entry = require("../lib/cli");
+
+if (importLocal(__filename)) {
+  log.info("cli", "使用本地版本");
+} else {
+  log.info("cli", "使用远程版本");
+  //   entryYargs();
+  entry();
+}

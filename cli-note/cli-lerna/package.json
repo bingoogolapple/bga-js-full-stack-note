@@ -1,5 +1,5 @@
 {
-  "name": "cli-lerna",
+  "name": "cli-note-lerna",
   "version": "1.0.0",
   "description": "脚手架学习笔记-lerna",
   "private": true,
@@ -10,6 +10,6 @@
   },
   "scripts": {},
   "devDependencies": {
-    "lerna": "^6.0.0"
+    "lerna": "^5.6.2"
   }
 }
