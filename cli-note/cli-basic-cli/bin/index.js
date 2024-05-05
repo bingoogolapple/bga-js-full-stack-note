@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const lib = require("bga-cli-basic-lib");
+const lib = require("@bga-note/cli-basic-lib");
 console.log("welcome bga cli");
 const process = require("process");
 console.log("process.argv", process.argv);

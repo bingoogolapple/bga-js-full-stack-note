@@ -1,10 +1,11 @@
 {
-  "name": "bga-cli-basic-lib",
+  "name": "@bga-note/cli-basic-lib",
   "version": "1.0.1",
-  "description": "脚手架学习笔记-基础-lib",
+  "description": "脚手架学习笔记-cli 基础-lib",
   "main": "lib/index.js",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

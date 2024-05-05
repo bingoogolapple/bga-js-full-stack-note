@@ -1,13 +1,14 @@
 {
-  "name": "bga-cli-basic",
+  "name": "@bga-note/cli-basic-cli",
   "version": "1.0.1",
-  "description": "脚手架学习笔记-基础-cli",
+  "description": "脚手架学习笔记-cli 基础-cli",
   "main": "bin/index.js",
   "bin": {
-    "bga-cli-basic": "bin/index.js"
+    "cli-basic-cli": "bin/index.js"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bga-cli-basic-lib": "^1.0.1"
+    "@bga-note/cli-basic-lib": "^1.0.1"
   }
 }
