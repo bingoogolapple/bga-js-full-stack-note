@@ -1,6 +1,6 @@
 {
   "name": "@bga-note/cli-lerna-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "脚手架学习笔记 cli-lerna-cli",
   "keywords": [
     "bga-note"
@@ -33,8 +33,8 @@
     "dev": "cli-lerna-cli -h"
   },
   "dependencies": {
-    "@bga-note/cli-lerna-command-init": "^0.0.5",
-    "@bga-note/cli-lerna-utils": "^0.0.5",
+    "@bga-note/cli-lerna-command-init": "^0.0.6",
+    "@bga-note/cli-lerna-utils": "^0.0.6",
     "commander": "^12.0.0",
     "import-local": "^3.1.0",
     "semver": "^7.6.0",
