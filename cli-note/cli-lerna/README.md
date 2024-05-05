@@ -1,5 +1,7 @@
 # cli-lerna
 
+## 初始化项目
+
 - 通过 npx 使用 lerna 来初始化
 
 ```bash
@@ -13,6 +15,8 @@ npx lerna@5.6.2 init
 npm install -g lerna@5.6.2
 lerna init
 ```
+
+## 初始化 cli-lerna-cli 并发布
 
 - 创建包
 
@@ -71,7 +75,6 @@ lerna exec --scope=@bga-note/cli-lerna-cli -- ls -al
 
 # 仅 @bga-note/cli-lerna-cli 这个包执行 npm link
 lerna exec --scope @bga-note/cli-lerna-cli -- npm link
-lerna exec --scope @bga-note/cli-lerna-cli -- npm unlink
 ```
 
 - npk link 下 @bga-note/cli-lerna-cli 后就能在全局使用 cli-lerna-cli 命令了
@@ -140,18 +143,61 @@ lerna clean
 lerna version
 ```
 
-- 发布
+- `lerna publish` 发布
   - 发布时必须要有 LICENSE.md 文件
   - 如果是发布到组织，默认认为是私有的，需要在 package.json 中通过将 publishConfig.access 指定为 public 才能发布成功
 
 ```bash
-lerna publish
+➜  cli-lerna git:(main) ✗ lerna publish
+info cli using local version of lerna
+lerna notice cli v5.6.2
+lerna info current version 0.0.4
+Enter passphrase for key '/Users/wanghao/.ssh/bga_rsa':
+lerna info Assuming all packages changed
+? Select a new version (currently 0.0.4) Patch (0.0.5)
+
+Changes:
+ - @bga-note/cli-lerna-cli: 0.0.4 => 0.0.5
+
+? Are you sure you want to publish these packages? Yes
+lerna info execute Skipping releases
+lerna info git Pushing tags...
+Enter passphrase for key '/Users/wanghao/.ssh/bga_rsa':
+lerna info publish Publishing packages to npm...
+lerna notice Skipping all user and access validation due to third-party registry
+lerna notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+lerna success published @bga-note/cli-lerna-cli 0.0.5
+lerna notice
+lerna notice 📦  @bga-note/cli-lerna-cli@0.0.5
+lerna notice === Tarball Contents ===
+lerna notice 356B  bin/cli-lerna-cli
+lerna notice 110B  lib/cli-lerna-cli.js
+lerna notice 1.3kB lib/cli.js
+lerna notice 585B  lib/entry-yargs.js
+lerna notice 1.1kB package.json
+lerna notice 0B    LICENSE.md
+lerna notice 116B  README.md
+lerna notice === Tarball Details ===
+lerna notice name:          @bga-note/cli-lerna-cli
+lerna notice version:       0.0.5
+lerna notice filename:      bga-note-cli-lerna-cli-0.0.5.tgz
+lerna notice package size:  1.7 kB
+lerna notice unpacked size: 3.6 kB
+lerna notice shasum:        2af96bd72f04f424edfeb191f0611c8dcd41e070
+lerna notice integrity:     sha512-iDeUoOg3KxNOh[...]9smFm0yQfV6+w==
+lerna notice total files:   7
+lerna notice
+Successfully published:
+ - @bga-note/cli-lerna-cli@0.0.5
+lerna success published 1 package
 ```
 
 - 使用
 
 ```bash
-lerna exec --scope @bga-note/cli-lerna-cli -- npm unlink
+# 取消链接到全局
+rm /Users/wanghao/.nvm/versions/node/v20.12.2/bin/cli-lerna-cli
+rm -rf /Users/wanghao/.nvm/versions/node/v20.12.2/lib/node_modules/@bga-note/cli-lerna-cli
 
 npm i @bga-note/cli-lerna-cli -g --registry https://registry.npmjs.org/
 
