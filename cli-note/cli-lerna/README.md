@@ -212,6 +212,8 @@ lerna create cli-lerna-command-init
 ```bash
 # 用于比较 Node 版本
 lerna add semver --scope @bga-note/cli-lerna-cli
+# 用于输出特定样式的文字
+lerna add chalk --scope @bga-note/cli-lerna-cli
 # 用于封装日志库
 lerna add npmlog --scope @bga-note/cli-lerna-utils
 
