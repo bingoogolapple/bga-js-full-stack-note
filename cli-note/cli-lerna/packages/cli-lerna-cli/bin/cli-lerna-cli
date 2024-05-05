@@ -3,7 +3,7 @@
 "use strict";
 
 const importLocal = require("import-local");
-const log = require("npmlog");
+const { log } = require("@bga-note/cli-lerna-utils");
 const entryYargs = require("../lib/entry-yargs");
 const entry = require("../lib/cli");
 

@@ -115,14 +115,7 @@ lerna add import-local --scope=@bga-note/cli-lerna-cli
 # 或
 lerna add import-local packages/cli-lerna-cli
 
-lerna add npmlog --scope @bga-note/cli-lerna-cli
 lerna add commander --scope @bga-note/cli-lerna-cli
-
-lerna add @bga-note/cli-lerna-utils --scope @bga-note/cli-lerna-cli
-# 或
-lerna add @bga-note/cli-lerna-utils --scope=@bga-note/cli-lerna-cli
-# 或
-lerna add @bga-note/cli-lerna-utils packages/cli-lerna-cli
 ```
 
 - 链接依赖，会把我们自己开发的模块软链接到最外层的 node_modules 中
@@ -202,4 +195,35 @@ rm -rf /Users/wanghao/.nvm/versions/node/v20.12.2/lib/node_modules/@bga-note/cli
 npm i @bga-note/cli-lerna-cli -g --registry https://registry.npmjs.org/
 
 cli-lerna-cli -h
+```
+
+## 初始化各种 command
+
+- 创建包
+
+```bash
+lerna create cli-lerna-utils
+lerna create cli-lerna-command
+lerna create cli-lerna-command-init
+```
+
+- 添加依赖
+
+```bash
+# 用于比较 Node 版本
+lerna add semver --scope @bga-note/cli-lerna-cli
+# 用于封装日志库
+lerna add npmlog --scope @bga-note/cli-lerna-utils
+
+lerna add @bga-note/cli-lerna-utils --scope @bga-note/cli-lerna-command
+# 或
+lerna add @bga-note/cli-lerna-utils --scope= @bga-note/cli-lerna-command
+# 或
+lerna add @bga-note/cli-lerna-utils packages/cli-lerna-command
+
+lerna add @bga-note/cli-lerna-utils --scope @bga-note/cli-lerna-command-init
+lerna add @bga-note/cli-lerna-utils --scope @bga-note/cli-lerna-cli
+
+lerna add @bga-note/cli-lerna-command --scope @bga-note/cli-lerna-command-init
+lerna add @bga-note/cli-lerna-command-init --scope @bga-note/cli-lerna-cli
 ```

@@ -1,23 +1,19 @@
 {
-  "name": "@bga-note/cli-lerna-cli",
+  "name": "@bga-note/cli-lerna-utils",
   "version": "0.0.5",
-  "description": "脚手架学习笔记 cli-lerna-cli",
+  "description": "脚手架学习笔记 cli-lerna-utils",
   "keywords": [
     "bga-note"
   ],
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
   "license": "ISC",
-  "main": "lib/cli-lerna-cli.js",
-  "bin": {
-    "cli-lerna-cli": "bin/cli-lerna-cli"
-  },
+  "main": "lib/cli-lerna-utils.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "files": [
-    "bin",
     "lib"
   ],
   "publishConfig": {
@@ -29,19 +25,12 @@
     "url": "git+https://github.com/bingoogolapple/bga-js-full-stack-note.git"
   },
   "scripts": {
-    "test": "node ./__tests__/cli-lerna-cli.test.js",
-    "dev": "cli-lerna-cli -h"
-  },
-  "dependencies": {
-    "@bga-note/cli-lerna-command-init": "^0.0.5",
-    "@bga-note/cli-lerna-utils": "^0.0.5",
-    "commander": "^12.0.0",
-    "import-local": "^3.1.0",
-    "semver": "^7.6.0",
-    "yargs": "^17.7.2"
+    "test": "node ./__tests__/cli-lerna-utils.test.js"
   },
   "bugs": {
     "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
   },
-  "gitHead": "5f680d9ae383b25607d3de1454c8c240e8a5beea"
+  "dependencies": {
+    "npmlog": "^7.0.1"
+  }
 }
