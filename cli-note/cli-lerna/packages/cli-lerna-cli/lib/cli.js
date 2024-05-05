@@ -1,12 +1,11 @@
-"use strict";
-const createInitCommand = require("@bga-note/cli-lerna-command-init");
-const createCli = require("./createCli");
-require("./exception");
+import createInitCommand from "@bga-note/cli-lerna-command-init";
+import createCli from "./createCli.js";
+import "./exception.js";
 
-module.exports = function () {
+export default function () {
   const program = createCli();
 
   createInitCommand(program);
 
   program.parse(process.argv);
-};
+}

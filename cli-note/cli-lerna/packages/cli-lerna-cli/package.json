@@ -8,7 +8,7 @@
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
   "license": "ISC",
-  "main": "lib/cli-lerna-cli.js",
+  "type": "module",
   "bin": {
     "cli-lerna-cli": "bin/cli-lerna-cli"
   },
@@ -37,6 +37,8 @@
     "@bga-note/cli-lerna-utils": "^0.0.6",
     "chalk": "^5.3.0",
     "commander": "^12.0.0",
+    "dirname-filename-esm": "^1.1.1",
+    "fs-extra": "^11.2.0",
     "import-local": "^3.1.0",
     "semver": "^7.6.0",
     "yargs": "^17.7.2"

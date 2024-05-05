@@ -1,5 +1,5 @@
-const log = require("npmlog");
-const isDebug = require("./isDebug");
+import log from "npmlog";
+import isDebug from "./isDebug.js";
 
 if (isDebug()) {
   log.level = "verbose";
@@ -14,4 +14,4 @@ log.headingStyle = { fg: "black", bg: "white", bold: true };
 // 添加自定义方法，2000 代表等级，info 的等级也是 2000
 log.addLevel("success", 2000, { fg: "white", bg: "green", bold: true });
 
-module.exports = log;
+export default log;

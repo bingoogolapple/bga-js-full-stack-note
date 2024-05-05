@@ -187,3 +187,6 @@ up to date in 10.094s
 - https://www.npmjs.com/package/import-local 在全局安装的命令行工具中自动检测并使用本地安装的版本。当你在项目中同时拥有全局和本地安装的同一个包时，import-local 会确保优先使用项目内部的本地版本。这对于开发和使用命令行工具（如构建工具、脚手架等）非常有用，因为它确保了在任何给定的项目中都使用正确版本的工具，避免了全局和本地版本可能导致的冲突或不一致问题
 - https://www.npmjs.com/package/npmlog 提供了一个灵活的日志记录系统，支持不同级别的日志消息（如 info、warn、error 等），并允许对这些消息进行颜色编码和样式化，以便于在控制台中的阅读和调试
 - https://www.npmjs.com/package/semver 提供了一系列函数，用于比较、分析和操作遵循语义版本控制规范的版本号
+- https://www.npmjs.com/package/fs-extra 扩展了 Node.js 标准库中的 fs 模块（文件系统模块），提供了更多便利的文件操作方法，同时保留了所有原生 fs 模块的功能。fs-extra 添加了一些额外的文件系统方法，使得文件和目录的操作更加简单和直观，特别是在处理复制、移动、删除文件或目录等操作时
+- https://www.npmjs.com/package/dirname-filename-esm 提供了一种在使用 ES 模块（ECMAScript Modules）时获取当前模块文件路径（**filename）和目录路径（**dirname）的方法。在 CommonJS 模块系统中，**filename 和 **dirname 是全局可用的，但在 ES 模块中，这两个变量不再直接可用，因此 dirname-filename-esm 库应运而生，以解决这一问题
+  - 在新版 Node 中已经支持通过 import.meta.filename 和 import.meta.dirname 获取

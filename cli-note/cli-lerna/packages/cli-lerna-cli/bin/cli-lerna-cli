@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-"use strict";
+import importLocal from "import-local";
+import { filename } from "dirname-filename-esm";
+import { log } from "@bga-note/cli-lerna-utils";
+// import entryYargs from "../lib/entry-yargs.js";
+import entry from "../lib/cli.js";
 
-const importLocal = require("import-local");
-const { log } = require("@bga-note/cli-lerna-utils");
-const entryYargs = require("../lib/entry-yargs");
-const entry = require("../lib/cli");
-
+const __filename = filename(import.meta.url);
 if (importLocal(__filename)) {
   log.info("cli", "使用本地版本");
 } else {
   log.info("cli", "使用远程版本");
-  //   entryYargs();
+  // entryYargs();
   entry();
 }

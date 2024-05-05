@@ -3,5 +3,5 @@
 ## Usage
 
 ```js
-const cliLernaCommandInit = require("@bga-note/cli-lerna-command-init");
+import cliLernaCommandInit from "@bga-note/cli-lerna-command-init";
 ```

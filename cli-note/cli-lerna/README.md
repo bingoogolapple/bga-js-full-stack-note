@@ -21,7 +21,7 @@ lerna init
 - 创建包
 
 ```bash
-lerna create cli-lerna-cli --bin cli-lerna-cli
+lerna create cli-lerna-cli --es-module --bin cli-lerna-cli
 ```
 
 - 该命令用于重新安装依赖
@@ -202,14 +202,18 @@ cli-lerna-cli -h
 - 创建包
 
 ```bash
-lerna create cli-lerna-utils
-lerna create cli-lerna-command
-lerna create cli-lerna-command-init
+lerna create cli-lerna-utils --es-module
+lerna create cli-lerna-command --es-module
+lerna create cli-lerna-command-init --es-module
 ```
 
 - 添加依赖
 
 ```bash
+# esm 读取 __dirname 和 __filename
+lerna add dirname-filename-esm --scope @bga-note/cli-lerna-cli
+# 文件操作
+lerna add fs-extra --scope @bga-note/cli-lerna-cli
 # 用于比较 Node 版本
 lerna add semver --scope @bga-note/cli-lerna-cli
 # 用于输出特定样式的文字

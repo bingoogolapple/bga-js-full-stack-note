@@ -1,10 +1,19 @@
-"use strict";
+// node:path 为 esm 的版本，加上 node: 用于明确指示当如的是 Node.js 核心模块，而不是 node_modules 里的
+import path from "node:path";
+import { program } from "commander";
+import semver from "semver";
+import chalk from "chalk";
+import fse from "fs-extra";
+import { dirname } from "dirname-filename-esm";
+import { log } from "@bga-note/cli-lerna-utils";
 
-const { program } = require("commander");
-const semver = require("semver");
-// const chalk = require("chalk");
-const { log } = require("@bga-note/cli-lerna-utils");
-const pkg = require("../package.json");
+// import { fileURLToPath } from "node:url";
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+const __dirname = dirname(import.meta);
+const pkgPath = path.resolve(__dirname, "../package.json");
+const pkg = fse.readJsonSync(pkgPath);
 
 const cliName = Object.keys(pkg.bin)[0];
 
@@ -12,10 +21,9 @@ const LOWEST_NODE_VERSION = "v20.12.2";
 function checkNodeVersion() {
   if (semver.lt(process.version, LOWEST_NODE_VERSION)) {
     throw new Error(
-      // commonjs 使用 esm 版的 chalk 会报错
-      // chalk.red(
-      `${cliName} 需要安装 ${LOWEST_NODE_VERSION} 及以上版本的 Node.js`
-      // )
+      chalk.red(
+        `${cliName} 需要安装 ${LOWEST_NODE_VERSION} 及以上版本的 Node.js`
+      )
     );
   }
 }
@@ -24,7 +32,7 @@ function preAction() {
   checkNodeVersion();
 }
 
-module.exports = function () {
+export default function () {
   log.info("version", pkg.version);
   program
     .name(cliName)
@@ -82,4 +90,4 @@ module.exports = function () {
   //   });
 
   return program;
-};
+}

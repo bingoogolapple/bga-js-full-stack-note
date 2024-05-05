@@ -1,9 +1,6 @@
-"use strict";
+import factory from "yargs/yargs";
 
-const factory = require("yargs/yargs");
-const cliLernaCli = require("./cli-lerna-cli");
-
-module.exports = function () {
+export default function () {
   const parser = factory(null, undefined);
 
   parser.alias("h", "help");
@@ -20,9 +17,8 @@ module.exports = function () {
     (argv) => {
       // cli-lerna-cli init => argv is { _: [ 'init' ], '$0': 'cli-lerna-cli' }
       console.log("argv is", argv);
-      cliLernaCli(argv);
     }
   );
 
   parser.parse(process.argv.slice(2));
-};
+}

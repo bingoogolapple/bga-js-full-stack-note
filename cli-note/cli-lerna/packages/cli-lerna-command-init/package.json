@@ -8,7 +8,9 @@
   "author": "bingoogolapple <bingoogolapple@gmail.com>",
   "homepage": "https://github.com/bingoogolapple/bga-js-full-stack-note#readme",
   "license": "ISC",
-  "main": "lib/cli-lerna-command-init.js",
+  "type": "module",
+  "module": "lib/index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

@@ -1,6 +1,5 @@
-"use strict";
-const Command = require("@bga-note/cli-lerna-command");
-const { log } = require("@bga-note/cli-lerna-utils");
+import Command from "@bga-note/cli-lerna-command";
+import { log } from "@bga-note/cli-lerna-utils";
 
 class InitCommand extends Command {
   get command() {
@@ -27,4 +26,4 @@ function Init(instance) {
   return new InitCommand(instance);
 }
 
-module.exports = Init;
+export default Init;

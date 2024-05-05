@@ -1,5 +1,4 @@
-"use strict";
-const { log, isDebug } = require("@bga-note/cli-lerna-utils");
+import { log, isDebug } from "@bga-note/cli-lerna-utils";
 
 function printError(type, e) {
   if (isDebug()) {

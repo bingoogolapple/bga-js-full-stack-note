@@ -1,5 +1,5 @@
-"use strict";
-const { log } = require("@bga-note/cli-lerna-utils");
+import { log } from "@bga-note/cli-lerna-utils";
+
 class Command {
   constructor(instance) {
     if (!instance) {
@@ -51,4 +51,4 @@ class Command {
     log.info("post", thisCommand.args, actionCommand.args);
   }
 }
-module.exports = Command;
+export default Command;
