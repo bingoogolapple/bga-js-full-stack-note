@@ -1,6 +1,6 @@
 {
   "name": "@bga-note/cli-lerna-command",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "脚手架学习笔记 cli-lerna-command",
   "keywords": [
     "bga-note"
@@ -33,6 +33,6 @@
     "url": "https://github.com/bingoogolapple/bga-js-full-stack-note/issues"
   },
   "dependencies": {
-    "@bga-note/cli-lerna-utils": "^0.0.6"
+    "@bga-note/cli-lerna-utils": "^0.0.7"
   }
 }
