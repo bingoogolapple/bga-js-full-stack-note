@@ -1,0 +1,11 @@
+{
+  "name": "ast-acorn",
+  "version": "1.0.0",
+  "description": "AST 学习笔记-acorn",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

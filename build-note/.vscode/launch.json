@@ -1,0 +1,74 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // 使用 tsx 启动
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+
+      "name": "tsx启动",
+      "runtimeExecutable": "tsx",
+      // "program": "${workspaceFolder}/packages/ast/src/index.ts",
+      "program": "${file}",
+      "runtimeArgs": ["watch"]
+    },
+    // 直接使用 nodemon 启动并调试
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ],
+
+      "name": "nodemon启动",
+      "runtimeExecutable": "nodemon",
+      "runtimeArgs": [
+        "--ext",
+        "ts,json",
+        "--exec",
+        "node --loader ts-node/esm --no-warnings ${workspaceFolder}/packages/ast/src/index.ts"
+      ]
+    },
+    // ts-node 启动
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ],
+
+      "name": "ts-node启动",
+      "runtimeArgs": [
+        "--loader",
+        "ts-node/esm",
+        "--no-warnings",
+        // "${workspaceFolder}/packages/ast/src/index.ts"
+        // 当前选中的文件
+        "${file}"
+      ]
+    },
+    // attach 到通过 node 或 nodemon 启动的应用进行调试
+    {
+      "type": "node",
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ],
+
+      "name": "Attach",
+      "port": 9229,
+      // 设置 restart 为 true 后就不用每次都手动点击去 attach 了
+      "restart": true
+    }
+  ]
+}
