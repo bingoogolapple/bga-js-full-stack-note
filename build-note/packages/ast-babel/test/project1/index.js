@@ -1,4 +1,7 @@
-import { a } from './a/a.js'
-import { b } from './b/b.js'
-// 描述
-console.log(a, b)
+import { getA } from './a/a.js'
+import { getB } from './b/b.js'
+
+// 测试注释
+
+console.log(getA())
+console.log(getB())

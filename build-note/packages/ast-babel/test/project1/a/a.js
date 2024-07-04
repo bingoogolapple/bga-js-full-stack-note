@@ -1,8 +1,6 @@
-import { printB } from "../b/b.js";
-printB('来自a.js的消息')
-
+import { b } from "../b/b.js";
 
 export const a = "a-value";
-export const printA = (msg) => {
-  console.log(`在 a.js 中打印：${msg}`);
+export const getA = () => {
+  return `在 a.js 中打印：${b}`;
 };
