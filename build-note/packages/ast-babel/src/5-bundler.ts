@@ -28,7 +28,19 @@ const collect = (filePath: string, parentKey?: string) => {
         return
     }
 
-    const code = readFileSync(filePath, 'utf-8').toString()
+    let code = readFileSync(filePath, 'utf-8').toString()
+    if (/\.css$/.test(filePath)) {
+        // 如果文件以 .css 结尾，就把 css 变为 js，并自动加载到 head 里
+        code = `const str = ${JSON.stringify(code)};
+if (document) {
+    const style = document.createElement('style');
+    style.innerHTML = str;
+    document.head.appendChild(style);
+}
+export default str;
+`
+    }
+
     // 转换为 es5
     const es5Result = transform(code, {
         presets: ['@babel/preset-env'],

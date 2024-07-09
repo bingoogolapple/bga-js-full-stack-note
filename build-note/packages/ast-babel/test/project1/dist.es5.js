@@ -1,12 +1,13 @@
 var moduleInfoList = [
     {
         key: "index.js",
-        depPathToProjectPathMap: {"./a/a.js":"a/a.js","./b/b.js":"b/b.js"},
+        depPathToProjectPathMap: {"./a/a.js":"a/a.js","./b/b.js":"b/b.js","./index.css":"index.css"},
         code: function(require, module, exports) {
             "use strict";
 
 var _a = require("./a/a.js");
 var _b = require("./b/b.js");
+require("./index.css");
 // 测试注释
 
 console.log((0, _a.getA)());
@@ -15,7 +16,7 @@ console.log((0, _b.getB)());
     },
     {
         key: "a/a.js",
-        depPathToProjectPathMap: {"../b/b.js":"b/b.js"},
+        depPathToProjectPathMap: {"../b/b.js":"b/b.js","./a.css":"a/a.css"},
         code: function(require, module, exports) {
             "use strict";
 
@@ -24,6 +25,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getA = exports.a = void 0;
 var _b = require("../b/b.js");
+require("./a.css");
 var a = exports.a = "a-value";
 var getA = exports.getA = function getA() {
   return "\u5728 a.js \u4E2D\u6253\u5370\uFF1A".concat(_b.b);
@@ -32,7 +34,7 @@ var getA = exports.getA = function getA() {
     },
     {
         key: "b/b.js",
-        depPathToProjectPathMap: {"../a/a.js":"a/a.js"},
+        depPathToProjectPathMap: {"../a/a.js":"a/a.js","./b.css":"b/b.css"},
         code: function(require, module, exports) {
             "use strict";
 
@@ -41,10 +43,68 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getB = exports.b = void 0;
 var _a = require("../a/a.js");
+require("./b.css");
 var b = exports.b = "b-value";
 var getB = exports.getB = function getB() {
   return "\u5728 b.js \u4E2D\u6253\u5370\uFF1A".concat(_a.a);
 };
+        }
+    },
+    {
+        key: "b/b.css",
+        depPathToProjectPathMap: {},
+        code: function(require, module, exports) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var str = ".b {\n    color: blue;\n}";
+if (document) {
+  var style = document.createElement('style');
+  style.innerHTML = str;
+  document.head.appendChild(style);
+}
+var _default = exports["default"] = str;
+        }
+    },
+    {
+        key: "a/a.css",
+        depPathToProjectPathMap: {},
+        code: function(require, module, exports) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var str = ".a {\n    color: green;\n}";
+if (document) {
+  var style = document.createElement('style');
+  style.innerHTML = str;
+  document.head.appendChild(style);
+}
+var _default = exports["default"] = str;
+        }
+    },
+    {
+        key: "index.css",
+        depPathToProjectPathMap: {},
+        code: function(require, module, exports) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var str = "body {\n    color: red;\n}";
+if (document) {
+  var style = document.createElement('style');
+  style.innerHTML = str;
+  document.head.appendChild(style);
+}
+var _default = exports["default"] = str;
         }
     }
 ];

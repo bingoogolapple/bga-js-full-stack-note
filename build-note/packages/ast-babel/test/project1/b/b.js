@@ -1,4 +1,5 @@
 import { a } from "../a/a.js";
+import './b.css';
 
 export const b = "b-value";
 export const getB = () => {
