@@ -1,6 +1,22 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // 通过 npm 执行指定 script 启动，这里是执行 scripts 里的 dev
+    // 其实鼠标放到对应的 script 上时会悬浮提示 Run Script | Debug Script，此时直接点击 Debug Script 也能调试
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run-script", "dev"]
+
+      // "runtimeExecutable": "pnpm",
+      // "runtimeArgs": ["dev"]
+    },
     // 使用 tsx 启动
     {
       "type": "node",
