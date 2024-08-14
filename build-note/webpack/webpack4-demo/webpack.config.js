@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  // 差异：Webpack4 中对应 webpack-dev-server 版本是 3
   devServer: {
     contentBase: "./dist",
   },
@@ -25,6 +26,7 @@ module.exports = {
   module: {
     rules: [
       // 加载 css
+      // 差异：Webpack4 中对应 style-loader 版本是 2，css-loader 版本是 5，否则打包时会报错 TypeError: this.getOptions is not a function
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
@@ -39,22 +41,24 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ["file-loader"],
       },
-      // 加载 csv
+      // 加载 csv 文件
       {
         test: /\.(csv|tsv)$/,
         use: ["csv-loader"],
       },
-      // 加载 xml
+      // 加载 xml 文件
       {
         test: /\.xml$/,
         use: ["xml-loader"],
       },
+      // 差异：不支持自定义 json 模块 parser 来解析 toml、yaml、json5 等文件类型
     ],
   },
   plugins: [
-    // 在每次构建前清理 /dist 文件夹
+    // 差异：Webpack4 中使用 CleanWebpackPlugin 来实现在每次构建前清理 /dist 文件夹
     new CleanWebpackPlugin(),
     // 生成 index.html 文件，所有的 bundle 会自动添加到 html 中
+    // 差异：Webpack4 中对应 html-webpack-plugin 版本是 4
     new HtmlWebpackPlugin({
       title: "webpack4",
     }),
