@@ -1,2 +1,5 @@
 packages:
-  - "packages/*"
+  - "ast/*"
+  - "webpack/*"
+  - "vite/*"
+  - "rollup/*"

@@ -27,7 +27,7 @@
 
       "name": "tsx启动",
       "runtimeExecutable": "tsx",
-      // "program": "${workspaceFolder}/packages/ast/src/index.ts",
+      // "program": "${workspaceFolder}/ast/ast-babel/src/index.ts",
       "program": "${file}",
       "runtimeArgs": ["watch"]
     },
@@ -48,7 +48,7 @@
         "--ext",
         "ts,json",
         "--exec",
-        "node --loader ts-node/esm --no-warnings ${workspaceFolder}/packages/ast/src/index.ts"
+        "node --loader ts-node/esm --no-warnings ${workspaceFolder}/ast/ast-babel/src/index.ts"
       ]
     },
     // ts-node 启动
@@ -67,7 +67,7 @@
         "--loader",
         "ts-node/esm",
         "--no-warnings",
-        // "${workspaceFolder}/packages/ast/src/index.ts"
+        // "${workspaceFolder}/ast/ast-babel/src/index.ts"
         // 当前选中的文件
         "${file}"
       ]
