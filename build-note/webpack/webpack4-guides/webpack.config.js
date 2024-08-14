@@ -5,22 +5,24 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   // 差异：Webpack4 中对应 webpack-dev-server 版本是 3
+  // 访问地址：http://[devServer.host]:[devServer.port]/[output.publicPath]/[output.filename]
   devServer: {
     contentBase: "./dist",
   },
   devtool: "inline-source-map",
   optimization: {
+    // 单个 HTML 页面有多个入口，所以添加了 optimization.runtimeChunk: 'single' 配置，避免遇到这个问题 https://bundlers.tooling.report/code-splitting/multi-entry/
     runtimeChunk: "single",
   },
-  //   entry: "./src/index.js", // 指定单个时 name 默认为 main
+  //   entry: "./src/index.js", // 默认值就是 ./src/index.js。指定单个时 name 默认为 main
   entry: {
     index: "./src/index.js",
     print: "./src/print.js",
   },
   output: {
-    // filename: "main.js",
+    // filename: "main.js", // 默认值就是 main.js
     filename: "[name].bundle.[hash:8].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist"), // 默认值就是 dist 目录
     publicPath: "/",
   },
   module: {
@@ -60,7 +62,7 @@ module.exports = {
     // 生成 index.html 文件，所有的 bundle 会自动添加到 html 中
     // 差异：Webpack4 中对应 html-webpack-plugin 版本是 4
     new HtmlWebpackPlugin({
-      title: "webpack4",
+      title: "webpack4-guides",
     }),
   ],
 };

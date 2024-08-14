@@ -1,11 +1,11 @@
-# webpack4-demo
+# webpack4-guides
 
 ```shell
-mkdir webpack4-demo && cd webpack4-demo
+mkdir webpack4-guides && cd webpack4-guides
 pnpm init
 
-# webpack 4 对应 webpack-cli 版本是 3
-pnpm add -D install webpack@4 webpack-cli@3
+# webpack 4 对应 webpack-cli（从 webpack 4+ 开始需要单独安装 webpack-cli）版本是 3
+pnpm add -D webpack@4 webpack-cli@3
 
 pnpm add lodash
 
@@ -13,7 +13,7 @@ pnpm add lodash
 npx webpack
 # 不指定 --config 时，如果 webpack.config.js 存在，则 webpack 命令将默认选择使用它
 npx webpack --config webpack.config.js
-# 可以通过在 npm run build 命令与参数之间添加两个连接符的方式向 webpack 传递自定义参数，例如：npm run build -- --color
+# 可以通过在 npm run build 命令与参数之间添加两个连接符的方式向 webpack 传递自定义参数，例如：npm run build -- --colors
 
 # 加载 css，注意：Webpack4 中对应 style-loader 版本是 2，css-loader 版本是 5，否则打包时会报错 TypeError: this.getOptions is not a function
 pnpm add -D style-loader@2 css-loader@5
@@ -23,9 +23,9 @@ pnpm add -D file-loader
 
 # 加载 fonts 字体，，Webpack4 中需要单独安装 file-loader，配置 roles 时指定 use 为 file-loader 即可
 
-# 加载 csv
+# 加载 csv、tsv 文件
 pnpm add -D csv-loader
-# 加载 xml
+# 加载 xml 文件
 pnpm add -D xml-loader
 
 # 加载 json 是内置支持的，无需配置任何 loader
@@ -41,17 +41,17 @@ pnpm add -D clean-webpack-plugin
 # 使用 webpack-dev-server，Webpack4 中对应 webpack-dev-server 版本是 3
 pnpm add -D webpack-dev-server@3
 
-# Webpack 4 中如果想要通过 webpack serve 来启动，则还需要安装 @webpack-cli/serve
-pnpm add -D @webpack-cli/serve@1.6.1
-
 # 使用 webpack-dev-middleware，在 express 中集成使用，Webpack4 中对应 webpack-dev-middleware 版本是 3
 pnpm add -D express webpack-dev-middleware@5
 ```
 
 ## 已完成
 
-- 安装
-- 起步
-- 管理资源
-- 管理输出
-- 开发环境
+- 指南
+  - 安装
+  - 起步
+  - 管理资源
+  - 管理输出
+  - 开发环境
+- 概念
+  - TODO
