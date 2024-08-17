@@ -55,7 +55,7 @@ pnpm add -D express webpack-hot-middleware
 - 概念
   - 模块热替换(hot module replacement)
 - 配置
-  - TODO
+  - DevServer
 - 指南
   - 安装
   - 起步

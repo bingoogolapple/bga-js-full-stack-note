@@ -10,7 +10,7 @@
     "version": "webpack -v",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server",
     "server-middleware": "node server-middleware.js"
   },
   "dependencies": {
