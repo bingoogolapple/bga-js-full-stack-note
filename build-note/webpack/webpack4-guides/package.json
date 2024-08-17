@@ -11,7 +11,7 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
-    "server": "node server.js"
+    "server-middleware": "node server-middleware.js"
   },
   "dependencies": {
     "lodash": "^4.17.21"
@@ -28,6 +28,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^5.3.4",
     "webpack-dev-server": "^3.11.3",
+    "webpack-hot-middleware": "^2.26.1",
     "xml-loader": "^1.2.1"
   }
 }

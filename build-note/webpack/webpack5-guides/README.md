@@ -40,16 +40,30 @@ pnpm add -D html-webpack-plugin@5
 # 使用 webpack-dev-server，Webpack5 中对应 webpack-dev-server 版本是 5（与 webpack-cli 5 结合使用） 或者 4（与 webpack-cli 4 结合使用），在 Webpack5 中比 Webpack4 多了通过 webpack serve --open 来启动
 pnpm add -D webpack-dev-server@5
 
-# 使用 webpack-dev-middleware，在 express 中集成使用，Webpack5 中对应 webpack-dev-middleware 版本是 7 或者 6
+# 使用 webpack-dev-middleware，在 express 中集成使用服务，Webpack5 中对应 webpack-dev-middleware 版本是 7 或者 6
 pnpm add -D express webpack-dev-middleware@7
+
+# 使用 webpack-hot-middleware，在 express 中集成使用模块热替换
+pnpm add -D express webpack-hot-middleware
 ```
 
 ## 已完成
 
+- API
+  - webpack-dev-server API
+  - Hot Module Replacement
+- 概念
+  - 模块热替换(hot module replacement)
+- 配置
+  - TODO
 - 指南
+  - 安装
   - 起步
   - 管理资源
   - 管理输出
   - 开发环境
-- 概念
+  - 模块热替换
+- Loader
+  - TODO
+- Plugin
   - TODO

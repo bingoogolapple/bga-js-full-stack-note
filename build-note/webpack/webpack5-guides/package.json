@@ -12,7 +12,7 @@
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
     "serve": "webpack serve --open",
-    "server": "node server.js"
+    "server-middleware": "node server-middleware.js"
   },
   "dependencies": {
     "lodash": "^4.17.21"
@@ -29,6 +29,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "^7.3.0",
     "webpack-dev-server": "^5.0.4",
+    "webpack-hot-middleware": "^2.26.1",
     "xml-loader": "^1.2.1",
     "yamljs": "^0.3.0"
   }

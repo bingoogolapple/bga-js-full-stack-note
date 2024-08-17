@@ -41,17 +41,29 @@ pnpm add -D clean-webpack-plugin
 # 使用 webpack-dev-server，Webpack4 中对应 webpack-dev-server 版本是 3
 pnpm add -D webpack-dev-server@3
 
-# 使用 webpack-dev-middleware，在 express 中集成使用，Webpack4 中对应 webpack-dev-middleware 版本是 3
+# 使用 webpack-dev-middleware，在 express 中集成使用开发服务，Webpack4 中对应 webpack-dev-middleware 版本是 3
 pnpm add -D express webpack-dev-middleware@5
+
+# 使用 webpack-hot-middleware，在 express 中集成使用模块热替换
+pnpm add -D express webpack-hot-middleware
 ```
 
 ## 已完成
 
+- API
+  - 模块热替换
+- 概念
+  - 模块热替换(hot module replacement)
+- 配置
+  - TODO
 - 指南
   - 安装
   - 起步
   - 管理资源
   - 管理输出
   - 开发环境
-- 概念
+  - 模块热替换
+- Loader
+  - TODO
+- Plugin
   - TODO

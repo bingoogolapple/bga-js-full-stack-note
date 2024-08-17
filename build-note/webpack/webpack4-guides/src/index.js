@@ -16,11 +16,12 @@ import csvData from "./data.csv";
 
 import printMe, { printMe2 } from "./print";
 
-import obj from './obj.js';
-obj.count++;
-console.log('index.js count', obj.count);
+import obj from "./obj.js";
 
 function component() {
+  obj.count++;
+  console.log("index.js count", obj.count);
+
   const element = document.createElement("div");
 
   // lodash 在当前 script 中使用 import 引入
@@ -56,4 +57,20 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+// 存储 element，以在对应模块修改时重新渲染
+let element = component();
+document.body.appendChild(element);
+
+// style-loader 使用模块热替换来加载 CSS。此 loader 在幕后使用了 module.hot.accept，在 CSS 依赖模块更新之后，会将其 patch 到 <style> 标签中
+// 处理对应模块热替换，这里是手动处理的，检测到 sum.js 变更时重新渲染组件。真实项目开发时有对应的 loader 来指定添加相应的 hot 代码
+if (module.hot) {
+  module.hot.accept("./sum.js", function () {
+    console.log("Accepting the updated sum module!");
+    printMe();
+
+    document.body.removeChild(element);
+    // 重新渲染 component
+    element = component();
+    document.body.appendChild(element);
+  });
+}

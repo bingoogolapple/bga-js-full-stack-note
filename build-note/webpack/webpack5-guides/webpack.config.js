@@ -5,6 +5,7 @@ const yaml = require("yamljs");
 const json5 = require("json5");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -12,14 +13,18 @@ module.exports = {
   // 访问地址：http://[devServer.host]:[devServer.port]/[output.publicPath]/[output.filename]
   devServer: {
     static: "./dist",
+    // 差异：从 Webpack 5（webpack-dev-server 4）开始，模块热替换是默认开启的。不过也可以为 HMR 提供入口起点 https://webpack.docschina.org/guides/hot-module-replacement/#enabling-hmr
+    hot: true,
   },
   devtool: "inline-source-map",
   optimization: {
     // 单个 HTML 页面有多个入口，所以添加了 optimization.runtimeChunk: 'single' 配置，避免遇到这个问题 https://bundlers.tooling.report/code-splitting/multi-entry/
     runtimeChunk: "single",
   },
-  //   entry: "./src/index.js", // 默认值就是 ./src/index.js。指定单个时 name 默认为 main
+  // entry: "./src/index.js", // 默认值就是 ./src/index.js。指定单个时 name 默认为 main
+  // entry: ["webpack-hot-middleware/client", "./src/index.js"], // 通过 middleware 方式使用 hmr 时需要配成这种方式
   entry: {
+    // index: ["webpack-hot-middleware/client", "./src/index.js"], // 通过 middleware 方式使用 hmr 时需要配成这种方式
     index: "./src/index.js",
     print: "./src/print.js",
   },
@@ -86,10 +91,15 @@ module.exports = {
     ],
   },
   plugins: [
+    // 差异：Webpack5 中不需要使用 CleanWebpackPlugin 来实现在每次构建前清理 /dist 文件夹，直接给 output 配置 clean 为 true 即可实现相同功能
+
     // 生成 index.html 文件，所有的 bundle 会自动添加到 html 中
-    // 差异：Webpack5 中对应 webpack-dev-server 版本是 4，在 Webpack5 中也可以不手动安装 webpack-dev-server，在 scripts 中配置「"serve": "./node_modules/.bin/webpack serve"」后启动时会自动安装
+    // 差异：Webpack5 中对应 html-webpack-plugin 版本是 5
     new HtmlWebpackPlugin({
       title: "webpack5-guides",
     }),
+
+    // 差异：从 Webpack 5（webpack-dev-server 4）开始，模块热替换是默认开启的，不需要单独配置 webpack 内置的 HMR 插件，但通过 middleware 方式使用时还是要显示配置 HMR 插件
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };

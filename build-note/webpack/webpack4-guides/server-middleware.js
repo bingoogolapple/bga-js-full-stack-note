@@ -1,6 +1,7 @@
 const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
 
 const app = express();
 const config = require("./webpack.config.js");
@@ -13,6 +14,8 @@ app.use(
     publicPath: config.output.publicPath,
   })
 );
+// 启用模块热替换
+app.use(webpackHotMiddleware(compiler));
 
 // 将文件 serve 到 port 3000。
 app.listen(3000, function () {
