@@ -5,6 +5,7 @@ const yaml = require("yamljs");
 const json5 = require("json5");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 
 module.exports = {
@@ -78,6 +79,7 @@ module.exports = {
     // 单个 HTML 页面有多个入口，所以添加了 optimization.runtimeChunk: 'single' 配置，避免遇到这个问题 https://bundlers.tooling.report/code-splitting/multi-entry/
     // runtimeChunk 将 runtime 代码拆分为一个单独的 chunk，将 runtimeChunk 设置为 single 来为所有 chunk 创建一个 runtime bundle
     runtimeChunk: "single",
+    // SplitChunksPlugin 插件可以将公共的依赖模块提取到已有的入口 chunk 中，或者提取到一个新生成的 chunk
     splitChunks: {
       cacheGroups: {
         vendor: {
@@ -96,6 +98,16 @@ module.exports = {
     // index: ["webpack-hot-middleware/client", "./src/index.js"], // 通过 middleware 方式使用 hmr 时需要配成这种方式
     index: "./src/index.js",
     print: "./src/print.js",
+    // 在配置文件中配置 dependOn 选项，以在多个 chunk 之间共享模块
+    // index: {
+    //   import: "./src/index.js",
+    //   dependOn: "shared",
+    // },
+    // print: {
+    //   import: "./src/print.js",
+    //   dependOn: "shared",
+    // },
+    // shared: "lodash",
   },
   output: {
     // filename: "main.js", // 默认值就是 main.js
@@ -113,7 +125,8 @@ module.exports = {
       // 差异：Webpack5 中对应 style-loader 版本是 3（也支持 2），css-loader 版本是 6（也支持 5）
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        // use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       // 差异：加载 images 图像，Webpack5 中不需要单独安装 file-loader，配置 roles 时指定 type 为 asset/resource 即可，使用内置的 Asset Modules 可以接收并加载任何文件
       {
@@ -170,6 +183,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "webpack5-guides",
     }),
+
+    // 用于将 CSS 从主应用程序中分离
+    // 差异：Webpack5 中对应 mini-css-extract-plugin 版本是 2
+    new MiniCssExtractPlugin(),
 
     // 差异：从 Webpack 5（webpack-dev-server 4）开始，模块热替换是默认开启的，不需要单独配置 webpack 内置的 HMR 插件，但通过 middleware 方式使用时还是要显示配置 HMR 插件
     new webpack.HotModuleReplacementPlugin(),

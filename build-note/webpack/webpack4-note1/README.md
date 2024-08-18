@@ -50,25 +50,7 @@ pnpm add -D express webpack-hot-middleware
 # 运行 tree shaking 需要 ModuleConcatenationPlugin。通过 mode: "production" 可以添加此插件。如果没有使用 mode 设置，需手动添加 ModuleConcatenationPlugin
 
 # 避免在生产中使用 inline-*** 和 eval-***，因为它们会增加 bundle 体积大小，并降低整体性能
+
+# mini-css-extract-plugin 用于将 CSS 从主应用程序中分离，Webpack4 中对应 mini-css-extract-plugin 版本是 1
+pnpm add -D mini-css-extract-plugin@1
 ```
-
-## 已完成
-
-- API
-  - 模块热替换
-- 概念
-  - 模块热替换(hot module replacement)
-- 配置
-  - 开发中 server(devServer)
-- 指南
-  - 安装
-  - 起步
-  - 管理资源
-  - 管理输出
-  - 开发环境
-  - 模块热替换
-  - Tree Shaking
-- Loader
-  - TODO
-- Plugin
-  - ModuleConcatenationPlugin
