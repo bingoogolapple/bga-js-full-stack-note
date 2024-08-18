@@ -1,4 +1,4 @@
-// import _ from "lodash";
+import _ from "lodash";
 // es module
 import sum from "./sum";
 // commonjs
@@ -28,7 +28,7 @@ function component() {
 
   // lodash 在当前 script 中使用 import 引入
   let innerHTML = "";
-  // innerHTML += _.join(["Hello", "webpack4"], " ");
+  innerHTML += _.join(["Hello", "webpack4"], " ");
   innerHTML += sum(1, 3);
   innerHTML += minus(5, 2);
   innerHTML += cube(5);
