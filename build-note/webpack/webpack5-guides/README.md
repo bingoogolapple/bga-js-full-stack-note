@@ -45,6 +45,8 @@ pnpm add -D express webpack-dev-middleware@7
 
 # 使用 webpack-hot-middleware，在 express 中集成使用模块热替换
 pnpm add -D express webpack-hot-middleware
+
+# 运行 tree shaking 需要 ModuleConcatenationPlugin。通过 mode: "production" 可以添加此插件。如果没有使用 mode 设置，需手动添加 ModuleConcatenationPlugin
 ```
 
 ## 已完成
@@ -63,7 +65,8 @@ pnpm add -D express webpack-hot-middleware
   - 管理输出
   - 开发环境
   - 模块热替换
+  - Tree Shaking
 - Loader
   - TODO
 - Plugin
-  - TODO
+  - ModuleConcatenationPlugin

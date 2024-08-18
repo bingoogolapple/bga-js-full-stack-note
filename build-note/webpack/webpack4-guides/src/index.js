@@ -1,8 +1,10 @@
-import _ from "lodash";
+// import _ from "lodash";
 // es module
 import sum from "./sum";
 // commonjs
 const minus = require("./minus");
+
+import { cube } from "./math.js";
 
 import "./iconfont.css";
 
@@ -25,8 +27,12 @@ function component() {
   const element = document.createElement("div");
 
   // lodash 在当前 script 中使用 import 引入
-  element.innerHTML =
-    _.join(["Hello", "webpack4"], " ") + sum(1, 3) + minus(5, 2);
+  let innerHTML = "";
+  // innerHTML += _.join(["Hello", "webpack4"], " ");
+  innerHTML += sum(1, 3);
+  innerHTML += minus(5, 2);
+  innerHTML += cube(5);
+  element.innerHTML = innerHTML;
 
   // amd
   require(["./multi"], function (multi) {

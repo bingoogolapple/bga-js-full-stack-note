@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
+  // mode: "production",
   mode: "development",
   // https://v4.webpack.docschina.org/configuration/dev-server
   // 差异：Webpack4 中对应 webpack-dev-server 版本是 3
@@ -37,6 +38,7 @@ module.exports = {
   optimization: {
     // 单个 HTML 页面有多个入口，所以添加了 optimization.runtimeChunk: 'single' 配置，避免遇到这个问题 https://bundlers.tooling.report/code-splitting/multi-entry/
     runtimeChunk: "single",
+    // usedExports: true,
   },
   // entry: "./src/index.js", // 默认值就是 ./src/index.js。指定单个时 name 默认为 main
   // entry: ["webpack-hot-middleware/client", "./src/index.js"], // 通过 middleware 方式使用 hmr 时需要配成这种方式
