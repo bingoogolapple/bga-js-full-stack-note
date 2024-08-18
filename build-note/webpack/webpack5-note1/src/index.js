@@ -4,7 +4,12 @@ import sum from "./sum";
 // commonjs
 const minus = require("./minus");
 
-import { cube } from "./math.js";
+import { cube } from "./testTreeShaking.js";
+
+// preload chunk 会在父 chunk 加载时，以并行方式开始加载；具有中等优先级，并立即下载；会在父 chunk 中立即请求，用于当下时刻
+// import(/* webpackPreload: true */ "./testLazyLoading");
+// prefetch chunk 会在父 chunk 加载结束后开始加载；在浏览器闲置时下载；会用于未来的某个时刻
+// import(/* webpackPrefetch: true */ "./testLazyLoading");
 
 import "./iconfont.css";
 
@@ -27,7 +32,9 @@ function component() {
   obj.count++;
   console.log("index.js count", obj.count);
 
+  const root = document.createElement("div");
   const element = document.createElement("div");
+  root.appendChild(element);
 
   // lodash 在当前 script 中使用 import 引入
   let innerHTML = "";
@@ -64,11 +71,20 @@ function component() {
 
   const btnElement = document.createElement("button");
   btnElement.innerHTML = "Click me and check the console!";
-  btnElement.onclick = printMe;
-  element.appendChild(btnElement);
+  btnElement.onclick = async () => {
+    printMe();
+    // 打包后的 bundle 名称默认是数字
+    // const math = await import("./testLazyLoading.js");
+    // 也可以通过 webpackChunkName 自定义
+    const math = await import(
+      /* webpackChunkName: "testLazyLoading" */ "./testLazyLoading.js"
+    );
+    console.log(math.square(3));
+  };
+  root.appendChild(btnElement);
   printMe2();
 
-  return element;
+  return root;
 }
 
 // 存储 element，以在对应模块修改时重新渲染
