@@ -15,6 +15,9 @@ import Icon from "./icon.png";
 import jsonData from "./data.json";
 import xmlData from "./data.xml";
 import csvData from "./data.csv";
+import tomlData from "./data.toml";
+import yamlData from "./data.yaml";
+import json5Data from "./data.json5";
 
 import printMe, { printMe2 } from "./print";
 
@@ -32,6 +35,8 @@ function component() {
   innerHTML += sum(1, 3);
   innerHTML += minus(5, 2);
   innerHTML += cube(5);
+  // 从 webpack v4 开始, 指定 mode 会自动地配置 DefinePlugin
+  innerHTML += process.env.NODE_ENV;
   element.innerHTML = innerHTML;
 
   // amd
@@ -53,6 +58,9 @@ function component() {
   console.log("jsonData", jsonData);
   console.log("xmlData", xmlData);
   console.log("csvData", csvData);
+  console.log("tomlData", tomlData);
+  console.log("yamlData", yamlData);
+  console.log("json5Data", json5Data);
 
   const btnElement = document.createElement("button");
   btnElement.innerHTML = "Click me and check the console!";
@@ -69,7 +77,9 @@ document.body.appendChild(element);
 
 // style-loader 使用模块热替换来加载 CSS。此 loader 在幕后使用了 module.hot.accept，在 CSS 依赖模块更新之后，会将其 patch 到 <style> 标签中
 // 处理对应模块热替换，这里是手动处理的，检测到 sum.js 变更时重新渲染组件。真实项目开发时有对应的 loader 来指定添加相应的 hot 代码
+// if (import.meta.webpackHot) {
 if (module.hot) {
+  // import.meta.webpackHot.accept("./sum.js", function () {
   module.hot.accept("./sum.js", function () {
     console.log("Accepting the updated sum module!");
     printMe();

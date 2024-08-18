@@ -1,7 +1,7 @@
-# webpack4-guides
+# webpack4-note1
 
 ```shell
-mkdir webpack4-guides && cd webpack4-guides
+mkdir webpack4-note1 && cd webpack4-note1
 pnpm init
 
 # webpack 4 对应 webpack-cli（从 webpack 4+ 开始需要单独安装 webpack-cli）版本是 3
@@ -48,6 +48,8 @@ pnpm add -D express webpack-dev-middleware@5
 pnpm add -D express webpack-hot-middleware
 
 # 运行 tree shaking 需要 ModuleConcatenationPlugin。通过 mode: "production" 可以添加此插件。如果没有使用 mode 设置，需手动添加 ModuleConcatenationPlugin
+
+# 避免在生产中使用 inline-*** 和 eval-***，因为它们会增加 bundle 体积大小，并降低整体性能
 ```
 
 ## 已完成
