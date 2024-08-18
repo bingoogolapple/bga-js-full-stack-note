@@ -108,7 +108,7 @@ module.exports = {
     // 生成 index.html 文件，所有的 bundle 会自动添加到 html 中
     // 差异：Webpack4 中对应 html-webpack-plugin 版本是 4
     new HtmlWebpackPlugin({
-      title: "webpack4-guides",
+      title: "webpack4-note1",
     }),
 
     // 用于将 CSS 从主应用程序中分离
