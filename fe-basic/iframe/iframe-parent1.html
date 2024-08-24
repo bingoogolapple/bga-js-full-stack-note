@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe-parent1-原始用法</title>
+</head>
+
+<body>
+    <h1>iframe-parent1-原始用法</h1>
+    <button id="btn">获取 iframe 信息</button>
+    <button onclick="openNewWindow()">打开新页面</button>
+    <br><br>
+    <!-- <iframe width="500" height="500" src="./iframe-child1.html" id="iframe1"></iframe> -->
+    <iframe width="500" height="500" src="http://127.0.0.1:8080/iframe-child1.html" id="iframe1"></iframe>
+    <!-- <iframe width="500" height="500" src="http://127.0.0.1:8081/iframe-child1.html" id="iframe1"></iframe> -->
+    <!-- <iframe width="500" height="500" src="http://127.0.0.1:5500/fe-basic/iframe/iframe-child1.html" id="iframe1"></iframe> -->
+</body>
+<script>
+    /*
+    npm install -g http-server
+    http-server -p 8081
+
+    http://127.0.0.1:8081/iframe-parent1.html
+    */
+
+    setTimeout(() => {
+        console.log('window.frames[0] 获取第 0 个子 iframe 的 contentWindow', window.frames[0])
+        console.log('window.iframe1 获取 id 为 iframe1 的子 iframe', window.iframe1)
+        console.log('window.iframe1.contentWindow 获取 id 为 iframe1 的子 iframe 的 contentWindow', window.iframe1.contentWindow)
+        console.log('iframe1 获取 id 为 iframe1 的子 iframe', iframe1)
+        console.log('iframe1.contentWindow 获取 id 为 iframe1 的子 iframe 的 contentWindow', iframe1.contentWindow)
+        console.log('window.iframe1 === iframe', window.iframe1 === iframe1)
+        console.log('window.frames[0] === iframe1.contentWindow', window.frames[0] === iframe1.contentWindow)
+
+        // 同域时拿到的就是 iframe1 的 document，非同域时拿到的是 null
+        console.log('iframe1.contentDocument', iframe1.contentDocument)
+        try {
+            // 同域时拿到的就是 iframe1 的 window.location.href
+            // 非同域时报错 DOMException: Failed to read a named property 'href' from 'Location': Blocked a frame with origin "http://127.0.0.1:5500" from accessing a cross-origin frame
+            // console.log('iframe1.contentWindow.location', iframe1.contentWindow.location.href)
+        } catch (e) {
+            console.error('获取子 iframe 的 href 失败', e)
+        }
+        // 但是非同域时也可以用 iframe1.contentWindow.location 的 replace 方法
+        // iframe1.contentWindow.location.replace('http://127.0.0.1:8080/iframe-child2.html')
+        // 但是非同域时也可以用 iframe1.src 拿到子 iframe 的链接
+        console.log('iframe1.src', iframe1.src)
+    }, 1000);
+
+
+    iframe1.onload = () => {
+        window.addEventListener("message", event => {
+            if (typeof event.data !== "object" || !event.data) {
+                console.log(`父窗口 ${window.location.origin} 收到来自子 iframe ${event.origin} 的非法消息`)
+                return
+            }
+
+            console.log(`父窗口 ${window.location.origin} 收到来自子 iframe ${event.origin} 的合法消息`)
+
+            const { type, data } = event.data
+            if (type === 'getUserInfo') {
+                console.log('a2：父窗口收到子 iframe 发起的获取用户信息请求，返回数据给子 frame', event)
+                // iframe1.contentWindow.postMessage({
+                event.source.postMessage({
+                    type: 'getUserInfo',
+                    data: {
+                        id: 1,
+                        name: '用户名',
+                        phone: '11111111111'
+                    }
+                }, iframe1.src)
+            } else if (type === 'getMore') {
+                console.log('b3：父窗口收到子 iframe 返回更多信息', data)
+            } else if (type === 'getMessageFromNewWindow') {
+                console.log('d2：opener 收到新窗口发起的获取信息请求，返回数据给新窗口', event)
+                event.source.postMessage({
+                    type: 'getMessageFromNewWindow',
+                    data: {
+                        msg: '我是来自 opener 的响应消息'
+                    }
+                }, '*')
+            } else if (type === 'getMessageFromOpener') {
+                console.log('c3：opener 收到新窗口返回信息', data, event)
+            } else {
+                console.log(`父窗口 ${window.location.origin} 收到来自子 iframe ${event.origin} 的未知类型消息`, event.data)
+            }
+        }, false)
+
+        document.getElementById('btn').onclick = () => {
+            console.log('b1：父窗口向子 iframe 请求获取更多信息')
+            iframe1.contentWindow.postMessage({
+                type: 'getMore',
+                data: {
+                    a: 1
+                }
+            }, iframe1.src)
+        }
+
+        console.log('1：父窗口向子 iframe 发送父窗口的 href')
+        iframe1.contentWindow.postMessage({
+            type: 'sendUrl',
+            data: location.href
+        }, iframe1.src)
+
+        iframe1.contentWindow.postMessage(null, iframe1.src)
+        iframe1.contentWindow.postMessage({ a: 1 }, iframe1.src)
+    }
+
+    function openNewWindow() {
+        // const newWindow = window.open('./iframe-child1.html')
+        const newWindow = window.open('http://127.0.0.1:8080/iframe-child1.html')
+        // const newWindow = window.open('http://127.0.0.1:8081/iframe-child1.html')
+        // const newWindow = window.open('http://127.0.0.1:5500/fe-basic/iframe/iframe-child1.html')
+
+        newWindow.onload = () => {
+            // 需要是同源才能监听到新窗口加载完毕，否则此监听无效
+            console.log('新窗口加载完毕')
+        }
+        setTimeout(() => {
+            console.log('c1：opener 向新窗口请求获取信息')
+            newWindow.postMessage({
+                type: 'getMessageFromOpener',
+                data: {
+                    msg: '我是来自 opener 的请求消息'
+                }
+            }, '*')
+        }, 1000);
+    }
+</script>
+
+</html>

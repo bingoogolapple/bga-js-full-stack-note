@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe-child1-原始用法</title>
+</head>
+
+<body>
+    <h1>iframe-child1-原始用法</h1>
+    <button id="btnUser">获取用户信息</button>
+    <button onclick="sendToOpener()">往来源页发送消息</button>
+</body>
+<script>
+    /*
+    npm install -g http-server
+    http-server -p 8080
+
+    http://127.0.0.1:8080/iframe-child1.html
+    */
+
+    document.write('<p>Script inside iframe is executed</p>')
+
+    let parentPath = ''
+
+    document.getElementById('btnUser').onclick = () => {
+        console.log('a1：子 iframe 向父窗口请求获取用户信息')
+        window.parent.postMessage({
+            type: 'getUserInfo'
+        }, parentPath)
+    }
+    window.addEventListener("message", event => {
+        if (typeof event.data !== "object" || !event.data) {
+            console.log(`子 iframe ${window.location.origin} 收到来自 ${event.origin} 的非法消息`)
+            return
+        }
+
+        console.log(`子 iframe ${window.location.origin} 收到来自 ${event.origin} 的合法消息`)
+
+        const { type, data } = event.data
+
+        if (type === 'sendUrl') {
+            console.log('2：子 iframe 收到父窗口发来的父窗口的 href', data)
+            parentPath = data
+        } else if (type === 'getUserInfo') {
+            console.log('a3：子 iframe 收到父窗口返回用户信息', data, event)
+        } else if (type === 'getMore') {
+            console.log('b2：子 iframe 收到父窗口发起的获取更多信息请求，返回数据给父窗口')
+            // window.parent.postMessage({
+            event.source.postMessage({
+                type: 'getMore',
+                data: {
+                    name: 'childRename',
+                    ...data
+                }
+            }, parentPath)
+        } else if (type === 'getMessageFromNewWindow') {
+            console.log('d3：新窗口收到 opener 返回信息', data, event)
+        } else if (type === 'getMessageFromOpener') {
+            console.log('c2：新窗口收到 opener 发起的获取信息请求，返回数据给新窗口', event)
+            event.source.postMessage({
+                type: 'getMessageFromOpener',
+                data: {
+                    msg: '我是来自新窗口的响应消息'
+                }
+            }, '*')
+        } else {
+            console.log(`子 iframe ${window.location.origin} 收到来自 ${event.origin} 的未知类型消息`, event.data)
+        }
+    }, false)
+
+    function sendToOpener() {
+        if (!window.opener) {
+            console.log('不是从其他窗口打开的')
+            return;
+        }
+
+        // 如果当前窗口是从其他窗口打开的，即便是刷新了当前页面，也还是能拿到 opener
+
+        console.log('d1：新窗口向 opener 请求获取信息')
+        window.opener.postMessage({
+            type: 'getMessageFromNewWindow',
+            data: {
+                msg: '我是来自新窗口的请求消息',
+            }
+        }, '*')
+    }
+</script>
+
+</html>
