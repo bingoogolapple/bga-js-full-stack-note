@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe-child3-Promise 用法</title>
+</head>
+
+<body>
+    <h1>iframe-child3-Promise 用法</h1>
+    <button id="btnUser" onclick="getMessageFromIframe()">从父容器获取消息</button>
+    <button onclick="getMessageFromNewWindow()">往来源页发送消息</button>
+</body>
+<script src="./post-message-helper3.js"></script>
+<script>
+    /*
+    npm install -g http-server
+    http-server -p 8080
+
+    http://127.0.0.1:8080/iframe-child3.html
+    */
+
+    document.write('<p>Script inside iframe is executed</p>')
+
+    let parentApi;
+    (async () => {
+        parentApi = new PostMessageHelper({
+            tagName: 'child3-iframe',
+            groupName: 'iframe'
+        });
+
+        // 注册自己可以处理的事件
+        parentApi.on('getMessageFromParentSuccess', async (res) => {
+            return {
+                msg: '我是来自子 iframe 的响应消息(成功场景)-成功',
+            }
+        })
+        parentApi.on('getMessageFromParentFail', async (res) => {
+            return Promise.reject({
+                msg: '我是来自子 iframe 的响应消息(失败场景)-失败'
+            })
+        })
+
+        await parentApi.createWithParent(window.parent);
+    })();
+
+    function getMessageFromIframe() {
+        if (!parentApi) {
+            console.log('未初始化 parentApi')
+            return;
+        }
+
+        parentApi.request('getMessageFromIframe', {
+            msg: '我是来自子 iframe 的请求消息'
+        }).then(res => {
+            console.log('子 iframe 向父窗口请求获取信息-成功', res)
+        }).catch(e => {
+            console.error('子 iframe 向父窗口请求获取信息-失败', e)
+        })
+    }
+
+    let openerApi;
+    (async () => {
+        if (!window.opener) {
+            console.log('不是从其他窗口打开的')
+            return;
+        }
+
+        // 如果当前窗口是从其他窗口打开的，即便是刷新了当前页面，也还是能拿到 opener
+
+        openerApi = new PostMessageHelper({
+            tagName: 'child3-open',
+            groupName: 'open'
+        });
+        // 注册自己可以处理的事件
+        openerApi.on('getMessageFromOpener', async (res) => {
+            return {
+                msg: '我是来自新窗口的响应消息',
+            }
+        })
+
+        await openerApi.createWithParent(window.opener);
+    })();
+
+    function getMessageFromNewWindow() {
+        if (!openerApi) {
+            console.log('未初始化 openerApi')
+            return;
+        }
+
+        openerApi.request('getMessageFromNewWindow', {
+            msg: '我是来自新窗口的请求消息'
+        }).then(res => {
+            console.log('新窗口向 opener 请求获取信息-成功', res)
+        }).catch(e => {
+            console.error('新窗口向 opener 请求获取信息-失败', e)
+        })
+    }
+</script>
+
+</html>

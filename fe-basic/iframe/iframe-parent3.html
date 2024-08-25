@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe-parent3-Promise 用法</title>
+</head>
+
+<body>
+    <h1>iframe-parent3-Promise 用法</h1>
+    <button onclick="getMessageFromParentSuccess()">获取 iframe 信息(成功场景)</button>
+    <button onclick="getMessageFromParentFail()">获取 iframe 信息(失败场景)</button>
+    <button onclick="openNewWindow()">打开新页面</button>
+    <br><br>
+    <!-- <iframe width="500" height="500" src="./iframe-child3.html" id="iframe1"></iframe> -->
+    <iframe width="500" height="500" src="http://127.0.0.1:8080/iframe-child3.html" id="iframe1"></iframe>
+    <!-- <iframe width="500" height="500" src="http://127.0.0.1:8081/iframe-child3.html" id="iframe1"></iframe> -->
+    <!-- <iframe width="500" height="500" src="http://127.0.0.1:5500/fe-basic/iframe/iframe-child3.html" id="iframe1"></iframe> -->
+</body>
+<script src="./post-message-helper3.js"></script>
+<script>
+    const iframe1 = document.getElementById('iframe1')
+    let iframe1Api;
+    (async () => {
+        iframe1Api = new PostMessageHelper({
+            tagName: 'parent3-iframe',
+            groupName: 'iframe'
+        });
+        // 注册自己可以处理的事件
+        iframe1Api.on('getMessageFromIframe', async (res) => {
+            return {
+                msg: '我是来自父窗口的响应消息',
+            }
+        })
+
+        await iframe1Api.createWithIframe(iframe1);
+    })();
+
+    function getMessageFromParentSuccess() {
+        if (!iframe1Api) {
+            console.log('未初始化 iframe1Api')
+            return;
+        }
+
+        iframe1Api.request('getMessageFromParentSuccess', {
+            msg: '我是来自父窗口的请求消息-成功场景'
+        }).then(res => {
+            console.log('父窗口向子 iframe 请求获取信息(成功场景)-成功', res)
+        }).catch(e => {
+            console.error('父窗口向子 iframe 请求获取信息(成功场景)-失败', e)
+        })
+    }
+
+
+    function getMessageFromParentFail() {
+        if (!iframe1Api) {
+            console.log('未初始化 iframe1Api')
+            return;
+        }
+
+        iframe1Api.request('getMessageFromParentFail', {
+            msg: '我是来自父窗口的请求消息-失败场景'
+        }).then(res => {
+            console.log('父窗口向子 iframe 请求获取信息(失败场景)-成功', res)
+        }).catch(e => {
+            console.error('父窗口向子 iframe 请求获取信息(失败场景)-失败', e)
+        })
+    }
+
+    let newWindowApi;
+
+    async function openNewWindow() {
+        // const newWindow = window.open('./iframe-child3.html')
+        const newWindow = window.open('http://127.0.0.1:8080/iframe-child3.html')
+        // const newWindow = window.open('http://127.0.0.1:8081/iframe-child3.html')
+        // const newWindow = window.open('http://127.0.0.1:5500/fe-basic/iframe/iframe-child3.html')
+
+        newWindowApi = new PostMessageHelper({
+            tagName: 'parent3-open',
+            groupName: 'open'
+        });
+        // 注册自己可以处理的事件
+        newWindowApi.on('getMessageFromNewWindow', async (res) => {
+            return {
+                msg: '我是来自 opener 的响应消息',
+            }
+        })
+
+        await newWindowApi.createWithOpenWindow(newWindow);
+
+
+        newWindowApi.request('getMessageFromOpener', {
+            msg: '我是来自 opener 的请求消息'
+        }).then(res => {
+            console.log('opener 向新窗口请求获取信息-成功', res)
+        }).catch(e => {
+            console.error('opener 向新窗口请求获取信息-失败', e)
+        })
+    }
+</script>
+
+</html>
